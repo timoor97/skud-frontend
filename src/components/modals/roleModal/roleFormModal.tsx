@@ -106,7 +106,7 @@ const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
                         method: 'PUT',
                         body: JSON.stringify(submitData),
                         headers: {
-                            'Accept-Language': locale || 'ru',
+                            'Accept-Language': 'uz',
                             'Content-Type': 'application/json'
                         },
                         credentials: 'include'
@@ -160,7 +160,7 @@ const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
                         method: 'POST',
                         body: JSON.stringify(submitData),
                         headers: {
-                            'Accept-Language': locale || 'ru',
+                            'Accept-Language': 'uz',
                             'Content-Type': 'application/json'
                         },
                         credentials: 'include'
