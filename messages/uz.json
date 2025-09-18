@@ -1,0 +1,270 @@
+{
+  "Common": {
+    "loading": "Yuklanmoqda..."
+  },
+  "HomePage": {
+    "title": "Salom Dunyo!"
+  },
+  "LoginForm": {
+    "title": "Xush kelibsiz",
+    "description": "Apple yoki Google hisobingiz bilan kiring",
+    "labels": {
+      "login": "Login",
+      "password": "Parol"
+    },
+    "placeholders": {
+      "login": "Loginingizni kiriting",
+      "password": "Parolingizni kiriting"
+    },
+    "buttons": {
+      "login": "Kirish"
+    },
+    "errors": {
+      "requiredField": "Bu maydonni to'ldiring",
+      "connectionError": "Server bilan ulanishda xatolik"
+    }
+  },
+  "Users": {
+    "Title": {
+      "title": "Foydalanuvchilar"
+    },
+    "TableHeader": {
+      "image": "Rasm",
+      "firstName": "Ism",
+      "lastName": "Familiya",
+      "phone": "Telefon",
+      "role": "Rol",
+      "status": "Holat",
+      "actions": "Amallar"
+    },
+    "UsersManagement": {
+      "title": "Foydalanuvchilarni boshqarish"
+    },
+    "CreateBtn": {
+      "label": "Foydalanuvchi yaratish"
+    },
+    "ToastMsg": {
+      "delete": "Foydalanuvchi muvaffaqiyatli o'chirildi!",
+      "error": "Foydalanuvchini o'chirishda xatolik yuz berdi",
+      "noUsersFound": "Sizning mezonlaringizga mos foydalanuvchilar topilmadi",
+      "noUsers": "Foydalanuvchilar mavjud emas",
+      "tryAdjustingCriteria": "Qidiruv mezonlarini o'zgartirishga harakat qiling",
+      "createFirstUser": "Ishni boshlash uchun birinchi foydalanuvchini yarating"
+    },
+    "Modal": {
+      "titles": {
+        "createUser": "Yangi foydalanuvchi yaratish",
+        "editUser": "Foydalanuvchini tahrirlash #{id}",
+        "viewUser": "Foydalanuvchini ko'rish"
+      },
+      "labels": {
+        "firstName": "Ism",
+        "lastName": "Familiya",
+        "phone": "Telefon",
+        "role": "Rol",
+        "login": "Login",
+        "password": "Parol",
+        "status": "Holat",
+        "userId": "Foydalanuvchi ID",
+        "image": "Profil rasmi"
+      },
+      "placeholders": {
+        "firstName": "Ismni kiriting",
+        "lastName": "Familiyani kiriting",
+        "phone": "Telefonni kiriting",
+        "login": "Login kiriting",
+        "password": "Parolni kiriting",
+        "selectRole": "Rolni tanlang",
+        "chooseFile": "Faylni tanlang",
+        "noFileChosen": "Fayl tanlanmagan"
+      },
+      "status": {
+        "selectPlaceholder": "Holatni tanlang",
+        "active": "Faol",
+        "inactive": "Nofaol"
+      },
+      "buttons": {
+        "cancel": "Bekor qilish",
+        "create": "Yaratish",
+        "creating": "Yaratilmoqda...",
+        "update": "Yangilash",
+        "updating": "Yangilanmoqda...",
+        "close": "Yopish"
+      },
+      "messages": {
+        "createUser": "Yangi foydalanuvchi hisobini yaratish",
+        "editUser": "ID: {id} foydalanuvchini tahrirlash",
+        "passwordRequired": "Foydalanuvchi yaratish uchun parol talab qilinadi",
+        "userCreated": "Foydalanuvchi muvaffaqiyatli yaratildi!",
+        "userUpdated": "Foydalanuvchi muvaffaqiyatli yangilandi!",
+        "noUserSelected": "Foydalanuvchi tanlanmagan"
+      }
+    },
+    "Filters": {
+      "name": "Ism",
+      "role": "Rol",
+      "status": "Holat",
+      "placeholders": {
+        "name": "Ismni kiriting...",
+        "role": "Rolni tanlang..."
+      },
+      "options": {
+        "all": "Barchasi"
+      },
+      "statusOptions": {
+        "selectPlaceholder": "Holatni tanlang...",
+        "active": "Faol",
+        "inactive": "Nofaol"
+      }
+    }
+  },
+  "NavUser": {
+    "menu": {
+      "account": "Hisob",
+      "notifications": "Bildirishnomalar",
+      "logout": "Chiqish"
+    },
+    "messages": {
+      "logoutSuccess": "Muvaffaqiyatli chiqildi"
+    },
+    "errors": {
+      "loadUserData": "Foydalanuvchi ma'lumotlarini yuklashda xatolik",
+      "logoutFailed": "Chiqishda xatolik",
+      "generalError": "Xatolik yuz berdi"
+    },
+    "defaults": {
+      "userInitial": "F",
+      "userName": "Foydalanuvchi",
+      "noPhone": "Telefon yo'q"
+    },
+    "filter": "Filtr",
+    "reset": "Tiklash"
+  },
+  "Sidebar": {
+    "companyName": "Skud",
+    "dashboard": "Boshqaruv paneli",
+    "rolePermissions": "Rollar va ruxsatlar",
+    "roles": "Rollar",
+    "users": "Foydalanuvchilar",
+    "starred": "Yulduzcha",
+    "settings": "Sozlamalar"
+  },
+  "Breadcrumb": {
+    "dashboard": "Boshqaruv paneli",
+    "rolePermissions": "Rollar va ruxsatlar",
+    "roles": "Rollar",
+    "users": "Foydalanuvchilar",
+    "playground": "O'yin maydoni",
+    "history": "Tarix",
+    "starred": "Yulduzcha",
+    "settings": "Sozlamalar",
+    "page": "Sahifa"
+  },
+  "Pagination": {
+    "showing": "Ko'rsatilmoqda",
+    "to": "dan",
+    "of": "dan",
+    "results": "natija",
+    "previous": "Oldingi",
+    "next": "Keyingi"
+  },
+  "PageHeader": {
+    "defaultTitle": "Boshqaruv paneli",
+    "defaultDescription": "Boshqaruv paneliga xush kelibsiz"
+  },
+  "ConfirmDeleteModal": {
+    "title": "O'chirishni tasdiqlash",
+    "delete": "Bu elementni o'chirishni xohlaysizmi? Bu amalni bekor qilib bo'lmaydi.",
+    "cancel": "Bekor qilish",
+    "confirm": "O'chirish"
+  },
+  "Btns": {
+    "filter": "Filtr",
+    "filtering": "Filtrlanmoqda...",
+    "reset": "Tiklash",
+    "apply": "Qo'llash",
+    "cancel": "Bekor qilish",
+    "save": "Saqlash",
+    "edit": "Tahrirlash",
+    "delete": "O'chirish",
+    "create": "Yaratish",
+    "update": "Yangilash",
+    "close": "Yopish"
+  },
+  "Roles": {
+    "Title": {
+      "title": "Rollar"
+    },
+    "TableHeader": {
+      "id": "ID",
+      "name": "Nomi",
+      "key": "Kalit",
+      "permissions": "Ruxsatlar",
+      "actions": "Amallar"
+    },
+    "RolesManagement": {
+      "title": "Rollarni boshqarish"
+    },
+    "CreateBtn": {
+      "label": "Rol yaratish"
+    },
+    "TableHeader": {
+      "id": "ID",
+      "name": "Nomi",
+      "key": "Kalit",
+      "actions": "Amallar"
+    },
+    "ToastMsg": {
+      "delete": "Rol muvaffaqiyatli o'chirildi!",
+      "error": "Rolni o'chirishda xatolik yuz berdi",
+      "noRoles": "Rollar mavjud emas"
+    },
+    "Filters": {
+      "name": "Nomi",
+      "placeholders": {
+        "name": "Rol nomini kiriting"
+      }
+    },
+    "Modal": {
+      "labels": {
+        "name": "Rol nomi",
+        "nameUz": "Nomi (O'zbek)",
+        "nameRu": "Nomi (Rus)",
+        "nameEn": "Nomi (Ingliz)",
+        "description": "Tavsif",
+        "key": "Kalit",
+        "permissions": "Ruxsatlar"
+      },
+      "placeholders": {
+        "nameUz": "O'zbek tilida nom kiriting",
+        "nameRu": "Rus tilida nom kiriting",
+        "nameEn": "Ingliz tilida nom kiriting",
+        "descriptionUz": "O'zbek tilida tavsif kiriting",
+        "descriptionRu": "Rus tilida tavsif kiriting",
+        "descriptionEn": "Ingliz tilida tavsif kiriting",
+        "key": "Rol kalitini kiriting",
+        "permissions": "Ruxsatlarni tanlang"
+      },
+      "buttons": {
+        "cancel": "Bekor qilish",
+        "create": "Yaratish",
+        "creating": "Yaratilmoqda...",
+        "update": "Yangilash",
+        "updating": "Yangilanmoqda...",
+        "close": "Yopish"
+      },
+      "messages": {
+        "createRole": "Yangi rol yaratish",
+        "editRole": "ID: {id} rolini tahrirlash",
+        "viewRole": "Rolni ko'rish #{id}",
+        "roleCreated": "Rol muvaffaqiyatli yaratildi!",
+        "roleUpdated": "Rol muvaffaqiyatli yangilandi!"
+      },
+      "errors": {
+        "nameRequired": "Kamida bitta nom maydoni talab qilinadi",
+        "requiredField": "Bu maydon to'ldirilishi shart",
+        "keyExists": "Bunday kalitli rol allaqachon mavjud"
+      }
+    }
+  }
+}

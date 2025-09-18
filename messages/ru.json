@@ -1,0 +1,270 @@
+{
+  "Common": {
+    "loading": "Загрузка..."
+  },
+  "HomePage": {
+    "title": "Привет, мир!"
+  },
+  "LoginForm": {
+    "title": "Добро пожаловать",
+    "description": "Войдите с помощью Apple или Google аккаунта",
+    "labels": {
+      "login": "Логин",
+      "password": "Пароль"
+    },
+    "placeholders": {
+      "login": "Введите ваш логин",
+      "password": "Введите ваш пароль"
+    },
+    "buttons": {
+      "login": "Войти"
+    },
+    "errors": {
+      "requiredField": "Заполните поле",
+      "connectionError": "Ошибка подключения к серверу"
+    }
+  },
+  "Users": {
+    "Title": {
+      "title": "Пользователи"
+    },
+    "TableHeader": {
+      "image": "Изображение",
+      "firstName": "Имя",
+      "lastName": "Фамилия",
+      "phone": "Телефон",
+      "role": "Роль",
+      "status": "Статус",
+      "actions": "Действия"
+    },
+    "UsersManagement": {
+      "title": "Управление пользователями"
+    },
+    "CreateBtn": {
+      "label": "Создать пользователя"
+    },
+    "ToastMsg": {
+      "delete": "Пользователь успешно удален!",
+      "error": "Произошла ошибка при удалении пользователя",
+      "noUsersFound": "Пользователи, соответствующие вашим критериям, не найдены",
+      "noUsers": "Пользователи отсутствуют",
+      "tryAdjustingCriteria": "Попробуйте изменить критерии поиска",
+      "createFirstUser": "Создайте первого пользователя для начала работы"
+    },
+    "Modal": {
+      "titles": {
+        "createUser": "Создать нового пользователя",
+        "editUser": "Редактировать пользователя #{id}",
+        "viewUser": "Просмотр пользователя"
+      },
+      "labels": {
+        "firstName": "Имя",
+        "lastName": "Фамилия",
+        "phone": "Телефон",
+        "role": "Роль",
+        "login": "Логин",
+        "password": "Пароль",
+        "status": "Статус",
+        "userId": "ID пользователя",
+        "image": "Фото профиля"
+      },
+      "placeholders": {
+        "firstName": "Введите имя",
+        "lastName": "Введите фамилию",
+        "phone": "Введите телефон",
+        "login": "Введите логин",
+        "password": "Введите пароль",
+        "selectRole": "Выберите роль",
+        "chooseFile": "Выберите файл",
+        "noFileChosen": "Файл не выбран"
+      },
+      "status": {
+        "selectPlaceholder": "Выберите статус",
+        "active": "Активный",
+        "inactive": "Неактивный"
+      },
+      "buttons": {
+        "cancel": "Отмена",
+        "create": "Создать",
+        "creating": "Создание...",
+        "update": "Обновить",
+        "updating": "Обновление...",
+        "close": "Закрыть"
+      },
+      "messages": {
+        "createUser": "Создать новый аккаунт пользователя",
+        "editUser": "Редактирование пользователя с ID: {id}",
+        "passwordRequired": "Пароль обязателен для создания пользователя",
+        "userCreated": "Пользователь успешно создан!",
+        "userUpdated": "Пользователь успешно обновлен!",
+        "noUserSelected": "Пользователь не выбран"
+      }
+    },
+    "Filters": {
+      "name": "Имя",
+      "role": "Роль",
+      "status": "Статус",
+      "placeholders": {
+        "name": "Введите имя...",
+        "role": "Выберите роль..."
+      },
+      "options": {
+        "all": "Все"
+      },
+      "statusOptions": {
+        "selectPlaceholder": "Выберите статус...",
+        "active": "Активный",
+        "inactive": "Неактивный"
+      }
+    }
+  },
+  "NavUser": {
+    "menu": {
+      "account": "Аккаунт",
+      "notifications": "Уведомления",
+      "logout": "Выйти"
+    },
+    "messages": {
+      "logoutSuccess": "Успешно вышли из системы"
+    },
+    "errors": {
+      "loadUserData": "Не удалось загрузить данные пользователя",
+      "logoutFailed": "Ошибка выхода",
+      "generalError": "Произошла ошибка"
+    },
+    "defaults": {
+      "userInitial": "П",
+      "userName": "Пользователь",
+      "noPhone": "Нет телефона"
+    },
+    "filter": "Фильтр",
+    "reset": "Сбросить"
+  },
+  "Sidebar": {
+    "companyName": "Скуд",
+    "dashboard": "Панель управления",
+    "rolePermissions": "Роли и разрешения",
+    "roles": "Роли",
+    "users": "Пользователи",
+    "starred": "Избранное",
+    "settings": "Настройки"
+  },
+  "Breadcrumb": {
+    "dashboard": "Панель управления",
+    "rolePermissions": "Роли и разрешения",
+    "roles": "Роли",
+    "users": "Пользователи",
+    "playground": "Игровая площадка",
+    "history": "История",
+    "starred": "Избранное",
+    "settings": "Настройки",
+    "page": "Страница"
+  },
+  "Pagination": {
+    "showing": "Показано",
+    "to": "до",
+    "of": "из",
+    "results": "результатов",
+    "previous": "Предыдущая",
+    "next": "Следующая"
+  },
+  "PageHeader": {
+    "defaultTitle": "Панель управления",
+    "defaultDescription": "Добро пожаловать в панель управления"
+  },
+  "ConfirmDeleteModal": {
+    "title": "Подтвердить удаление",
+    "delete": "Вы уверены, что хотите удалить этот элемент? Это действие нельзя отменить.",
+    "cancel": "Отмена",
+    "confirm": "Удалить"
+  },
+  "Btns": {
+    "filter": "Фильтр",
+    "filtering": "Фильтрация...",
+    "reset": "Сбросить",
+    "apply": "Применить",
+    "cancel": "Отмена",
+    "save": "Сохранить",
+    "edit": "Редактировать",
+    "delete": "Удалить",
+    "create": "Создать",
+    "update": "Обновить",
+    "close": "Закрыть"
+  },
+  "Roles": {
+    "Title": {
+      "title": "Роли"
+    },
+    "TableHeader": {
+      "id": "ID",
+      "name": "Название",
+      "key": "Ключ",
+      "permissions": "Разрешения",
+      "actions": "Действия"
+    },
+    "RolesManagement": {
+      "title": "Управление ролями"
+    },
+    "CreateBtn": {
+      "label": "Создать роль"
+    },
+    "TableHeader": {
+      "id": "ID",
+      "name": "Название",
+      "key": "Ключ",
+      "actions": "Действия"
+    },
+    "ToastMsg": {
+      "delete": "Роль успешно удалена!",
+      "error": "Произошла ошибка при удалении роли",
+      "noRoles": "Роли отсутствуют"
+    },
+    "Filters": {
+      "name": "Название",
+      "placeholders": {
+        "name": "Введите название роли"
+      }
+    },
+    "Modal": {
+      "labels": {
+        "name": "Название роли",
+        "nameUz": "Название (Узбекский)",
+        "nameRu": "Название (Русский)",
+        "nameEn": "Название (Английский)",
+        "description": "Описание",
+        "key": "Ключ",
+        "permissions": "Разрешения"
+      },
+      "placeholders": {
+        "nameUz": "Введите название на узбекском",
+        "nameRu": "Введите название на русском",
+        "nameEn": "Введите название на английском",
+        "descriptionUz": "Введите описание на узбекском",
+        "descriptionRu": "Введите описание на русском",
+        "descriptionEn": "Введите описание на английском",
+        "key": "Введите ключ роли",
+        "permissions": "Выберите разрешения"
+      },
+      "buttons": {
+        "cancel": "Отмена",
+        "create": "Создать",
+        "creating": "Создание...",
+        "update": "Обновить",
+        "updating": "Обновление...",
+        "close": "Закрыть"
+      },
+      "messages": {
+        "createRole": "Создать новую роль",
+        "editRole": "Редактирование роли с ID: {id}",
+        "viewRole": "Просмотр роли #{id}",
+        "roleCreated": "Роль успешно создана!",
+        "roleUpdated": "Роль успешно обновлена!"
+      },
+      "errors": {
+        "nameRequired": "Требуется хотя бы одно поле названия",
+        "requiredField": "Это поле обязательно для заполнения",
+        "keyExists": "Роль с таким ключом уже существует"
+      }
+    }
+  }
+}

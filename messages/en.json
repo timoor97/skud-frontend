@@ -1,0 +1,270 @@
+{
+  "Common": {
+    "loading": "Loading..."
+  },
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "LoginForm": {
+    "title": "Welcome back",
+    "description": "Login with your Apple or Google account",
+    "labels": {
+      "login": "Login",
+      "password": "Password"
+    },
+    "placeholders": {
+      "login": "Enter your login",
+      "password": "Enter your password"
+    },
+    "buttons": {
+      "login": "Login"
+    },
+    "errors": {
+      "requiredField": "This field is required",
+      "connectionError": "Server connection error"
+    }
+  },
+  "Users": {
+    "Title": {
+      "title": "Users"
+    },
+    "TableHeader": {
+      "image": "Image",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone",
+      "role": "Role",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "UsersManagement": {
+      "title": "Users Management"
+    },
+    "CreateBtn": {
+      "label": "Create User"
+    },
+    "ToastMsg": {
+      "delete": "User deleted successfully!",
+      "error": "An error occurred while deleting the user",
+      "noUsersFound": "No users found matching your criteria",
+      "noUsers": "No users available",
+      "tryAdjustingCriteria": "Try adjusting your search criteria",
+      "createFirstUser": "Create the first user to get started"
+    },
+    "Modal": {
+      "titles": {
+        "createUser": "Create New User",
+        "editUser": "Edit User #{id}",
+        "viewUser": "View User"
+      },
+      "labels": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "phone": "Phone",
+        "role": "Role",
+        "login": "Login",
+        "password": "Password",
+        "status": "Status",
+        "userId": "User ID",
+        "image": "Profile Image"
+      },
+      "placeholders": {
+        "firstName": "Enter first name",
+        "lastName": "Enter last name",
+        "phone": "Enter phone",
+        "login": "Enter login",
+        "password": "Enter password",
+        "selectRole": "Select role",
+        "chooseFile": "Choose file",
+        "noFileChosen": "No file chosen"
+      },
+      "status": {
+        "selectPlaceholder": "Select status...",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create",
+        "creating": "Creating...",
+        "update": "Update",
+        "updating": "Updating...",
+        "close": "Close"
+      },
+      "messages": {
+        "createUser": "Create a new user account",
+        "editUser": "Editing user with ID: {id}",
+        "passwordRequired": "Password is required for user creation",
+        "userCreated": "User created successfully!",
+        "userUpdated": "User updated successfully!",
+        "noUserSelected": "No user selected"
+      }
+    },
+    "Filters": {
+      "name": "Name",
+      "role": "Role",
+      "status": "Status",
+      "placeholders": {
+        "name": "Enter name...",
+        "role": "Select role..."
+      },
+      "options": {
+        "all": "All"
+      },
+      "statusOptions": {
+        "selectPlaceholder": "Select status...",
+        "active": "Active",
+        "inactive": "Inactive"
+      }
+    }
+  },
+  "NavUser": {
+    "menu": {
+      "account": "Account",
+      "notifications": "Notifications",
+      "logout": "Log out"
+    },
+    "messages": {
+      "logoutSuccess": "Logged out successfully"
+    },
+    "errors": {
+      "loadUserData": "Failed to load user data",
+      "logoutFailed": "Logout failed",
+      "generalError": "An error occurred"
+    },
+    "defaults": {
+      "userInitial": "U",
+      "userName": "User",
+      "noPhone": "No phone"
+    },
+    "filter": "Filter",
+    "reset": "Reset"
+  },
+  "Sidebar": {
+    "companyName": "Skud",
+    "dashboard": "Dashboard",
+    "rolePermissions": "Role and Permissions",
+    "roles": "Roles",
+    "users": "Users",
+    "starred": "Starred",
+    "settings": "Settings"
+  },
+  "Breadcrumb": {
+    "dashboard": "Dashboard",
+    "rolePermissions": "Role and Permissions",
+    "roles": "Roles",
+    "users": "Users",
+    "playground": "Playground",
+    "history": "History",
+    "starred": "Starred",
+    "settings": "Settings",
+    "page": "Page"
+  },
+  "Pagination": {
+    "showing": "Showing",
+    "to": "to",
+    "of": "of",
+    "results": "results",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "PageHeader": {
+    "defaultTitle": "Dashboard",
+    "defaultDescription": "Welcome to your dashboard"
+  },
+  "ConfirmDeleteModal": {
+    "title": "Confirm Delete",
+    "delete": "Are you sure you want to delete this item? This action cannot be undone.",
+    "cancel": "Cancel",
+    "confirm": "Delete"
+  },
+  "Btns": {
+    "filter": "Filter",
+    "filtering": "Filtering...",
+    "reset": "Reset",
+    "apply": "Apply",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close"
+  },
+  "Roles": {
+    "Title": {
+      "title": "Roles"
+    },
+    "TableHeader": {
+      "id": "ID",
+      "name": "Name",
+      "key": "Key",
+      "permissions": "Permissions",
+      "actions": "Actions"
+    },
+    "RolesManagement": {
+      "title": "Roles Management"
+    },
+    "CreateBtn": {
+      "label": "Create Role"
+    },
+    "TableHeader": {
+      "id": "ID",
+      "name": "Name",
+      "key": "Key",
+      "actions": "Actions"
+    },
+    "ToastMsg": {
+      "delete": "Role deleted successfully!",
+      "error": "An error occurred while deleting the role",
+      "noRoles": "No roles available"
+    },
+    "Filters": {
+      "name": "Name",
+      "placeholders": {
+        "name": "Enter role name"
+      }
+    },
+    "Modal": {
+      "labels": {
+        "name": "Role Name",
+        "nameUz": "Name (Uzbek)",
+        "nameRu": "Name (Russian)",
+        "nameEn": "Name (English)",
+        "description": "Description",
+        "key": "Key",
+        "permissions": "Permissions"
+      },
+      "placeholders": {
+        "nameUz": "Enter name in Uzbek",
+        "nameRu": "Enter name in Russian",
+        "nameEn": "Enter name in English",
+        "descriptionUz": "Enter description in Uzbek",
+        "descriptionRu": "Enter description in Russian",
+        "descriptionEn": "Enter description in English",
+        "key": "Enter role key",
+        "permissions": "Select permissions"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create",
+        "creating": "Creating...",
+        "update": "Update",
+        "updating": "Updating...",
+        "close": "Close"
+      },
+      "messages": {
+        "createRole": "Create a new role",
+        "editRole": "Editing role with ID: {id}",
+        "viewRole": "View Role #{id}",
+        "roleCreated": "Role created successfully!",
+        "roleUpdated": "Role updated successfully!"
+      },
+      "errors": {
+        "nameRequired": "At least one name field is required",
+        "requiredField": "This field is required",
+        "keyExists": "A role with this key already exists"
+      }
+    }
+  }
+}
