@@ -21,13 +21,14 @@ jobs:
       #Deploy
       - run: rsync --archive --compress --progress . ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }}:${{env.SERVER_PATH}}
       - name: Update composer and install npm on the server
-
-        run: ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
-          cd ${{ env.SERVER_PATH }} &&
-          npm install &&
-          npm run build &&
-          fuser -k 3000/tcp || true &&
-          npm start -- --port 3000
+        run: |
+          ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
+            cd ${{ env.SERVER_PATH }} &&
+            npm install &&
+            npm run build &&
+            fuser -k 3000/tcp || true &&
+            npm start -- --port 3000 > app.log 2>&1 &
+            sleep 3
           "
       - name: Directory Permissions
         run: ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "cd ${{ env.SERVER_PATH }}"
