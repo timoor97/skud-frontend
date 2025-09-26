@@ -1,9 +1,8 @@
 import React, { FC } from 'react'
 import { getAllUsers } from '../../actions/(users)/getAllUsers'
-import UsersClient from "@/components/clientLayout/usersClient";
-import UserFormModal from "@/components/modals/userModal/userFormModal";
+import UsersList from "@/components/clientLayout/users/UsersList";
+import UserFormModal from "@/components/clientLayout/users/modals/UserFormModal";
 import { getRole } from '../../actions/(roles)/getAllRoles'
-import UserViewModal from "@/components/modals/userModal/userViewModal";
 import { currentUser, currentUserPermissionsActions } from '../../actions/(users)/getCurrentUser';
 
 interface UsersPageProps {
@@ -21,7 +20,7 @@ const UsersPage: FC<UsersPageProps> = async ({ params }) => {
 
     return (
         <>
-            <UsersClient
+            <UsersList
                 users={users.data.models}
                 userActions={userActions}
                 user={user.data}
@@ -29,10 +28,7 @@ const UsersPage: FC<UsersPageProps> = async ({ params }) => {
                 roles={roles.data.models}
             />
 
-            <UserFormModal
-                roles={roles.data.models}
-            />
-            <UserViewModal />
+            <UserFormModal />
         </>
     )
 }

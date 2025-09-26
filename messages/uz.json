@@ -19,10 +19,20 @@
     "buttons": {
       "login": "Kirish"
     },
-    "errors": {
-      "requiredField": "Bu maydonni to'ldiring",
-      "connectionError": "Server bilan ulanishda xatolik"
-    }
+      "errors": {
+        "requiredField": "Bu maydonni to'ldiring",
+        "connectionError": "Server bilan ulanishda xatolik",
+        "firstNameMaxLength": "Ism 255 ta belgidan ko'p bo'lmasligi kerak",
+        "lastNameMaxLength": "Familiya 255 ta belgidan ko'p bo'lmasligi kerak",
+        "phoneMaxLength": "Telefon raqami 20 ta belgidan ko'p bo'lmasligi kerak",
+        "cardNumberDigits": "Karta raqami faqat raqamlardan iborat bo'lishi kerak",
+        "cardNumberMaxLength": "Karta raqami 20 ta raqamdan ko'p bo'lmasligi kerak",
+        "imageFormat": "Rasm JPEG yoki PNG formatida va 1MB dan kichik bo'lishi kerak",
+        "usernameMaxLength": "Foydalanuvchi nomi 255 ta belgidan ko'p bo'lmasligi kerak",
+        "passwordMinLength": "Parol kamida 6 ta belgidan iborat bo'lishi kerak",
+        "passwordMaxLength": "Parol 255 ta belgidan ko'p bo'lmasligi kerak",
+        "passwordMismatch": "Parollar mos kelmaydi"
+      }
   },
   "Users": {
     "Title": {
@@ -49,7 +59,8 @@
       "noUsersFound": "Sizning mezonlaringizga mos foydalanuvchilar topilmadi",
       "noUsers": "Foydalanuvchilar mavjud emas",
       "tryAdjustingCriteria": "Qidiruv mezonlarini o'zgartirishga harakat qiling",
-      "createFirstUser": "Ishni boshlash uchun birinchi foydalanuvchini yarating"
+      "createFirstUser": "Ishni boshlash uchun birinchi foydalanuvchini yarating",
+      "noRole": "Rol yo'q"
     },
     "Modal": {
       "titles": {
@@ -61,6 +72,7 @@
         "firstName": "Ism",
         "lastName": "Familiya",
         "phone": "Telefon",
+        "cardNumber": "Karta raqami",
         "role": "Rol",
         "login": "Login",
         "password": "Parol",
@@ -72,6 +84,7 @@
         "firstName": "Ismni kiriting",
         "lastName": "Familiyani kiriting",
         "phone": "Telefonni kiriting",
+        "cardNumber": "Karta raqamini kiriting",
         "login": "Login kiriting",
         "password": "Parolni kiriting",
         "selectRole": "Rolni tanlang",
@@ -98,6 +111,64 @@
         "userCreated": "Foydalanuvchi muvaffaqiyatli yaratildi!",
         "userUpdated": "Foydalanuvchi muvaffaqiyatli yangilandi!",
         "noUserSelected": "Foydalanuvchi tanlanmagan"
+      }
+    },
+    "DetailPage": {
+      "title": "Foydalanuvchi ma'lumotlari va hisobotlar",
+      "actions": {
+        "edit": "Tahrirlash",
+        "backToList": "Ro'yxatga qaytish"
+      },
+      "labels": {
+        "id": "ID",
+        "firstName": "Ism",
+        "lastName": "Familiya",
+        "login": "Login",
+        "phone": "Telefon",
+        "cardNumber": "Karta raqami",
+        "role": "Rol",
+        "status": "Holat",
+        "active": "Faol",
+        "inactive": "Nofaol"
+      },
+      "tabs": {
+        "monthlyReport": "Oylik hisobot",
+        "bonus": "Bonus, Jarima va Boshqalar",
+        "security": "Xavfsizlik",
+        "faceRecognition": "Yuz quruma"
+      },
+      "tabContent": {
+        "monthlyReport": "Oylik hisobot ma'lumotlari bu yerda ko'rsatiladi.",
+        "bonus": "Bonus va jarima ma'lumotlari bu yerda ko'rsatiladi.",
+        "security": "Xavfsizlik sozlamalari bu yerda ko'rsatiladi.",
+        "faceRecognition": "Yuz quruma sozlamalari bu yerda ko'rsatiladi."
+      },
+      "security": {
+        "labels": {
+          "login": "Foydalanuvchi nomi",
+          "password": "Yangi parol",
+          "passwordConfirmation": "Yangi parolni tasdiqlash",
+          "loginPermission": "Kirishga ruxsat",
+          "role": "Rol"
+        },
+        "placeholders": {
+          "login": "Foydalanuvchi nomini kiriting",
+          "password": "Yangi parolni kiriting",
+          "passwordConfirmation": "Yangi parolni tasdiqlang",
+          "role": "Rolni tanlang"
+        },
+        "buttons": {
+          "saveChanges": "O'zgarishlarni saqlash",
+          "saving": "Saqlanmoqda..."
+        },
+        "messages": {
+          "changesSaved": "Xavfsizlik sozlamalari muvaffaqiyatli yangilandi!",
+          "updateFailed": "Xavfsizlik sozlamalarini yangilashda xatolik"
+        }
+      },
+      "errors": {
+        "userNotFound": "Foydalanuvchi topilmadi",
+        "userNotFoundDescription": "So'ralgan foydalanuvchi topilmadi."
       }
     },
     "Filters": {
@@ -154,6 +225,7 @@
     "rolePermissions": "Rollar va ruxsatlar",
     "roles": "Rollar",
     "users": "Foydalanuvchilar",
+    "user": "Foydalanuvchi",
     "playground": "O'yin maydoni",
     "history": "Tarix",
     "starred": "Yulduzcha",

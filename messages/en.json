@@ -19,10 +19,20 @@
     "buttons": {
       "login": "Login"
     },
-    "errors": {
-      "requiredField": "This field is required",
-      "connectionError": "Server connection error"
-    }
+      "errors": {
+        "requiredField": "This field is required",
+        "connectionError": "Server connection error",
+        "firstNameMaxLength": "First name must be at most 255 characters",
+        "lastNameMaxLength": "Last name must be at most 255 characters",
+        "phoneMaxLength": "Phone number must be at most 20 characters",
+        "cardNumberDigits": "Card number must contain only digits",
+        "cardNumberMaxLength": "Card number must be at most 20 digits",
+        "imageFormat": "Image must be a JPEG or PNG file under 1MB",
+        "usernameMaxLength": "Username must be at most 255 characters",
+        "passwordMinLength": "Password must be at least 6 characters",
+        "passwordMaxLength": "Password must be at most 255 characters",
+        "passwordMismatch": "Passwords do not match"
+      }
   },
   "Users": {
     "Title": {
@@ -49,7 +59,8 @@
       "noUsersFound": "No users found matching your criteria",
       "noUsers": "No users available",
       "tryAdjustingCriteria": "Try adjusting your search criteria",
-      "createFirstUser": "Create the first user to get started"
+      "createFirstUser": "Create the first user to get started",
+      "noRole": "No Role"
     },
     "Modal": {
       "titles": {
@@ -61,6 +72,7 @@
         "firstName": "First Name",
         "lastName": "Last Name",
         "phone": "Phone",
+        "cardNumber": "Card Number",
         "role": "Role",
         "login": "Login",
         "password": "Password",
@@ -72,6 +84,7 @@
         "firstName": "Enter first name",
         "lastName": "Enter last name",
         "phone": "Enter phone",
+        "cardNumber": "Enter card number",
         "login": "Enter login",
         "password": "Enter password",
         "selectRole": "Select role",
@@ -98,6 +111,64 @@
         "userCreated": "User created successfully!",
         "userUpdated": "User updated successfully!",
         "noUserSelected": "No user selected"
+      }
+    },
+    "DetailPage": {
+      "title": "User Details and Reports",
+      "actions": {
+        "edit": "Edit",
+        "backToList": "Back to List"
+      },
+      "labels": {
+        "id": "ID",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "login": "Login",
+        "phone": "Phone",
+        "cardNumber": "Card Number",
+        "role": "Role",
+        "status": "Status",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "tabs": {
+        "monthlyReport": "Monthly Report",
+        "bonus": "Bonus, Penalty and Others",
+        "security": "Security",
+        "faceRecognition": "Face Recognition"
+      },
+      "tabContent": {
+        "monthlyReport": "Monthly report information will be displayed here.",
+        "bonus": "Bonus and penalty information will be displayed here.",
+        "security": "Security settings will be displayed here.",
+        "faceRecognition": "Face recognition settings will be displayed here."
+      },
+      "security": {
+        "labels": {
+          "login": "Username",
+          "password": "New Password",
+          "passwordConfirmation": "Confirm New Password",
+          "loginPermission": "Login Permission",
+          "role": "Role"
+        },
+        "placeholders": {
+          "login": "Enter username",
+          "password": "Enter new password",
+          "passwordConfirmation": "Confirm new password",
+          "role": "Select a role"
+        },
+        "buttons": {
+          "saveChanges": "Save Changes",
+          "saving": "Saving..."
+        },
+        "messages": {
+          "changesSaved": "Security settings updated successfully!",
+          "updateFailed": "Failed to update security settings"
+        }
+      },
+      "errors": {
+        "userNotFound": "User Not Found",
+        "userNotFoundDescription": "The requested user could not be found."
       }
     },
     "Filters": {
@@ -154,6 +225,7 @@
     "rolePermissions": "Role and Permissions",
     "roles": "Roles",
     "users": "Users",
+    "user": "User",
     "playground": "Playground",
     "history": "History",
     "starred": "Starred",

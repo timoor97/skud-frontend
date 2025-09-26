@@ -1,6 +1,6 @@
 'use server'
 import { fetchWithAuth } from "@/config/interceptor"
-import {CreateUserRequest} from "@/types/usersTypes"
+import {CreateUserRequest, SetLoginPasswordRequest} from "@/types/usersTypes"
 
 export const getUsers = async (locale: string, page: number, name?: string, role_id?: number | string, status?: boolean) => {
     let url = `/users?page=${page}&limit=10`
@@ -40,9 +40,8 @@ export const createUser = async (data: CreateUserRequest, locale?: string) => {
     formData.append('first_name', String(data.first_name || ''));
     formData.append('last_name', String(data.last_name || ''));
     formData.append('phone', String(data.phone || ''));
+    formData.append('card_number', String(data.card_number || ''));
     formData.append('role_id', String(data.role_id || 0));
-    formData.append('login', String(data.login || ''));
-    formData.append('password', String(data.password || ''));
     formData.append('status', data.status ? '1' : '0');
     
     // Handle image field
@@ -91,9 +90,8 @@ export const updateUser = async (data: CreateUserRequest, id: number, locale?: s
     formData.append('first_name', String(data.first_name || ''));
     formData.append('last_name', String(data.last_name || ''));
     formData.append('phone', String(data.phone || ''));
+    formData.append('card_number', String(data.card_number || ''));
     formData.append('role_id', String(data.role_id || 0));
-    formData.append('login', String(data.login || ''));
-    formData.append('password', String(data.password || ''));
     formData.append('status', data.status ? '1' : '0');
     
     // Handle image field
@@ -128,6 +126,15 @@ export const updateUser = async (data: CreateUserRequest, id: number, locale?: s
     return { data: responseData }
 }
 
+export const setLoginPassword = async (data: SetLoginPasswordRequest, id: number, locale?: string) => {
+    const res = await fetchWithAuth(`/users/${id}/set-login-password`, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+        headers: locale ? { 'Accept-Language': locale } : {}
+    })
+    const responseData = await res.json()
+    return { data: responseData }
+}
 export const updateUserPassword = async (data: CreateUserRequest, id: number, locale?: string) => {
     const res = await fetchWithAuth(`/users/${id}/change-password`, {
         method: 'PUT',

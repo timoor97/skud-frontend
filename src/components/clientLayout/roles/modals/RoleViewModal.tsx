@@ -1,7 +1,7 @@
 'use client'
 
 import {useViewRoleModal} from '@/hooks/useViewModal'
-import ViewModal from '@/components/modals/viewModal'
+import ViewModal from '@/components/ui/viewModal'
 import {useLocale, useTranslations} from 'next-intl'
 import React, {FC, useEffect, useState} from 'react'
 import {getRoleById} from '@/app/[locale]/actions/(roles)/getRoleById'

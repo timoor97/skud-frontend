@@ -6,14 +6,25 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
+import {
     Card,
     CardContent,
 } from "@/components/ui/card"
 import { RotateCcw, Search } from "lucide-react"
+import { RoleListItem } from "@/types/rolesTypes"
 
-interface RoleFilterProps {
+interface UserFilterProps {
+    roles?: RoleListItem[] | null
     filters: {
         name: string
+        role_id: string
+        status: string
     }
     isLoading?: boolean
     onFilterChange: (key: string, value: string) => void
@@ -21,20 +32,22 @@ interface RoleFilterProps {
     onResetFilter: () => void
 }
 
-const RoleFilter: FC<RoleFilterProps> = ({ 
+
+const UserFilter: FC<UserFilterProps> = ({
+    roles, 
     filters,
     isLoading,
     onFilterChange,
     onApplyFilter,
     onResetFilter,
 }) => {
-    const t = useTranslations('Roles.Filters')
+    const t = useTranslations('Users.Filters')
     const tBtns = useTranslations('Btns')
 
     return (
         <Card>
             <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                     {/* Name Filter */}
                     <div className="space-y-2">
                         <Label htmlFor="name-filter">{t('name')}</Label>
@@ -44,6 +57,53 @@ const RoleFilter: FC<RoleFilterProps> = ({
                             value={filters.name || ''}
                             onChange={(e) => onFilterChange('name', e.target.value)}
                         />
+                    </div>
+
+                    {/* Role Filter */}
+                    <div className="space-y-2">
+                        <Label htmlFor="role-filter">{t('role')}</Label>
+                        <Select
+                            value={filters.role_id || 'all'}
+                            onValueChange={(value) => onFilterChange('role_id', value)}
+                        >
+                            <SelectTrigger className="w-full min-w-[300px]">
+                                <SelectValue placeholder={t('placeholders.role')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">
+                                    {t('options.all')} {t('role')}
+                                </SelectItem>
+                                {(roles || []).map((role) => (
+                                    <SelectItem key={role.id} value={role.id.toString()}>
+                                        {role.name}
+                                    </SelectItem>
+                                ))}
+                            </SelectContent>
+                        </Select>
+                    </div>
+
+                    {/* Status Filter */}
+                    <div className="space-y-2">
+                        <Label htmlFor="status-filter">{t('status')}</Label>
+                        <Select
+                            value={filters.status || 'all'}
+                            onValueChange={(value) => onFilterChange('status', value)}
+                        >
+                            <SelectTrigger className="w-full min-w-[300px]">
+                                <SelectValue placeholder={t('statusOptions.selectPlaceholder')} />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">
+                                    {t('options.all')} {t('status')}
+                                </SelectItem>
+                                <SelectItem value="true">
+                                    {t('statusOptions.active')}
+                                </SelectItem>
+                                <SelectItem value="false">
+                                    {t('statusOptions.inactive')}
+                                </SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
 
                     {/* Action Buttons */}
@@ -84,4 +144,4 @@ const RoleFilter: FC<RoleFilterProps> = ({
     )
 }
 
-export default RoleFilter
+export default UserFilter

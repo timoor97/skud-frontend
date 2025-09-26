@@ -7,11 +7,18 @@ export interface CreateUserRequest {
   first_name: string;
   last_name?: string;
   phone?: string;
-  role_id: number;
-  login: string;
-  password: string;
+  card_number?: string;
+  role_id?: number;
   status?: boolean;
   image?: File | string | null;
+}
+
+export interface SetLoginPasswordRequest {
+    can_login?: boolean;
+    role_id?: number;
+    login?: string;
+    password?: string;
+    password_confirmation?: string;
 }
 
 export interface ApiResponse<T> {
@@ -25,7 +32,8 @@ export interface UserListItem {
   first_name: string;
   last_name: string;
   phone: string | null;
-  role_id: number;
+  card_number: string | null;
+  role_id?: number;
   login: string;
   image: string | null;
   created_at: string;
@@ -71,11 +79,13 @@ export interface User {
   first_name: string;
   last_name: string;
   phone: string | null;
-  role_id: number;
+  card_number: string | null;
+  role_id?: number;
   login: string;
   created_at: string;
   updated_at: string;
   includes: Includes;
+  can_login: boolean;
   status: boolean;
   image?: File | string | null;
 }

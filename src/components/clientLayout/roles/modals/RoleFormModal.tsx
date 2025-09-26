@@ -1,6 +1,6 @@
 'use client'
 import {useRoleModalStore} from '@/hooks/useModalStore'
-import ViewModal from '@/components/modals/viewModal'
+import ViewModal from '@/components/ui/viewModal'
 import {useRouter} from "@/i18n/navigation";
 import {useLocale, useTranslations} from 'next-intl'
 import React, {FC, useEffect, useState} from 'react'

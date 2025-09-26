@@ -27,9 +27,8 @@ export const POST = async (req: Request) => {
       first_name: formData.get('first_name') as string,
       last_name: formData.get('last_name') as string,
       phone: formData.get('phone') as string,
+      card_number: formData.get('card_number') as string,
       role_id: parseInt(formData.get('role_id') as string),
-      login: formData.get('login') as string,
-      password: formData.get('password') as string,
       status: formData.get('status') === 'true',
       image: formData.get('image') as File | string | null
     };

@@ -18,7 +18,7 @@ interface ViewModalProps {
 const ViewModal: FC<ViewModalProps> = ({ open, handleClose, title, children }) => {
     return (
         <Dialog open={open} onOpenChange={handleClose}>
-            <DialogContent className="sm:max-w-[800px] w-full">
+            <DialogContent className="sm:max-w-[1000px] w-full max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                     <DialogTitle>{title || 'View Details'}</DialogTitle>
                     <DialogDescription>

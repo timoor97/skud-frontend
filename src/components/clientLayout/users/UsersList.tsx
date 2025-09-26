@@ -13,18 +13,18 @@ import {
 } from "@/components/ui/table"
 import {Button} from "@/components/ui/button"
 import {getAllUsers} from '@/app/[locale]/actions/(users)/getAllUsers'
-import {useViewUserModal} from '@/hooks/useViewModal'
 import {useUserModalStore} from '@/hooks/useModalStore'
 import {useConfirmDeleteStore} from '@/hooks/useConfirmDelete'
 import DeleteWithConfirmation from "@/components/ui/DeleteWithConfirmation";
 import {toast} from 'sonner'
 import Image from 'next/image'
 import {User} from "@/types/currentUserTypes";
-import UserFilter from "@/components/filters/userFilter";
+import UserFilters from "@/components/clientLayout/users/filters/UserFilter";
 import { PERMISSIONS } from '@/constants/permissions'
 import usePermissions from '@/hooks/usePermissions'
+import { useRouter } from '@/i18n/navigation'
 
-interface UsersClientProps {
+interface UsersListProps {
     users: UserListItem[] | null
     userActions: {
         action: string
@@ -34,7 +34,7 @@ interface UsersClientProps {
     roles?: RoleListItem[] | null
 }
 
-const UsersClient: FC<UsersClientProps> = ({users,userActions,user, meta, roles}) => {
+const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) => {
 
     const t = useTranslations('Users')
     const [page, setPage] = React.useState(meta.current_page - 1);
@@ -51,9 +51,9 @@ const UsersClient: FC<UsersClientProps> = ({users,userActions,user, meta, roles}
     const { hasPermission } = usePermissions(userActions, user.includes.role.name)
 
     const locale = useLocale()
+    const router = useRouter()
 
     const {openModal} = useUserModalStore();
-    const {openModal: openViewModal} = useViewUserModal()
 
 
     const canViewUser = hasPermission(PERMISSIONS.VIEW_USER);
@@ -175,7 +175,7 @@ const UsersClient: FC<UsersClientProps> = ({users,userActions,user, meta, roles}
                 title={t('UsersManagement.title')}
             />
             <div className="flex flex-1 flex-col gap-4 p-4 pt-6">
-                <UserFilter
+                <UserFilters
                     roles={roles}
                     filters={filters}
                     onFilterChange={handleFilterChange}
@@ -202,7 +202,7 @@ const UsersClient: FC<UsersClientProps> = ({users,userActions,user, meta, roles}
                             <TableCell className="text-center">
                                 {user.image ? (
                                     <Image 
-                                        src={`${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}`}
+                                        src={`${process.env.NEXT_PUBLIC_BASE_URL || 'http://skud-beckend.test'}/${user.image}`}
                                         alt={`${user.first_name} ${user.last_name}`}
                                         width={32}
                                         height={32}
@@ -222,7 +222,7 @@ const UsersClient: FC<UsersClientProps> = ({users,userActions,user, meta, roles}
                             <TableCell className="text-center">
                                         <span
                                             className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                            {user.includes?.role?.name || 'No Role'}
+                                            {user.includes?.role?.name || t('ToastMsg.noRole')}
                                         </span>
                             </TableCell>
                             <TableCell className="text-center">
@@ -244,7 +244,7 @@ const UsersClient: FC<UsersClientProps> = ({users,userActions,user, meta, roles}
                                         <Button
                                             variant="ghost"
                                             size="sm"
-                                            onClick={() => openViewModal(user.id)}
+                                            onClick={() => router.push(`/users/${user.id}`)}
                                             className="h-8 w-8 p-0"
                                         >
                                             <Eye className="h-4 w-4"/>
@@ -300,4 +300,4 @@ const UsersClient: FC<UsersClientProps> = ({users,userActions,user, meta, roles}
         </>
     );
 }
-export default UsersClient
+export default UsersList

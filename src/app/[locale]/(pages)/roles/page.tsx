@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { getRole } from '../../actions/(roles)/getAllRoles'
-import RolesClient from "@/components/clientLayout/rolesClient";
-import RoleFormModal from "@/components/modals/roleModal/roleFormModal";
-import RoleViewModal from "@/components/modals/roleModal/roleViewModal";
+import RolesList from "@/components/clientLayout/roles/RolesList";
+import RoleFormModal from "@/components/clientLayout/roles/modals/RoleFormModal";
+import RoleViewModal from "@/components/clientLayout/roles/modals/RoleViewModal";
 import { currentUser, currentUserPermissionsActions } from '../../actions/(users)/getCurrentUser';
 import {getAllPermissions} from "@/app/[locale]/actions/(permissions)/getAllPermissions";
 
@@ -22,7 +22,7 @@ const RolesPage: FC<RolesPageProps> = async ({ params }) => {
 
     return (
         <>
-            <RolesClient
+            <RolesList
                 roles={roles.data.models}
                 userActions={userActions}
                 user={user.data}
@@ -32,6 +32,7 @@ const RolesPage: FC<RolesPageProps> = async ({ params }) => {
             <RoleFormModal
                 permissions={permissions.data.models}
             />
+
             <RoleViewModal />
         </>
     )

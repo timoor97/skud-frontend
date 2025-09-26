@@ -5,31 +5,25 @@ type TranslationFunction = (key: string) => string;
 export const userSchema = (t: TranslationFunction) => z.object({
   first_name: z.string()
     .min(1, t('errors.requiredField'))
-    .max(255, 'First name must be at most 255 characters'),
+    .max(255, t('errors.firstNameMaxLength')),
 
   last_name: z.string()
-    .max(255, 'Last name must be at most 255 characters')
+    .max(255, t('errors.lastNameMaxLength'))
     .optional(),
-
-  login: z.string()
-    .min(1, t('errors.requiredField'))
-    .max(255, 'Login must be at most 255 characters'),
 
   phone: z.string()
-    .max(20, 'Phone number must be at most 20 characters')
+    .max(20, t('errors.phoneMaxLength'))
     .optional(),
 
-  role_id: z.string()
-    .min(1, t('errors.requiredField')),
-
-  password: z.string()
+  card_number: z.string()
     .optional()
-    .refine((val) => !val || val.length >= 6, {
-      message: 'Password must be at least 6 characters'
+    .refine((val) => !val || /^\d+$/.test(val), {
+      message: t('errors.cardNumberDigits')
     })
-    .refine((val) => !val || val.length <= 255, {
-      message: 'Password must be at most 255 characters'
+    .refine((val) => !val || val.length <= 20, {
+      message: t('errors.cardNumberMaxLength')
     }),
+
 
   status: z.boolean().optional(),
 
@@ -52,7 +46,7 @@ export const userSchema = (t: TranslationFunction) => z.object({
       }
       return false;
     }, {
-      message: 'Image must be a JPEG or PNG file under 1MB'
+      message: t('errors.imageFormat')
     }),
 });
 

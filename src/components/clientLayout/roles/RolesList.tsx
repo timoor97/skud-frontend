@@ -20,9 +20,9 @@ import { toast } from 'sonner'
 import { User } from "@/types/currentUserTypes";
 import { PERMISSIONS } from '@/constants/permissions'
 import usePermissions from '@/hooks/usePermissions'
-import RoleFilter from '@/components/filters/roleFilter'
+import RoleFilters from '@/components/clientLayout/roles/filters/RoleFilter'
 
-interface RolesClientProps {
+interface RolesListProps {
     roles: RoleListItem[] | null
     userActions: {
         action: string
@@ -31,7 +31,7 @@ interface RolesClientProps {
     meta: MetaData
 }
 
-const RolesClient: FC<RolesClientProps> = ({ roles, userActions, user, meta }) => {
+const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
 
     const t = useTranslations('Roles')
     const [page, setPage] = React.useState(meta.current_page - 1);
@@ -148,7 +148,7 @@ const RolesClient: FC<RolesClientProps> = ({ roles, userActions, user, meta }) =
                 title={t('RolesManagement.title')}
             />
             <div className="flex flex-1 flex-col gap-4 p-4 pt-6">
-                <RoleFilter
+                <RoleFilters
                     filters={filters}
                     onFilterChange={handleFilterChange}
                     onApplyFilter={handleApplyFilter}
@@ -238,4 +238,4 @@ const RolesClient: FC<RolesClientProps> = ({ roles, userActions, user, meta }) =
     );
 }
 
-export default RolesClient
+export default RolesList

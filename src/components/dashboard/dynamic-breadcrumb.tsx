@@ -50,11 +50,24 @@ export function DynamicBreadcrumb() {
     // Remove locale prefix from pathname
     const routePath = pathname.replace(/^\/[a-z]{2}/, '') || '/dashboard'
     
-    // Get breadcrumb items for current route
-    const breadcrumbItems = breadcrumbConfig[routePath] || [
-        { title: t('dashboard'), href: '/dashboard' },
-        { title: t('page') }
-    ]
+    // Handle dynamic routes
+    let breadcrumbItems: { title: string; href?: string }[] = []
+    
+    if (routePath.startsWith('/users/') && routePath !== '/users') {
+        // User detail page
+        const userId = routePath.split('/')[2]
+        breadcrumbItems = [
+            { title: t('rolePermissions') },
+            { title: t('users'), href: '/users' },
+            { title: `${t('user')} #${userId}` }
+        ]
+    } else {
+        // Static routes
+        breadcrumbItems = breadcrumbConfig[routePath] || [
+            { title: t('dashboard'), href: '/dashboard' },
+            { title: t('page') }
+        ]
+    }
 
     return (
         <Breadcrumb>

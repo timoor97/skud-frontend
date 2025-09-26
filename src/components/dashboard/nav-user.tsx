@@ -85,7 +85,7 @@ export function NavUser({ user }: { user: ApiResponse<User> | null }) {
                         >
                             <Avatar className="h-8 w-8 rounded-lg">
                                 <AvatarImage
-                                    src={userData.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${userData.image}` : ""}
+                                    src={userData.image ? `${process.env.NEXT_PUBLIC_BASE_URL || 'http://skud-beckend.test'}/${userData.image}` : ""}
                                     alt={userName}
                                 />
                                 <AvatarFallback className="rounded-lg">{userInitials}</AvatarFallback>
@@ -109,7 +109,7 @@ export function NavUser({ user }: { user: ApiResponse<User> | null }) {
                             <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                 <Avatar className="h-8 w-8 rounded-lg">
                                     <AvatarImage 
-                                        src={userData.image ? `${process.env.NEXT_PUBLIC_BASE_URL}/${userData.image}` : ""} 
+                                        src={userData.image ? `${process.env.NEXT_PUBLIC_BASE_URL || 'http://skud-beckend.test'}/${userData.image}` : ""} 
                                         alt={userName}
                                     />
                                     <AvatarFallback className="rounded-lg">{userInitials}</AvatarFallback>

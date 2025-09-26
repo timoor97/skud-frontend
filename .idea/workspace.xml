@@ -4,7 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8e50a95-b0fe-4e32-bbe1-38bede0f6c1d" name="Changes" comment="" />
+    <list default="true" id="a8e50a95-b0fe-4e32-bbe1-38bede0f6c1d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/ru.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/uz.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/uz.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(pages)/loading.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(pages)/loading.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(pages)/roles/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(pages)/roles/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/(pages)/users/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/(pages)/users/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/api/users/[userId]/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/api/users/[userId]/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/api/users/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/api/users/route.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/rolesClient/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/usersClient/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/dashboard/nav-user.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/nav-user.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filters/roleFilter.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/filters/userFilter.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modals/roleModal/roleFormModal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modals/roleModal/roleViewModal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modals/userModal/userFormModal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modals/userModal/userViewModal.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/modals/viewModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/viewModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/dialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/dialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/schemas/userSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/userSchema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/usersService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/usersTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/usersTypes.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,30 +70,30 @@
     "git-widget-placeholder": "main",
     "js.debugger.nextJs.config.created.client": "true",
     "js.debugger.nextJs.config.created.server": "true",
-    "last_opened_file_path": "/Users/timursalimov/Herd/skud-frontend",
+    "last_opened_file_path": "/Users/timursalimov/Herd/skud-frontend/src/components/ui",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "/Users/timursalimov/Herd/skud-front/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/timursalimov/Herd/skud-frontend/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/ui" />
+      <recent name="$PROJECT_DIR$/src/components/clientLayout" />
+      <recent name="$PROJECT_DIR$/src/components/clientLayout/roles" />
       <recent name="$PROJECT_DIR$/src/app/[locale]/actions/(permissions)" />
       <recent name="$PROJECT_DIR$/src/services" />
-      <recent name="$PROJECT_DIR$/src/app/[locale]/api" />
-      <recent name="$PROJECT_DIR$/src/components/modals" />
-      <recent name="$PROJECT_DIR$/src/hooks" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/clientLayout/users" />
+      <recent name="$PROJECT_DIR$/src/components/clientLayout/roles" />
+      <recent name="$PROJECT_DIR$/src/components/ui" />
       <recent name="$PROJECT_DIR$/src/app/[locale]/actions/(permissions)" />
       <recent name="$PROJECT_DIR$/src/app/[locale]/actions/(roles)" />
-      <recent name="$PROJECT_DIR$/src/app/[locale]/actions/(users)" />
-      <recent name="$PROJECT_DIR$/src/components/filters" />
-      <recent name="$PROJECT_DIR$/src/components/ui" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.Next.js: debug client-side">
@@ -88,8 +114,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-PS-252.25557.128" />
-        <option value="bundled-php-predefined-a98d8de5180a-ce40d0652d34-com.jetbrains.php.sharedIndexes-PS-252.25557.128" />
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-PS-252.26199.163" />
+        <option value="bundled-php-predefined-a98d8de5180a-f0a8ef430dfa-com.jetbrains.php.sharedIndexes-PS-252.26199.163" />
       </set>
     </attachedChunks>
   </component>
@@ -117,7 +143,13 @@
       <workItem from="1758104519219" duration="12518000" />
       <workItem from="1758124541084" duration="3103000" />
       <workItem from="1758127737204" duration="19412000" />
-      <workItem from="1758178021105" duration="1446000" />
+      <workItem from="1758178021105" duration="6732000" />
+      <workItem from="1758263014778" duration="2928000" />
+      <workItem from="1758297079772" duration="52000" />
+      <workItem from="1758438620125" duration="1513000" />
+      <workItem from="1758608948372" duration="1969000" />
+      <workItem from="1758713624868" duration="626000" />
+      <workItem from="1758789359953" duration="33551000" />
     </task>
     <servers />
   </component>
