@@ -1,0 +1,36 @@
+name: Laravel
+on:
+  push:
+    branches: [ "main" ]
+env:
+  SERVER_HOST: 95.182.117.183
+  SERVER_USER: root
+  SERVER_PATH: /var/www/vhosts/skud-frontend
+jobs:
+  skud-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install SSH KEY
+        uses: shimataro/ssh-key-action@v2.3.1
+        with:
+          key: "${{ secrets.SKUD_FRONTEND }}"
+          known_hosts: "your_server_public_key"
+      - name: Generate auth hosts
+        run: ssh-keyscan -H ${{ env.SERVER_HOST }} >> ~/.ssh/known_hosts
+      #Deploy
+      - run: rsync --archive --compress --progress . ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }}:${{env.SERVER_PATH}}
+      - name: Update composer and install npm on the server
+
+        run: ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "cd ${{ env.SERVER_PATH }}  && npm run build && npm start"
+
+      - name: Directory Permissions
+        run: ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "cd ${{ env.SERVER_PATH }}"
+
+
+
+
+
+
+
+
