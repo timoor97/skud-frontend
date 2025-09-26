@@ -23,12 +23,12 @@ jobs:
       - name: Update composer and install npm on the server
 
         run: ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "
-            cd ${{ env.SERVER_PATH }} &&
-            npm install &&
-            npm run build &&
-            fuser -k 3000/tcp || true &&
-            nohup npm start -- --port 3000 > app.log 2>&1 &
-            "
+          cd ${{ env.SERVER_PATH }} &&
+          npm install &&
+          npm run build &&
+          fuser -k 3000/tcp || true &&
+          npm start -- --port 3000
+          "
       - name: Directory Permissions
         run: ssh ${{ env.SERVER_USER }}@${{ env.SERVER_HOST }} "cd ${{ env.SERVER_PATH }}"
 
