@@ -5,21 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a8e50a95-b0fe-4e32-bbe1-38bede0f6c1d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/ui/multi-select.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/popover.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/en.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/ru.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/messages/uz.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/uz.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/clientLayout/roles/RolesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/roles/RolesList.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/UsersList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/UsersList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/userShow/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/userShow/UserProfile.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/modals/UserFormModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/modals/UserFormModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/userShow/UserSecurity.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/userShow/UserSecurity.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/securitySchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/securitySchema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/usersService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/usersTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/usersTypes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +130,7 @@
       <workItem from="1758608948372" duration="1969000" />
       <workItem from="1758713624868" duration="626000" />
       <workItem from="1758789359953" duration="34579000" />
-      <workItem from="1758877539448" duration="6721000" />
+      <workItem from="1758877539448" duration="7357000" />
     </task>
     <servers />
   </component>

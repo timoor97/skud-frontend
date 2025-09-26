@@ -48,7 +48,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
         status: 'all'
     })
     const {id: deleteId, setDeleteId} = useConfirmDeleteStore()
-    const { hasPermission } = usePermissions(userActions, user.includes.roles?.[0]?.name || '')
+    const { hasPermission } = usePermissions(userActions, user.includes.role?.name || '')
 
     const locale = useLocale()
     const router = useRouter()

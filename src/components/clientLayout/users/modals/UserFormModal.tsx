@@ -21,6 +21,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
 
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface CreateUserModalProps {}
 
 const UserFormModal: FC<CreateUserModalProps> = () => {
