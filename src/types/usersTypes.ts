@@ -15,7 +15,7 @@ export interface CreateUserRequest {
 
 export interface SetLoginPasswordRequest {
     can_login?: boolean;
-    role_id?: number;
+    role_ids?: number[];
     login?: string;
     password?: string;
     password_confirmation?: string;
@@ -39,7 +39,7 @@ export interface UserListItem {
   created_at: string;
   updated_at: string;
   includes: {
-    role: IncludesRole
+    roles: IncludesRole[]
   };
   role: string;  // Added role property
   status: boolean;  // Added status property
@@ -71,7 +71,7 @@ export interface Role {
 }
 
 export interface Includes {
-  role: Role;
+  roles: Role[];
 }
 
 export interface User {

@@ -1,6 +1,7 @@
 'use server'
 import { fetchWithAuth } from "@/config/interceptor"
 import {CreateUserRequest, SetLoginPasswordRequest} from "@/types/usersTypes"
+import {revalidatePath} from "next/cache";
 
 export const getUsers = async (locale: string, page: number, name?: string, role_id?: number | string, status?: boolean) => {
     let url = `/users?page=${page}&limit=10`
@@ -133,6 +134,8 @@ export const setLoginPassword = async (data: SetLoginPasswordRequest, id: number
         headers: locale ? { 'Accept-Language': locale } : {}
     })
     const responseData = await res.json()
+
+    revalidatePath(`/users/${id}/set-login-password`)
     return { data: responseData }
 }
 export const updateUserPassword = async (data: CreateUserRequest, id: number, locale?: string) => {

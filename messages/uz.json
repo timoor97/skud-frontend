@@ -149,13 +149,13 @@
           "password": "Yangi parol",
           "passwordConfirmation": "Yangi parolni tasdiqlash",
           "loginPermission": "Kirishga ruxsat",
-          "role": "Rol"
+          "roles": "Rollar"
         },
         "placeholders": {
           "login": "Foydalanuvchi nomini kiriting",
           "password": "Yangi parolni kiriting",
           "passwordConfirmation": "Yangi parolni tasdiqlang",
-          "role": "Rolni tanlang"
+          "roles": "Rollarni tanlang"
         },
         "buttons": {
           "saveChanges": "O'zgarishlarni saqlash",
@@ -163,7 +163,8 @@
         },
         "messages": {
           "changesSaved": "Xavfsizlik sozlamalari muvaffaqiyatli yangilandi!",
-          "updateFailed": "Xavfsizlik sozlamalarini yangilashda xatolik"
+          "updateFailed": "Xavfsizlik sozlamalarini yangilashda xatolik",
+          "noRoles": "Rollar topilmadi"
         }
       },
       "errors": {

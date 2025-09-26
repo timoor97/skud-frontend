@@ -36,11 +36,11 @@ const UserProfile: FC<UserProfileProps> = ({ user }) => {
         <div className="w-full max-w-md mx-auto">
             <Card className="overflow-hidden shadow-lg">
                 {/* Header with theme-based background */}
-                <CardHeader className="relative text-center pb-8 bg-primary text-primary-foreground">
-                    <div className="absolute inset-0 bg-primary/90"></div>
+                <CardHeader className="relative text-center pb-4 bg-card text-card-foreground">
+                    <div className="absolute inset-0 bg-card/90"></div>
                     <div className="relative z-10">
                         {/* Profile Image with enhanced styling */}
-                        <div className="flex justify-center mb-6">
+                        <div className="flex justify-center mb-3">
                             <div className="relative">
                                 {user.image && !imageError ? (
                                     <div className="relative">
@@ -71,17 +71,32 @@ const UserProfile: FC<UserProfileProps> = ({ user }) => {
                         <CardTitle className="text-2xl font-bold mb-2 drop-shadow-sm">
                             {user.first_name} {user.last_name}
                         </CardTitle>
-                        <Badge 
-                            variant="secondary" 
-                            className="bg-primary-foreground/20 backdrop-blur-sm text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/30 transition-colors duration-200"
-                        >
-                            <Shield className="w-4 h-4 mr-2" />
-                            {user.includes?.role?.name}
-                        </Badge>
+                        <div className="flex flex-wrap gap-2 justify-center">
+                            {user.includes?.roles && user.includes.roles.length > 0 ? (
+                                user.includes.roles.map((role) => (
+                                    <Badge 
+                                        key={role.id}
+                                        variant="secondary" 
+                                        className="bg-accent/20 backdrop-blur-sm text-accent-foreground border-accent/30 hover:bg-accent/30 transition-colors duration-200"
+                                    >
+                                        <Shield className="w-4 h-4 mr-2" />
+                                        {role.name}
+                                    </Badge>
+                                ))
+                            ) : (
+                                <Badge 
+                                    variant="secondary" 
+                                    className="bg-primary-foreground/20 backdrop-blur-sm text-primary-foreground border-primary-foreground/30 hover:bg-primary-foreground/30 transition-colors duration-200"
+                                >
+                                    <Shield className="w-4 h-4 mr-2" />
+                                    No roles assigned
+                                </Badge>
+                            )}
+                        </div>
                     </div>
                 </CardHeader>
                 
-                <CardContent className="p-6 space-y-6">
+                <CardContent className="p-6 space-y-3">
                     {/* Status Badge */}
                     <div className="flex justify-center">
                         <Badge 
@@ -98,7 +113,7 @@ const UserProfile: FC<UserProfileProps> = ({ user }) => {
                     </div>
 
                     {/* User Information Grid */}
-                    <div className="grid gap-4">
+                    <div className="grid gap-2">
                         {/* ID */}
                         <div className="flex items-center space-x-3 p-3 rounded-lg bg-muted/50 hover:bg-muted transition-colors duration-200">
                             <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">

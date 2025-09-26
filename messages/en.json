@@ -149,13 +149,13 @@
           "password": "New Password",
           "passwordConfirmation": "Confirm New Password",
           "loginPermission": "Login Permission",
-          "role": "Role"
+          "roles": "Roles"
         },
         "placeholders": {
           "login": "Enter username",
           "password": "Enter new password",
           "passwordConfirmation": "Confirm new password",
-          "role": "Select a role"
+          "roles": "Select roles"
         },
         "buttons": {
           "saveChanges": "Save Changes",
@@ -163,7 +163,8 @@
         },
         "messages": {
           "changesSaved": "Security settings updated successfully!",
-          "updateFailed": "Failed to update security settings"
+          "updateFailed": "Failed to update security settings",
+          "noRoles": "No roles found"
         }
       },
       "errors": {

@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { MultiSelect, Option } from '@/components/ui/multi-select'
 import { securitySchema, SecuritySchema } from '@/schemas/securitySchema'
 import { Eye, EyeOff, X } from 'lucide-react'
 import { RoleListItem } from '@/types/rolesTypes'
@@ -38,7 +38,7 @@ const UserSecurity: FC<UserSecurityProps> = ({ user, roles }) => {
             password: '',
             password_confirmation: '',
             can_login: false,
-            role_id: 0,
+            role_ids: [],
         }
     })
 
@@ -46,8 +46,9 @@ const UserSecurity: FC<UserSecurityProps> = ({ user, roles }) => {
         if (user) {
             setValue('login', user.login || '')
             setValue('can_login', user.can_login ?? false)
-            if (user.includes?.role) {
-                setValue('role_id', user.includes.role.id)
+            if (user.includes?.roles) {
+                const roleIds = user.includes.roles.map(role => role.id)
+                setValue('role_ids', roleIds)
             }
         }
     }, [user, setValue])
@@ -62,7 +63,7 @@ const UserSecurity: FC<UserSecurityProps> = ({ user, roles }) => {
             const requestData = {
                 login: data.login || '',
                 can_login: data.can_login ?? true,
-                role_id: data.role_id || 0,
+                role_ids: data.role_ids || [],
                 password: data.password && data.password.length > 0 ? data.password : undefined,
                 password_confirmation: data.password_confirmation && data.password_confirmation.length > 0 ? data.password_confirmation : undefined
             }
@@ -130,39 +131,31 @@ const UserSecurity: FC<UserSecurityProps> = ({ user, roles }) => {
                             />
                         </div>
 
-                        {/* Role */}
+                        {/* Roles */}
                         <div className="space-y-2">
                             <Label className="text-sm font-medium text-foreground">
-                                {tSecurity('labels.role')}
+                                {tSecurity('labels.roles')}
                             </Label>
                             <Controller
-                                name="role_id"
+                                name="role_ids"
                                 control={control}
                                 render={({ field, fieldState }) => {
+                                    const roleOptions: Option[] = roles ? roles.map(role => ({
+                                        label: role.name,
+                                        value: role.id.toString()
+                                    })) : []
+                                    
                                     return (
                                     <>
-                                        <Select
-                                            key={`role-select-${roles?.length || 0}-${field.value}`}
-                                            value={field.value && field.value > 0 ? String(field.value) : ""}
-                                            onValueChange={(value) => field.onChange(value ? Number(value) : 0)}
-                                        >
-                                            <SelectTrigger className={`h-11 w-full ${fieldState.error ? 'border-destructive focus-visible:ring-destructive' : ''}`}>
-                                                <SelectValue placeholder={tSecurity('placeholders.role')} />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                {roles && roles.length > 0 ? (
-                                                    roles.map((role) => (
-                                                        <SelectItem key={role.id} value={String(role.id)}>
-                                                            {role.name}
-                                                        </SelectItem>
-                                                    ))
-                                                ) : (
-                                                    <div className="px-2 py-1.5 text-sm text-muted-foreground">
-                                                        No roles available
-                                                    </div>
-                                                )}
-                                            </SelectContent>
-                                        </Select>
+                                        <MultiSelect
+                                            options={roleOptions}
+                                            selected={field.value ? field.value.map(id => id.toString()) : []}
+                                            onChange={(selected) => field.onChange(selected.map(id => parseInt(id)))}
+                                            placeholder={tSecurity('placeholders.roles')}
+                                            className={`h-11 w-full ${fieldState.error ? 'border-destructive focus-visible:ring-destructive' : ''}`}
+                                            maxCount={2}
+                                            emptyText={tSecurity('messages.noRoles')}
+                                        />
                                         {fieldState.error && (
                                             <span className="text-destructive text-xs">{fieldState.error.message}</span>
                                         )}

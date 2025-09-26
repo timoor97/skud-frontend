@@ -18,7 +18,7 @@ export const securitySchema = (t: TranslationFunction) => z.object({
 
   can_login: z.boolean().optional(),
 
-  role_id: z.number().optional(),
+  role_ids: z.array(z.number()).optional(),
 }).refine((data) => {
   // Password confirmation must match password only if password is provided
   if (data.password && data.password.length > 0) {

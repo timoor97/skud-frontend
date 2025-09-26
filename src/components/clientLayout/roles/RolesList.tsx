@@ -43,7 +43,7 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
         name: ''
     })
     const { id: deleteId, setDeleteId } = useConfirmDeleteStore()
-    const { hasPermission } = usePermissions(userActions, user.includes.role.name)
+    const { hasPermission } = usePermissions(userActions, user.includes.roles?.[0]?.name || '')
 
     const locale = useLocale()
 

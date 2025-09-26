@@ -48,7 +48,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
         status: 'all'
     })
     const {id: deleteId, setDeleteId} = useConfirmDeleteStore()
-    const { hasPermission } = usePermissions(userActions, user.includes.role.name)
+    const { hasPermission } = usePermissions(userActions, user.includes.roles?.[0]?.name || '')
 
     const locale = useLocale()
     const router = useRouter()
@@ -220,10 +220,21 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
                             <TableCell className="text-center font-semibold">{user.last_name}</TableCell>
                             <TableCell className="text-center text-muted-foreground">{user.phone}</TableCell>
                             <TableCell className="text-center">
-                                        <span
-                                            className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                            {user.includes?.role?.name || t('ToastMsg.noRole')}
+                                <div className="flex flex-wrap gap-1 justify-center">
+                                    {user.includes?.roles && user.includes.roles.length > 0 ? (
+                                        user.includes.roles.map((role) => (
+                                            <span
+                                                key={role.id}
+                                                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                {role.name}
+                                            </span>
+                                        ))
+                                    ) : (
+                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            {t('ToastMsg.noRole')}
                                         </span>
+                                    )}
+                                </div>
                             </TableCell>
                             <TableCell className="text-center">
                                         <span
