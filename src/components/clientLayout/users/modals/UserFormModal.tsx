@@ -264,7 +264,7 @@ const UserFormModal: FC<CreateUserModalProps> = () => {
                                                 {field.value ? (
                                                     <Image 
                                                         src={typeof field.value === 'string' 
-                                                            ? (field.value.startsWith('http') ? field.value : `${process.env.NEXT_PUBLIC_BASE_URL || 'http://skud-beckend.test'}/${field.value}`)
+                                                            ? (field.value.startsWith('http') ? field.value : `${process.env.NEXT_PUBLIC_BASE_URL}/${field.value}`)
                                                             : URL.createObjectURL(field.value)} 
                                                         alt="Preview" 
                                                         width={120}

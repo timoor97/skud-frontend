@@ -45,7 +45,7 @@ const UserProfile: FC<UserProfileProps> = ({ user }) => {
                                 {user.image && !imageError ? (
                                     <div className="relative">
                                         <Image 
-                                            src={typeof user.image === 'string' && user.image.startsWith('http') ? user.image : `${process.env.NEXT_PUBLIC_BASE_URL || 'http://skud-beckend.test'}/${user.image}`} 
+                                            src={typeof user.image === 'string' && user.image.startsWith('http') ? user.image : `${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}`} 
                                             alt={`${user.first_name} ${user.last_name}`}
                                             width={120}
                                             height={120}

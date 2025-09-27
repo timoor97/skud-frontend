@@ -202,7 +202,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
                             <TableCell className="text-center">
                                 {user.image ? (
                                     <Image 
-                                        src={`${process.env.NEXT_PUBLIC_BASE_URL || 'http://skud-beckend.test'}/${user.image}`}
+                                        src={`${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}`}
                                         alt={`${user.first_name} ${user.last_name}`}
                                         width={32}
                                         height={32}
