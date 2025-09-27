@@ -1,5 +1,5 @@
 'use client'
-import React, { FC } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
 import { User } from '@/types/usersTypes'
 import { useRouter } from '@/i18n/navigation'
@@ -9,6 +9,7 @@ import { PageHeader } from '@/components/dashboard/page-header'
 import UserProfile from './userShow/UserProfile'
 import UserTabs from './userShow/UserTabs'
 import {RoleListItem} from "@/types/rolesTypes";
+import SHowLoading from '@/components/ui/showLoading';
 
 interface UserShowProps {
     user: User,
@@ -18,9 +19,23 @@ interface UserShowProps {
 const UserShow: FC<UserShowProps> = ({ user , roles}) => {
     const router = useRouter()
     const tDetail = useTranslations('Users.DetailPage')
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        // Show loading for a brief moment to ensure smooth transition
+        const timer = setTimeout(() => {
+            setIsLoading(false)
+        }, 500)
+
+        return () => clearTimeout(timer)
+    }, [])
 
     const handleBack = () => {
         router.push('/users')
+    }
+
+    if (isLoading) {
+        return <SHowLoading />
     }
 
     return (
