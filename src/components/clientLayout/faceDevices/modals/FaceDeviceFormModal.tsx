@@ -17,7 +17,6 @@ import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/c
 import {Button} from "@/components/ui/button"
 import CustomLoading from "@/components/ui/customLoading"
 import {Eye, EyeOff} from "lucide-react"
-import { log } from 'console';
 
 const FaceDeviceFormModal: FC = () => {
 

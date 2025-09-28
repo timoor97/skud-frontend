@@ -5,12 +5,9 @@ export const faceDeviceSchema = z.object({
     .min(1, "Name is required")
     .max(255, "Name must be at most 255 characters"),
   type: z.enum(['enter', 'exit'], {
-    required_error: "Type is required",
-    invalid_type_error: "Type must be either 'enter' or 'exit'"
+    message: "Type must be either 'enter' or 'exit'"
   }),
-  status: z.boolean({
-    required_error: "Status is required"
-  }),
+  status: z.boolean(),
   ip: z.string()
     .min(1, "IP address is required")
     .regex(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/, "Invalid IP address format"),

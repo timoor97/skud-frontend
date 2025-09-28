@@ -8,11 +8,11 @@ interface IUseModalStore {
 }
 
 interface IModalStore {
-    modals: Record<string, { open: boolean; data?: any }>;
-    openModal: (modalId: string, data?: any) => void;
+    modals: Record<string, { open: boolean; data?: unknown }>;
+    openModal: (modalId: string, data?: unknown) => void;
     closeModal: (modalId?: string) => void;
     isOpen: (modalId: string) => boolean;
-    modalData: any;
+    modalData: unknown;
 }
 
 export const useUserModalStore = create<IUseModalStore>((set) => ({
@@ -39,7 +39,7 @@ export const useFaceDeviceModalStore = create<IUseModalStore>((set) => ({
 export const useModalStore = create<IModalStore>((set, get) => ({
     modals: {},
     modalData: null,
-    openModal: (modalId: string, data?: any) => set((state) => ({
+    openModal: (modalId: string, data?: unknown) => set((state) => ({
         modals: { ...state.modals, [modalId]: { open: true, data } },
         modalData: data
     })),
