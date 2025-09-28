@@ -20,6 +20,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
+import CustomLoading from "@/components/ui/customLoading"
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 interface CreateUserModalProps {}
@@ -33,6 +34,7 @@ const UserFormModal: FC<CreateUserModalProps> = () => {
 
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const {control, handleSubmit, setValue, reset, formState: {}} = useForm<UserSchema>({
         resolver: zodResolver(userSchema(t)),
         defaultValues: {
@@ -50,27 +52,28 @@ const UserFormModal: FC<CreateUserModalProps> = () => {
     useEffect(() => {
         const fetchUserData = async () => {
             if (id) {
+                setIsLoading(true);
                 try {
                     const {data} = await getUserById(locale, id)
 
-                    // Use setTimeout to ensure form is ready
-                    setTimeout(() => {
-                        setValue('first_name', data.first_name || '');
-                        setValue('last_name', data.last_name || '');
-                        setValue('phone', data.phone || '');
-                        setValue('card_number', data.card_number ? String(data.card_number) : '');
-                        setValue('status', data.status ?? true);
-                        setValue('image', data.image || null);
-                    }, 100);
+                    // Set values after data is loaded
+                    setValue('first_name', data.first_name || '');
+                    setValue('last_name', data.last_name || '');
+                    setValue('phone', data.phone || '');
+                    setValue('card_number', data.card_number ? String(data.card_number) : '');
+                    setValue('status', data.status ?? true);
+                    setValue('image', data.image || null);
                 } catch (error) {
                     console.error('Error loading user data:', error);
+                } finally {
+                    setIsLoading(false);
                 }
             } else {
                 reset()
             }
         }
         fetchUserData()
-    }, [id, setValue, reset, locale, open, router,]);
+    }, [id, setValue, reset, locale]);
 
     const handleCancel = () => {
         // Reset form to discard any changes
@@ -239,8 +242,11 @@ const UserFormModal: FC<CreateUserModalProps> = () => {
                     {id ? tModal('messages.editUser', {id}) : tModal('messages.createUser')}
                 </div>
 
-                {/* User form */}
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                {isLoading ? (
+                    <CustomLoading />
+                ) : (
+                    /* User form */
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     {/* Image Upload - Centered */}
                     <div className="flex justify-center">
                         <div className="w-32">
@@ -432,7 +438,8 @@ const UserFormModal: FC<CreateUserModalProps> = () => {
                             )}
                         </Button>
                     </div>
-                </form>
+                    </form>
+                )}
             </div>
         </ViewModal>
     )

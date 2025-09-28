@@ -8,6 +8,7 @@ import {
 import {
     LayoutDashboard,
     UserCircle,
+    Monitor,
 } from "lucide-react"
 
 import { useTranslations } from 'next-intl'
@@ -56,6 +57,18 @@ export function AppSidebar({ user, ...props }: React.ComponentProps<typeof Sideb
                     {
                         title: getTranslation('users', 'Users'),
                         url: "/users",
+                    }
+                ],
+            },
+            {
+                title: getTranslation('reference', 'Devices'),
+                url: "#",
+                icon: Monitor,
+                isActive: false,
+                items: [
+                    {
+                        title: getTranslation('faceDevices', 'Face Devices'),
+                        url: "/faceDevices",
                     }
                 ],
             },

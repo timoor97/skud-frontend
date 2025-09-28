@@ -218,6 +218,8 @@
     "rolePermissions": "Rollar va ruxsatlar",
     "roles": "Rollar",
     "users": "Foydalanuvchilar",
+    "reference": "Qurumlar",
+    "faceDevices": "Yuz qurumlari",
     "starred": "Yulduzcha",
     "settings": "Sozlamalar"
   },
@@ -227,6 +229,8 @@
     "roles": "Rollar",
     "users": "Foydalanuvchilar",
     "user": "Foydalanuvchi",
+    "reference": "Qurumlar",
+    "faceDevices": "Yuz qurumlari",
     "playground": "O'yin maydoni",
     "history": "Tarix",
     "starred": "Yulduzcha",
@@ -338,6 +342,112 @@
         "requiredField": "Bu maydon to'ldirilishi shart",
         "keyExists": "Bunday kalitli rol allaqachon mavjud"
       }
+    }
+  },
+  "FaceDevices": {
+    "Title": {
+      "title": "Yuz qurumlari",
+      "description": "Yuz qurumlarini boshqarish"
+    },
+    "TableHeader": {
+      "id": "ID",
+      "name": "Nomi",
+      "type": "Turi",
+      "ip": "IP manzil",
+      "port": "Port",
+      "status": "Holat",
+      "actions": "Amallar",
+      "enter": "Kirish",
+      "exit": "Chiqish",
+      "active": "Faol",
+      "inactive": "Nofaol"
+    },
+    "CreateBtn": {
+      "label": "Yuz qurumi yaratish"
+    },
+    "ToastMsg": {
+      "delete": "Yuz qurumi muvaffaqiyatli o'chirildi!",
+      "error": "Yuz qurumini qayta ishlashda xatolik yuz berdi",
+      "noDevices": "Yuz qurumlari topilmadi"
+    },
+    "Filters": {
+      "title": "Yuz qurumlarini filtrlash",
+      "name": "Nomi",
+      "type": "Turi",
+      "status": "Holat",
+      "placeholders": {
+        "name": "Qurum nomini kiriting...",
+        "type": "Turini tanlang...",
+        "status": "Holatni tanlang..."
+      },
+      "options": {
+        "all": "Barchasi"
+      },
+      "typeOptions": {
+        "enter": "Kirish",
+        "exit": "Chiqish"
+      },
+      "statusOptions": {
+        "active": "Faol",
+        "inactive": "Nofaol"
+      },
+      "buttons": {
+        "filter": "Filtr"
+      }
+    },
+    "Modal": {
+      "titles": {
+        "createDevice": "Yangi yuz qurumi yaratish",
+        "editDevice": "Yuz qurumini tahrirlash #{id}",
+        "viewDevice": "Yuz qurumini ko'rish #{id}"
+      },
+      "labels": {
+        "id": "ID",
+        "name": "Qurum nomi",
+        "type": "Turi",
+        "status": "Holat",
+        "ip": "IP manzil",
+        "port": "Port",
+        "username": "Foydalanuvchi nomi",
+        "password": "Parol",
+        "basicInfo": "Asosiy ma'lumotlar",
+        "networkInfo": "Tarmoq ma'lumotlari",
+        "credentials": "Kirish ma'lumotlari",
+        "timestamps": "Vaqt belgilari",
+        "createdAt": "Yaratilgan",
+        "updatedAt": "Yangilangan"
+      },
+      "placeholders": {
+        "name": "Qurum nomini kiriting",
+        "type": "Qurum turini tanlang",
+        "ip": "IP manzilni kiriting",
+        "port": "Port raqamini kiriting",
+        "username": "Foydalanuvchi nomini kiriting",
+        "password": "Parolni kiriting",
+        "status": "Holatni tanlang"
+      },
+      "typeOptions": {
+        "enter": "Kirish",
+        "exit": "Chiqish"
+      },
+      "statusOptions": {
+        "active": "Faol",
+        "inactive": "Nofaol"
+      },
+      "buttons": {
+        "cancel": "Bekor qilish",
+        "create": "Yaratish",
+        "creating": "Yaratilmoqda...",
+        "update": "Yangilash",
+        "updating": "Yangilanmoqda...",
+        "close": "Yopish"
+      },
+      "messages": {
+        "deviceCreated": "Yuz qurumi muvaffaqiyatli yaratildi!",
+        "deviceUpdated": "Yuz qurumi muvaffaqiyatli yangilandi!",
+        "error": "Yuz qurumini saqlashda xatolik yuz berdi"
+      },
+      "statusDescription": "Yuz qurumini yoqish yoki o'chirish"
     }
   }
 }

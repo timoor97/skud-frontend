@@ -30,6 +30,10 @@ export function DynamicBreadcrumb() {
             { title: t('rolePermissions') },
             { title: t('users') }
         ],
+        '/faceDevices': [
+            { title: t('reference') },
+            { title: t('faceDevices') }
+        ],
         '/playground': [
             { title: t('playground') }
         ],

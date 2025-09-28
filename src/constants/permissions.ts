@@ -17,6 +17,13 @@ export const PERMISSIONS = {
   EDIT_ROLE: 'edit-role',
   DELETE_ROLE: 'delete-role',
 
+  /* FACE DEVICES */
+  VIEW_FACE_DEVICES: 'view-face-devices',
+  CREATE_FACE_DEVICE: 'create-face-device',
+  VIEW_FACE_DEVICE: 'view-face-device',
+  EDIT_FACE_DEVICE: 'edit-face-device',
+  DELETE_FACE_DEVICE: 'delete-face-device',
+  RESTORE_FACE_DEVICE: 'restore-face-device',
 
   /* viewLOGS */
   VIEW_ACTIVITY_LOGS: 'view-activity-logs',

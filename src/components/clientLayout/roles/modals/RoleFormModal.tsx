@@ -15,6 +15,7 @@ import {PermissionListItem} from '@/types/permissionsTypes'
 import {Input} from "@/components/ui/input"
 import {Label} from "@/components/ui/label"
 import TranslatableTabs from "@/components/ui/translatable-tabs"
+import CustomLoading from "@/components/ui/customLoading"
 
 interface CreateRoleModalProps {
     permissions: PermissionListItem[];
@@ -28,6 +29,7 @@ const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
     const tModal = useTranslations('Roles.Modal')
 
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const {control, handleSubmit, setValue, reset} = useForm({
         resolver: zodResolver(roleSchema(tModal)),
@@ -51,33 +53,34 @@ const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
     useEffect(() => {
         const fetchRoleData = async () => {
             if (id) {
+                setIsLoading(true);
                 try {
                     const {data} = await getRoleById(locale, id)
 
-                    // Use setTimeout to ensure form is ready
-                    setTimeout(() => {
-                        setValue('name.uz', data.name?.uz || '');
-                        setValue('name.ru', data.name?.ru || '');
-                        setValue('name.en', data.name?.en || '');
-                        setValue('description.uz', data.description?.uz || '');
-                        setValue('description.ru', data.description?.ru || '');
-                        setValue('description.en', data.description?.en || '');
-                        // Convert permissions to simple array of IDs
-                        const permissionIds = data.permissions ? data.permissions.map((perm: number | { id?: number; permission_id?: number; name?: string }) => 
-                            typeof perm === 'number' ? perm : perm.id || perm.permission_id || 0
-                        ) : [];
-                        setValue('permissions', permissionIds);
-                        setValue('key', data.key || '');
-                    }, 100);
+                    // Set values after data is loaded
+                    setValue('name.uz', data.name?.uz || '');
+                    setValue('name.ru', data.name?.ru || '');
+                    setValue('name.en', data.name?.en || '');
+                    setValue('description.uz', data.description?.uz || '');
+                    setValue('description.ru', data.description?.ru || '');
+                    setValue('description.en', data.description?.en || '');
+                    // Convert permissions to simple array of IDs
+                    const permissionIds = data.permissions ? data.permissions.map((perm: number | { id?: number; permission_id?: number; name?: string }) => 
+                        typeof perm === 'number' ? perm : perm.id || perm.permission_id || 0
+                    ) : [];
+                    setValue('permissions', permissionIds);
+                    setValue('key', data.key || '');
                 } catch (error) {
                     console.error('Error loading role data:', error);
+                } finally {
+                    setIsLoading(false);
                 }
             } else {
                 reset()
             }
         }
         fetchRoleData()
-    }, [id, setValue, reset, locale, open, router]);
+    }, [id, setValue, reset, locale]);
 
     const handleCancel = () => {
         // Reset form to discard any changes
@@ -227,10 +230,13 @@ const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
                     {id ? tModal('messages.editRole', {id}) : tModal('messages.createRole')}
                 </div>
 
-                {/* Language Tabs at the top */}
-                <TranslatableTabs>
-                    {(locale) => (
-                <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
+                {isLoading ? (
+                    <CustomLoading />
+                ) : (
+                    /* Language Tabs at the top */
+                    <TranslatableTabs>
+                        {(locale) => (
+                    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                             {/* Role Name Field */}
                         <div className="grid gap-2">
                                 <Label className="text-sm font-medium">
@@ -415,8 +421,9 @@ const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
                     </button>
                 </div>
                         </form>
-                    )}
-                </TranslatableTabs>
+                        )}
+                    </TranslatableTabs>
+                )}
             </div>
         </ViewModal>
     )

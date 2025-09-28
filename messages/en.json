@@ -218,6 +218,8 @@
     "rolePermissions": "Role and Permissions",
     "roles": "Roles",
     "users": "Users",
+    "reference": "Devices",
+    "faceDevices": "Face Devices",
     "starred": "Starred",
     "settings": "Settings"
   },
@@ -227,6 +229,8 @@
     "roles": "Roles",
     "users": "Users",
     "user": "User",
+    "reference": "Devices",
+    "faceDevices": "Face Devices",
     "playground": "Playground",
     "history": "History",
     "starred": "Starred",
@@ -338,6 +342,112 @@
         "requiredField": "This field is required",
         "keyExists": "A role with this key already exists"
       }
+    }
+  },
+  "FaceDevices": {
+    "Title": {
+      "title": "Face Devices",
+      "description": "Manage face recognition devices"
+    },
+    "TableHeader": {
+      "id": "ID",
+      "name": "Name",
+      "type": "Type",
+      "ip": "IP Address",
+      "port": "Port",
+      "status": "Status",
+      "actions": "Actions",
+      "enter": "Enter",
+      "exit": "Exit",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "CreateBtn": {
+      "label": "Create Face Device"
+    },
+    "ToastMsg": {
+      "delete": "Face device deleted successfully!",
+      "error": "An error occurred while processing the face device",
+      "noDevices": "No face devices found"
+    },
+    "Filters": {
+      "title": "Filter Face Devices",
+      "name": "Name",
+      "type": "Type",
+      "status": "Status",
+      "placeholders": {
+        "name": "Enter device name...",
+        "type": "Select type...",
+        "status": "Select status..."
+      },
+      "options": {
+        "all": "All"
+      },
+      "typeOptions": {
+        "enter": "Enter",
+        "exit": "Exit"
+      },
+      "statusOptions": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "buttons": {
+        "filter": "Filter"
+      }
+    },
+    "Modal": {
+      "titles": {
+        "createDevice": "Create New Face Device",
+        "editDevice": "Edit Face Device #{id}",
+        "viewDevice": "View Face Device #{id}"
+      },
+      "labels": {
+        "id": "ID",
+        "name": "Device Name",
+        "type": "Type",
+        "status": "Status",
+        "ip": "IP Address",
+        "port": "Port",
+        "username": "Username",
+        "password": "Password",
+        "basicInfo": "Basic Information",
+        "networkInfo": "Network Information",
+        "credentials": "Credentials",
+        "timestamps": "Timestamps",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At"
+      },
+      "placeholders": {
+        "name": "Enter device name",
+        "type": "Select device type",
+        "ip": "Enter IP address",
+        "port": "Enter port number",
+        "username": "Enter username",
+        "password": "Enter password",
+        "status": "Select status"
+      },
+      "typeOptions": {
+        "enter": "Enter",
+        "exit": "Exit"
+      },
+      "statusOptions": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "create": "Create",
+        "creating": "Creating...",
+        "update": "Update",
+        "updating": "Updating...",
+        "close": "Close"
+      },
+      "messages": {
+        "deviceCreated": "Face device created successfully!",
+        "deviceUpdated": "Face device updated successfully!",
+        "error": "An error occurred while saving the face device"
+      },
+      "statusDescription": "Enable or disable the face device"
     }
   }
 }
