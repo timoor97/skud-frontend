@@ -6,20 +6,20 @@ import {
     SidebarProvider,
 } from "@/components/ui/sidebar"
 import { TooltipProvider } from "@/components/ui/tooltip"
-import { User, ApiResponse } from "@/types/currentUserTypes"
+import { CurrentUser, ApiResponse } from "@/types/currentUserTypes"
 
 export default function ClientLayout({
-    children,
-    user,
+    children, currentUser, userActions,
 }: {
     children: React.ReactNode
-    user: ApiResponse<User> | null
+    currentUser: ApiResponse<CurrentUser> | null
+    userActions: Array<{ action: string }> | null
 }) {
 
     return (
         <TooltipProvider>
             <SidebarProvider>
-                <AppSidebar user={user} />
+                <AppSidebar currentUser={currentUser} userActions={userActions} />
                 <SidebarInset>
                     {children}
                 </SidebarInset>

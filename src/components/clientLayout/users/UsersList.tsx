@@ -18,7 +18,7 @@ import {useConfirmDeleteStore} from '@/hooks/useConfirmDelete'
 import DeleteWithConfirmation from "@/components/ui/DeleteWithConfirmation";
 import {toast} from 'sonner'
 import Image from 'next/image'
-import {User} from "@/types/currentUserTypes";
+import {CurrentUser} from "@/types/currentUserTypes";
 import UserFilters from "@/components/clientLayout/users/filters/UserFilter";
 import { PERMISSIONS } from '@/constants/permissions'
 import usePermissions from '@/hooks/usePermissions'
@@ -29,12 +29,12 @@ interface UsersListProps {
     userActions: {
         action: string
     }[]
-    user: User
+    currentUser: CurrentUser
     meta: MetaData
     roles?: RoleListItem[] | null
 }
 
-const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) => {
+const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, roles}) => {
 
     const t = useTranslations('Users')
     const [page, setPage] = React.useState(meta.current_page - 1);
@@ -48,7 +48,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
         status: 'all'
     })
     const {id: deleteId, setDeleteId} = useConfirmDeleteStore()
-    const { hasPermission } = usePermissions(userActions, user.includes.role?.name || '')
+    const { hasPermission } = usePermissions(userActions, currentUser.includes.role?.name || '')
 
     const locale = useLocale()
     const router = useRouter()

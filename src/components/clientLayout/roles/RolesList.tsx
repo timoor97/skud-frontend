@@ -17,7 +17,7 @@ import { useRoleModalStore } from '@/hooks/useModalStore'
 import { useConfirmDeleteStore } from '@/hooks/useConfirmDelete'
 import DeleteWithConfirmation from "@/components/ui/DeleteWithConfirmation";
 import { toast } from 'sonner'
-import { User } from "@/types/currentUserTypes";
+import { CurrentUser } from "@/types/currentUserTypes";
 import { PERMISSIONS } from '@/constants/permissions'
 import usePermissions from '@/hooks/usePermissions'
 import RoleFilters from '@/components/clientLayout/roles/filters/RoleFilter'
@@ -27,11 +27,11 @@ interface RolesListProps {
     userActions: {
         action: string
     }[]
-    user: User
+    currentUser: CurrentUser
     meta: MetaData
 }
 
-const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
+const RolesList: FC<RolesListProps> = ({ roles, userActions, currentUser, meta }) => {
 
     const t = useTranslations('Roles')
     const [page, setPage] = React.useState(meta.current_page - 1);
@@ -43,7 +43,7 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
         name: ''
     })
     const { id: deleteId, setDeleteId } = useConfirmDeleteStore()
-    const { hasPermission } = usePermissions(userActions, user.includes.role?.name || '')
+    const { hasPermission } = usePermissions(userActions, currentUser.includes.role?.name || '')
 
     const locale = useLocale()
 

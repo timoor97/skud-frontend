@@ -10,17 +10,21 @@ import UserProfile from './userShow/UserProfile'
 import UserTabs from './userShow/UserTabs'
 import {RoleListItem} from "@/types/rolesTypes";
 import SHowLoading from '@/components/ui/showLoading';
+import {CurrentUser} from "@/types/currentUserTypes";
 
 interface UserShowProps {
     user: User,
-    roles?: RoleListItem[] | null
+    roles?: RoleListItem[] | null,
+    userActions: {
+        action: string
+    }[]
+    currentUser: CurrentUser
 }
 
-const UserShow: FC<UserShowProps> = ({ user , roles}) => {
+const UserShow: FC<UserShowProps> = ({ user, roles, currentUser, userActions }) => {
     const router = useRouter()
     const tDetail = useTranslations('Users.DetailPage')
     const [isLoading, setIsLoading] = useState(true)
-
     useEffect(() => {
         // Show loading for a brief moment to ensure smooth transition
         const timer = setTimeout(() => {
@@ -58,7 +62,7 @@ const UserShow: FC<UserShowProps> = ({ user , roles}) => {
                 <UserProfile user={user} />
 
                 {/* Right Side - Tabs */}
-                <UserTabs roles={roles} user={user} />
+                <UserTabs roles={roles} user={user} currentUser={currentUser} userActions={userActions} />
             </div>
         </>
     )

@@ -16,7 +16,7 @@ const RolesPage: FC<RolesPageProps> = async ({ params }) => {
     const { locale } = await params
 
     const roles = await getRole(locale)
-    const user = await currentUser(locale)
+    const currentUserData = await currentUser(locale)
     const userActions = await currentUserPermissionsActions(locale)
     const permissions = await getAllPermissions(locale)
 
@@ -25,7 +25,7 @@ const RolesPage: FC<RolesPageProps> = async ({ params }) => {
             <RolesList
                 roles={roles.data.models}
                 userActions={userActions}
-                user={user.data}
+                currentUser={currentUserData.data}
                 meta={roles.data.meta}
             />
 

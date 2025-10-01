@@ -7,6 +7,7 @@ export const PERMISSIONS = {
   VIEW_USER: 'view-user',
 
   /* password */
+  SET_LOGIN_PASSWORD: 'set-login-password',
   CHANGE_PASSWORD: 'change-password',
   CHANGE_STATUS: 'change-status',
 

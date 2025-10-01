@@ -144,10 +144,21 @@
         "faceRecognition": "Настройки распознавания лица будут отображаться здесь."
       },
       "security": {
+        "tabs": {
+          "setLoginPassword": "Установить пароль входа",
+          "changePassword": "Изменить пароль"
+        },
+        "titles": {
+          "setLoginPassword": "Установить пароль входа",
+          "changePassword": "Изменить пароль"
+        },
         "labels": {
           "login": "Имя пользователя",
           "password": "Новый пароль",
           "passwordConfirmation": "Подтвердите новый пароль",
+          "currentUsername": "Текущее имя пользователя",
+          "newPassword": "Новый пароль",
+          "confirmNewPassword": "Подтвердите новый пароль",
           "loginPermission": "Разрешение на вход",
           "roles": "Роли"
         },
@@ -155,14 +166,20 @@
           "login": "Введите имя пользователя",
           "password": "Введите новый пароль",
           "passwordConfirmation": "Подтвердите новый пароль",
+          "newPassword": "Введите новый пароль",
+          "confirmNewPassword": "Подтвердите новый пароль",
           "roles": "Выберите роли"
         },
         "buttons": {
           "saveChanges": "Сохранить изменения",
+          "setLoginPassword": "Установить пароль входа",
+          "changePassword": "Изменить пароль",
           "saving": "Сохранение..."
         },
         "messages": {
           "changesSaved": "Настройки безопасности успешно обновлены!",
+          "loginPasswordSet": "Пароль входа успешно установлен!",
+          "passwordChanged": "Пароль успешно изменен!",
           "updateFailed": "Не удалось обновить настройки безопасности",
           "noRoles": "Роли не найдены"
         }

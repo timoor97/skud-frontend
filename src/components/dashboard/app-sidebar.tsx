@@ -23,10 +23,26 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { User, ApiResponse } from "@/types/currentUserTypes"
+import { CurrentUser, ApiResponse } from "@/types/currentUserTypes"
+import usePermissions from '@/hooks/usePermissions'
+import { PERMISSIONS } from '@/constants/permissions'
 
-export function AppSidebar({ user, ...props }: React.ComponentProps<typeof Sidebar> & { user: ApiResponse<User> | null }) {
+export function AppSidebar({ currentUser, userActions, ...props }: React.ComponentProps<typeof Sidebar> & { 
+    currentUser: ApiResponse<CurrentUser> | null
+    userActions: Array<{ action: string }> | null
+}) {
     const t = useTranslations('Sidebar')
+    
+    // Initialize permissions hook
+    const { hasPermission } = usePermissions(
+        userActions || [], 
+        currentUser?.data?.includes?.role?.name || ''
+    )
+    
+    // Check permissions for menu items
+    const canViewUsers = hasPermission(PERMISSIONS.VIEW_USERS)
+    const canViewRoles = hasPermission(PERMISSIONS.VIEW_ROLES)
+    const canViewFaceDevices = hasPermission(PERMISSIONS.VIEW_FACE_DEVICES)
     
     // Fallback function for translations
     const getTranslation = (key: string, fallback: string) => {
@@ -37,42 +53,69 @@ export function AppSidebar({ user, ...props }: React.ComponentProps<typeof Sideb
         }
     }
     
-    const data = {
-        navMain: [
-            {
-                title: getTranslation('dashboard', 'Dashboard'),
-                url: "/dashboard",
-                icon: LayoutDashboard,
-            },
-            {
+    // Build navigation items based on permissions
+    const navMain: Array<{
+        title: string
+        url: string
+        icon?: any
+        isActive?: boolean
+        items?: Array<{
+            title: string
+            url: string
+        }>
+    }> = [
+        {
+            title: getTranslation('dashboard', 'Dashboard'),
+            url: "/dashboard",
+            icon: LayoutDashboard,
+        }
+    ]
+
+    // Add Role and Permissions section if user has access to roles or users
+    if (canViewRoles || canViewUsers) {
+        const rolePermissionsItems = []
+        
+        if (canViewRoles) {
+            rolePermissionsItems.push({
+                title: getTranslation('roles', 'Roles'),
+                url: "/roles",
+            })
+        }
+        
+        if (canViewUsers) {
+            rolePermissionsItems.push({
+                title: getTranslation('users', 'Users'),
+                url: "/users",
+            })
+        }
+
+        if (rolePermissionsItems.length > 0) {
+            navMain.push({
                 title: getTranslation('rolePermissions', 'Role and Permissions'),
                 url: "#",
                 icon: UserCircle,
-                isActive: false,
-                items: [
-                    {
-                        title: getTranslation('roles', 'Roles'),
-                        url: "/roles",
-                    },
-                    {
-                        title: getTranslation('users', 'Users'),
-                        url: "/users",
-                    }
-                ],
-            },
-            {
-                title: getTranslation('reference', 'Devices'),
-                url: "#",
-                icon: Monitor,
-                isActive: false,
-                items: [
-                    {
-                        title: getTranslation('faceDevices', 'Face Devices'),
-                        url: "/faceDevices",
-                    }
-                ],
-            },
-        ],
+                items: rolePermissionsItems,
+            })
+        }
+    }
+
+    // Add Devices section if user has access to face devices
+    if (canViewFaceDevices) {
+        navMain.push({
+            title: getTranslation('reference', 'Devices'),
+            url: "#",
+            icon: Monitor,
+            items: [
+                {
+                    title: getTranslation('faceDevices', 'Face Devices'),
+                    url: "/faceDevices",
+                }
+            ],
+        })
+    }
+
+    const data = {
+        navMain
     }
 
     return (
@@ -96,7 +139,7 @@ export function AppSidebar({ user, ...props }: React.ComponentProps<typeof Sideb
                 <NavMain items={data.navMain} />
             </SidebarContent>
             <SidebarFooter>
-                <NavUser user={user} />
+                <NavUser currentUser={currentUser} />
             </SidebarFooter>
         </Sidebar>
     )

@@ -15,7 +15,7 @@ const FaceDevicesPage: FC<FaceDevicesPageProps> = async ({ params }) => {
     const { locale } = await params
 
     const faceDevices = await getAllFaceDevices(locale)
-    const user = await currentUser(locale)
+    const currentUserData = await currentUser(locale)
     const userActions = await currentUserPermissionsActions(locale)
 
     return (
@@ -23,7 +23,7 @@ const FaceDevicesPage: FC<FaceDevicesPageProps> = async ({ params }) => {
             <FaceDevicesList
                 faceDevices={faceDevices.data.models}
                 userActions={userActions}
-                user={user.data}
+                currentUser={currentUserData.data}
                 meta={faceDevices.data.meta}
             />
 

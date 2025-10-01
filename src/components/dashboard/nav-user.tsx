@@ -9,7 +9,7 @@ import {
 import {toast} from 'sonner'
 import {useRouter} from "@/i18n/navigation";
 import {useLocale, useTranslations} from 'next-intl'
-import {User, ApiResponse} from '@/types/currentUserTypes'
+import {CurrentUser, ApiResponse} from '@/types/currentUserTypes'
 
 import {
     Avatar,
@@ -32,7 +32,7 @@ import {
     useSidebar,
 } from "@/components/ui/sidebar"
 
-export function NavUser({ user }: { user: ApiResponse<User> | null }) {
+export function NavUser({ currentUser }: { currentUser: ApiResponse<CurrentUser> | null }) {
     const {isMobile} = useSidebar()
     const router = useRouter()
     const locale = useLocale()
@@ -64,12 +64,12 @@ export function NavUser({ user }: { user: ApiResponse<User> | null }) {
     }
 
 
-    if (!user) {
+    if (!currentUser) {
         return null
     }
 
     // Extract user data from the ApiResponse structure
-    const userData = user.data
+    const userData = currentUser.data
     const userInitials = userData.first_name?.[0]?.toUpperCase() || t('defaults.userInitial')
     const userName = `${userData.first_name || ''} ${userData.last_name || ''}`.trim() || t('defaults.userName')
     const userPhone = userData.phone || t('defaults.noPhone')

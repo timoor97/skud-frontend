@@ -18,7 +18,7 @@ import {useConfirmDeleteStore} from '@/hooks/useConfirmDelete'
 import DeleteWithConfirmation from "@/components/ui/DeleteWithConfirmation";
 import {toast} from 'sonner'
 import FaceDeviceFilter from '@/components/clientLayout/faceDevices/filters/FaceDeviceFilter'
-import {User} from "@/types/currentUserTypes";
+import {CurrentUser} from "@/types/currentUserTypes";
 import {PERMISSIONS} from '@/constants/permissions'
 import usePermissions from '@/hooks/usePermissions'
 import {MetaData} from "@/types/rolesTypes";
@@ -28,11 +28,11 @@ interface FaceDevicesListProps {
     userActions: {
         action: string
     }[]
-    user: User
+    currentUser: CurrentUser
     meta: MetaData
 }
 
-const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, user, meta}) => {
+const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, currentUser, meta}) => {
 
     const t = useTranslations('FaceDevices')
     const [page, setPage] = React.useState(meta.current_page - 1);
@@ -46,7 +46,7 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, us
         status: 'all'
     })
     const {id: deleteId, setDeleteId} = useConfirmDeleteStore()
-    const {hasPermission} = usePermissions(userActions, user.includes.role?.name || '')
+    const {hasPermission} = usePermissions(userActions, currentUser.includes.role?.name || '')
 
     const locale = useLocale()
 

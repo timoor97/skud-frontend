@@ -1,6 +1,6 @@
 import { FC } from "react"
 import ClientLayout from "@/components/clientLayout";
-import { currentUser } from "@/app/[locale]/actions/(users)/getCurrentUser";
+import { currentUser, currentUserPermissionsActions } from "@/app/[locale]/actions/(users)/getCurrentUser";
 
 interface LayoutProps {
   children: React.ReactNode,
@@ -13,17 +13,19 @@ export const revalidate = 3600
 const Layout: FC<LayoutProps> = async ({ children, params }) => {
   const { locale } = await params;
   
-  // Fetch current user data on the server
-  let user = null;
+  // Fetch current user data and permissions on the server
+  let currentUserData = null;
+  let userActions = null;
   try {
-    user = await currentUser(locale);
+      currentUserData = await currentUser(locale);
+      userActions = await currentUserPermissionsActions(locale);
   } catch (error) {
     console.error('Error fetching current user in layout:', error);
     // User will be null, which is fine for unauthenticated users
   }
 
   return (
-      <ClientLayout user={user}>
+      <ClientLayout currentUser={currentUserData} userActions={userActions}>
         {children}
       </ClientLayout>
   )

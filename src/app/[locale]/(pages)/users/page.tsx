@@ -15,7 +15,7 @@ const UsersPage: FC<UsersPageProps> = async ({ params }) => {
 
     const users = await getAllUsers(locale)
     const roles = await getRole(locale)
-    const user = await currentUser(locale)
+    const currentUserData = await currentUser(locale)
     const userActions = await currentUserPermissionsActions(locale)
 
     return (
@@ -23,7 +23,7 @@ const UsersPage: FC<UsersPageProps> = async ({ params }) => {
             <UsersList
                 users={users.data.models}
                 userActions={userActions}
-                user={user.data}
+                currentUser={currentUserData.data}
                 meta={users.data.meta}
                 roles={roles.data.models}
             />

@@ -144,10 +144,21 @@
         "faceRecognition": "Face recognition settings will be displayed here."
       },
       "security": {
+        "tabs": {
+          "setLoginPassword": "Set Login Password",
+          "changePassword": "Change Password"
+        },
+        "titles": {
+          "setLoginPassword": "Set Login Password",
+          "changePassword": "Change Password"
+        },
         "labels": {
           "login": "Username",
           "password": "New Password",
           "passwordConfirmation": "Confirm New Password",
+          "currentUsername": "Current Username",
+          "newPassword": "New Password",
+          "confirmNewPassword": "Confirm New Password",
           "loginPermission": "Login Permission",
           "roles": "Roles"
         },
@@ -155,14 +166,20 @@
           "login": "Enter username",
           "password": "Enter new password",
           "passwordConfirmation": "Confirm new password",
+          "newPassword": "Enter new password",
+          "confirmNewPassword": "Confirm new password",
           "roles": "Select roles"
         },
         "buttons": {
           "saveChanges": "Save Changes",
+          "setLoginPassword": "Set Login Password",
+          "changePassword": "Change Password",
           "saving": "Saving..."
         },
         "messages": {
           "changesSaved": "Security settings updated successfully!",
+          "loginPasswordSet": "Login password set successfully!",
+          "passwordChanged": "Password changed successfully!",
           "updateFailed": "Failed to update security settings",
           "noRoles": "No roles found"
         }

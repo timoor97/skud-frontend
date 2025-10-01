@@ -6,7 +6,7 @@ export interface IncludesRole {
     key: string
 }
 
-export interface User {
+export interface CurrentUser {
   id: number;
   first_name: string;
   last_name: string;
@@ -29,4 +29,4 @@ export interface ApiResponse<T> {
   status: number;
 }
 
-export type UserDetailsResponse = ApiResponse<User>;
+export type UserDetailsResponse = ApiResponse<CurrentUser>;

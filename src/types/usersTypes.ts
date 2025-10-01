@@ -21,6 +21,11 @@ export interface SetLoginPasswordRequest {
     password_confirmation?: string;
 }
 
+export interface ChangePasswordRequest {
+    password: string;
+    password_confirmation: string;
+}
+
 export interface ApiResponse<T> {
   data: T;
   message: string;
