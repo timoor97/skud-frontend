@@ -9,6 +9,7 @@ import {
     LayoutDashboard,
     UserCircle,
     Monitor,
+    type LucideIcon,
 } from "lucide-react"
 
 import { useTranslations } from 'next-intl'
@@ -57,7 +58,7 @@ export function AppSidebar({ currentUser, userActions, ...props }: React.Compone
     const navMain: Array<{
         title: string
         url: string
-        icon?: any
+        icon?: LucideIcon
         isActive?: boolean
         items?: Array<{
             title: string

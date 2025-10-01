@@ -37,6 +37,7 @@ interface UsersListProps {
 const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, roles}) => {
 
     const t = useTranslations('Users')
+    const tStatus = useTranslations('Users.Modal.status')
     const [page, setPage] = React.useState(meta.current_page - 1);
     const [rowsPerPage, setRowsPerPage] = React.useState(meta.per_page);
     const [usersList, setUsersList] = React.useState<UserListItem[] | null>(users)
@@ -164,14 +165,14 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
         loadUsers(0, filters, newLimit);
     }
 
-    // Define table columns with uniform styling
+    // Define table columns with responsive styling
     const columns: TableColumn[] = [
-        {key: 'id', label: 'ID', className: 'text-center'},
+        {key: 'id', label: 'ID', className: 'text-center hidden sm:table-cell'},
         {key: 'image', label: t('TableHeader.image'), className: 'text-center'},
         {key: 'first_name', label: t('TableHeader.firstName'), className: 'text-center'},
-        {key: 'last_name', label: t('TableHeader.lastName'), className: 'text-center'},
-        {key: 'phone', label: t('TableHeader.phone'), className: 'text-center'},
-        {key: 'role', label: t('TableHeader.role'), className: 'text-center'},
+        {key: 'last_name', label: t('TableHeader.lastName'), className: 'text-center hidden md:table-cell'},
+        {key: 'phone', label: t('TableHeader.phone'), className: 'text-center hidden lg:table-cell'},
+        {key: 'role', label: t('TableHeader.role'), className: 'text-center hidden sm:table-cell'},
         {key: 'status', label: t('TableHeader.status'), className: 'text-center'},
         {key: 'actions', label: t('TableHeader.actions'), className: 'text-center'},
     ]
@@ -181,7 +182,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
             <PageHeader
                 title={t('UsersManagement.title')}
             />
-            <div className="flex flex-1 flex-col gap-4 p-4 pt-6">
+            <div className="flex flex-1 flex-col gap-4 p-3 sm:p-4 pt-4 sm:pt-6">
                 <UserFilters
                     roles={roles}
                     filters={filters}
@@ -207,7 +208,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                     {usersList && usersList.length > 0 ? (
                         usersList.map((user) => (
                         <TableRow key={user.id} className="hover:bg-muted/50 transition-colors">
-                            <TableCell className="text-center font-mono text-sm">{user.id}</TableCell>
+                            <TableCell className="text-center font-mono text-xs sm:text-sm hidden sm:table-cell">{user.id}</TableCell>
                             <TableCell className="text-center">
                                 {user.image ? (
                                     <Image 
@@ -215,31 +216,36 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                                         alt={`${user.first_name} ${user.last_name}`}
                                         width={32}
                                         height={32}
-                                        className="w-8 h-8 rounded-full object-cover mx-auto"
+                                        className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover mx-auto"
                                     />
                                 ) : (
-                                    <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center mx-auto">
+                                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-200 flex items-center justify-center mx-auto">
                                         <span className="text-xs text-gray-500">
                                             {user.first_name?.[0]?.toUpperCase() || '?'}
                                         </span>
                                     </div>
                                 )}
                             </TableCell>
-                            <TableCell className="text-center font-semibold">{user.first_name}</TableCell>
-                            <TableCell className="text-center font-semibold">{user.last_name}</TableCell>
-                            <TableCell className="text-center text-muted-foreground">{user.phone}</TableCell>
-                            <TableCell className="text-center">
+                            <TableCell className="text-center font-semibold text-sm sm:text-base">
+                                <div className="flex flex-col sm:block">
+                                    <span className="truncate">{user.first_name}</span>
+                                    <span className="text-xs text-muted-foreground sm:hidden">{user.last_name}</span>
+                                </div>
+                            </TableCell>
+                            <TableCell className="text-center font-semibold text-sm sm:text-base hidden md:table-cell">{user.last_name}</TableCell>
+                            <TableCell className="text-center text-muted-foreground text-xs sm:text-sm hidden lg:table-cell">{user.phone}</TableCell>
+                            <TableCell className="text-center hidden sm:table-cell">
                                 <div className="flex flex-wrap gap-1 justify-center">
                                     {user.includes?.roles && user.includes.roles.length > 0 ? (
                                         user.includes.roles.map((role) => (
                                             <span
                                                 key={role.id}
-                                                className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                                 {role.name}
                                             </span>
                                         ))
                                     ) : (
-                                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                                             {t('ToastMsg.noRole')}
                                         </span>
                                     )}
@@ -247,7 +253,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                             </TableCell>
                             <TableCell className="text-center">
                                         <span
-                                            className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                                            className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                                                 user.status
                                                     ? 'bg-green-100 text-green-800'
                                                     : 'bg-red-100 text-red-800'
@@ -255,7 +261,8 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                                             <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
                                                 user.status ? 'bg-green-500' : 'bg-red-500'
                                             }`}></span>
-                                            {user.status ? 'Active' : 'Inactive'}
+                                            <span className="hidden sm:inline">{user.status ? tStatus('active') : tStatus('inactive')}</span>
+                                            <span className="sm:hidden">{user.status ? tStatus('active').charAt(0) : tStatus('inactive').charAt(0)}</span>
                                         </span>
                             </TableCell>
                             <TableCell className="text-center">
@@ -265,7 +272,8 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                                             variant="ghost"
                                             size="sm"
                                             onClick={() => router.push(`/users/${user.id}`)}
-                                            className="h-8 w-8 p-0"
+                                            className="h-8 w-8 p-0 touch-manipulation"
+                                            title="View user"
                                         >
                                             <Eye className="h-4 w-4"/>
                                         </Button>
@@ -275,7 +283,8 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                                             variant="ghost"
                                             size="sm"
                                             onClick={() => openModal(user.id)}
-                                            className="h-8 w-8 p-0"
+                                            className="h-8 w-8 p-0 touch-manipulation"
+                                            title="Edit user"
                                         >
                                             <Edit className="h-4 w-4"/>
                                         </Button>
@@ -285,7 +294,8 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                                             variant="ghost"
                                             size="sm"
                                             onClick={() => setDeleteId(user.id)}
-                                            className="h-8 w-8 p-0"
+                                            className="h-8 w-8 p-0 text-destructive hover:text-destructive/80 touch-manipulation"
+                                            title="Delete user"
                                         >
                                             <Trash2 className="h-4 w-4"/>
                                         </Button>
@@ -296,14 +306,15 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={6} className="text-center py-8">
-                                <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                                    <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <TableCell colSpan={8} className="text-center py-8 sm:py-12">
+                                <div className="flex flex-col items-center gap-3 sm:gap-4 text-muted-foreground">
+                                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-muted flex items-center justify-center">
+                                        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                                         </svg>
                                     </div>
-                                    <p className="text-lg font-medium">{t('ToastMsg.noUsers')}</p>
+                                    <p className="text-base sm:text-lg font-medium">{t('ToastMsg.noUsers')}</p>
+                                    <p className="text-xs sm:text-sm text-center max-w-xs">No users found matching your criteria</p>
                                 </div>
                             </TableCell>
                         </TableRow>

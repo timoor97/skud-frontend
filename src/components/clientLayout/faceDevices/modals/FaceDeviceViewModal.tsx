@@ -83,11 +83,11 @@ const FaceDeviceViewModal: FC = () => {
                             </label>
                             <p className="text-sm font-medium">
                                 <span className={`px-2 py-1 rounded-full text-xs ${
-                                    faceDeviceData.status 
+                                    faceDeviceData.status === 'active'
                                         ? 'bg-green-100 text-green-800' 
                                         : 'bg-red-100 text-red-800'
                                 }`}>
-                                    {faceDeviceData.status ? tModal('statusOptions.active') : tModal('statusOptions.inactive')}
+                                    {faceDeviceData.status === 'active' ? tModal('statusOptions.active') : tModal('statusOptions.inactive')}
                                 </span>
                             </p>
                         </div>

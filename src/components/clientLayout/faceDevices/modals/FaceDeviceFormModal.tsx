@@ -35,7 +35,7 @@ const FaceDeviceFormModal: FC = () => {
         defaultValues: {
             name: '',
             type: 'enter' as 'enter' | 'exit',
-            status: true,
+            status: 'active' as 'active' | 'not_active',
             ip: '',
             port: '',
             username: '',
@@ -53,7 +53,7 @@ const FaceDeviceFormModal: FC = () => {
                     // Set values after data is loaded
                     setValue('name', data.name || '');
                     setValue('type', data.type || 'enter');
-                    setValue('status', data.status !== undefined ? data.status : true);
+                    setValue('status', data.status !== undefined ? data.status : 'active');
                     setValue('ip', data.ip || '');
                     setValue('port', data.port || '');
                     setValue('username', data.username || '');
@@ -388,13 +388,13 @@ const FaceDeviceFormModal: FC = () => {
                                     control={control}
                                     render={({field, fieldState}) => (
                                         <>
-                                            <Select onValueChange={(value) => field.onChange(value === 'true')} value={field.value ? 'true' : 'false'}>
+                                            <Select onValueChange={field.onChange} value={field.value}>
                                                 <SelectTrigger className={`h-11 w-full ${fieldState.error ? 'border-destructive focus-visible:ring-destructive' : ''}`}>
                                                     <SelectValue placeholder={tModal('placeholders.status')} />
                                                 </SelectTrigger>
                                                 <SelectContent>
-                                                    <SelectItem value="true">{tModal('statusOptions.active')}</SelectItem>
-                                                    <SelectItem value="false">{tModal('statusOptions.inactive')}</SelectItem>
+                                                    <SelectItem value="active">{tModal('statusOptions.active')}</SelectItem>
+                                                    <SelectItem value="not_active">{tModal('statusOptions.inactive')}</SelectItem>
                                                 </SelectContent>
                                             </Select>
                                             {fieldState.error && (

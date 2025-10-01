@@ -43,28 +43,36 @@ const UserShow: FC<UserShowProps> = ({ user, roles, currentUser, userActions }) 
     }
 
     return (
-        <>
+        <div className="min-h-screen bg-background">
             <PageHeader 
                 title={`${user.first_name} ${user.last_name} #${user.id}`}
                 description={tDetail('title')}
             />
             
             {/* Action Buttons */}
-            <div className="flex justify-end gap-3 px-6 py-4 border-b">
-                <Button variant="outline" onClick={handleBack}>
-                    <ArrowLeft className="w-4 h-4 mr-2" />
-                    {tDetail('actions.backToList')}
+            <div className="flex justify-end gap-3 px-4 sm:px-6 py-4 border-b bg-card">
+                <Button variant="outline" onClick={handleBack} className="flex items-center gap-2">
+                    <ArrowLeft className="w-4 h-4" />
+                    <span className="hidden sm:inline">{tDetail('actions.backToList')}</span>
+                    <span className="sm:hidden">Back</span>
                 </Button>
             </div>
 
-            <div className="flex p-6 gap-6">
-                {/* Left Side - User Profile */}
-                <UserProfile user={user} />
+            {/* Main Content */}
+            <div className="container mx-auto px-4 sm:px-6 py-6">
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    {/* Left Side - User Profile */}
+                    <div className="lg:col-span-1">
+                        <UserProfile user={user} />
+                    </div>
 
-                {/* Right Side - Tabs */}
-                <UserTabs roles={roles} user={user} currentUser={currentUser} userActions={userActions} />
+                    {/* Right Side - Tabs */}
+                    <div className="lg:col-span-2">
+                        <UserTabs roles={roles} user={user} currentUser={currentUser} userActions={userActions} />
+                    </div>
+                </div>
             </div>
-        </>
+        </div>
     )
 }
 

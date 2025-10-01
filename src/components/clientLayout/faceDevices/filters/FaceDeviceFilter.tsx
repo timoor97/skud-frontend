@@ -79,8 +79,8 @@ const FaceDeviceFilter: FC<FaceDeviceFilterProps> = ({
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="all">{t('options.all')}</SelectItem>
-                                <SelectItem value="true">{t('statusOptions.active')}</SelectItem>
-                                <SelectItem value="false">{t('statusOptions.inactive')}</SelectItem>
+                                <SelectItem value="active">{t('statusOptions.active')}</SelectItem>
+                                <SelectItem value="not_active">{t('statusOptions.inactive')}</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>

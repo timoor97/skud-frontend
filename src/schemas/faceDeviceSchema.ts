@@ -7,7 +7,9 @@ export const faceDeviceSchema = z.object({
   type: z.enum(['enter', 'exit'], {
     message: "Type must be either 'enter' or 'exit'"
   }),
-  status: z.boolean(),
+  status: z.enum(['active', 'not_active'], {
+    message: "Status must be either 'active' or 'not_active'"
+  }),
   ip: z.string()
     .min(1, "IP address is required")
     .regex(/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/, "Invalid IP address format"),

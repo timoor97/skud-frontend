@@ -67,7 +67,7 @@ const UserTabs: FC<UserTabsProps> = ({
     if (tabs.length === 0) {
         return (
             <div className="flex-1 flex items-center justify-center">
-                <p className="text-muted-foreground">You don't have permission to access any user management
+                <p className="text-muted-foreground">You don&apos;t have permission to access any user management
                     features.</p>
             </div>
         )
@@ -78,34 +78,45 @@ const UserTabs: FC<UserTabsProps> = ({
     const activeTab = availableTabValues.includes(defaultValue) ? defaultValue : availableTabValues[0]
 
     return (
-        <div className="flex-1">
+        <div className="w-full">
             <Tabs defaultValue={activeTab} className="w-full">
-                <TabsList className={`grid w-full grid-cols-${tabs.length}`}>
-                    {tabs.map((tab) => (
-                        <TabsTrigger key={tab.value} value={tab.value}>
-                            {tab.icon}
-                            {tab.label}
-                        </TabsTrigger>
-                    ))}
-                </TabsList>
+                <div className="bg-card rounded-lg border border-border/50 shadow-sm">
+                    <TabsList className={`grid w-full h-auto p-1 bg-muted/30 ${tabs.length === 1 ? 'grid-cols-1' : tabs.length === 2 ? 'grid-cols-2' : 'grid-cols-3'}`}>
+                        {tabs.map((tab) => (
+                            <TabsTrigger 
+                                key={tab.value} 
+                                value={tab.value}
+                                className="flex items-center justify-center gap-2 px-3 py-2 text-sm font-medium transition-all duration-200 data-[state=active]:bg-background data-[state=active]:shadow-sm data-[state=active]:border data-[state=active]:border-border/50"
+                            >
+                                <span className="flex items-center gap-1 sm:gap-2">
+                                    {tab.icon}
+                                    <span className="hidden sm:inline">{tab.label}</span>
+                                    <span className="sm:hidden text-xs">{tab.label.split(' ')[0]}</span>
+                                </span>
+                            </TabsTrigger>
+                        ))}
+                    </TabsList>
 
-                {canSetLoginPassword && (
-                    <TabsContent value="setLoginPassword" className="mt-6">
-                        <SetLoginPassword roles={roles} user={user}/>
-                    </TabsContent>
-                )}
+                    <div className="p-4 sm:p-6">
+                        {canSetLoginPassword && (
+                            <TabsContent value="setLoginPassword" className="mt-0">
+                                <SetLoginPassword roles={roles} user={user}/>
+                            </TabsContent>
+                        )}
 
-                {canChangePassword && (
-                    <TabsContent value="changePassword" className="mt-6">
-                        <ChangePassword user={user}/>
-                    </TabsContent>
-                )}
+                        {canChangePassword && (
+                            <TabsContent value="changePassword" className="mt-0">
+                                <ChangePassword user={user}/>
+                            </TabsContent>
+                        )}
 
-                {canViewFaceRecognition && (
-                    <TabsContent value="faceRecognition" className="mt-6">
-                        <UserFaceRecognition/>
-                    </TabsContent>
-                )}
+                        {canViewFaceRecognition && (
+                            <TabsContent value="faceRecognition" className="mt-0">
+                                <UserFaceRecognition/>
+                            </TabsContent>
+                        )}
+                    </div>
+                </div>
             </Tabs>
         </div>
     )

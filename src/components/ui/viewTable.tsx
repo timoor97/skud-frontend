@@ -98,7 +98,6 @@ const ViewTable: React.FC<ViewTableProps> = ({
                                                  page,
                                                  rowsPerPage,
                                                  onPageChange,
-                                                 onRowsPerPageChange,
                                                  showLimitSelector = false,
                                                  limitOptions = [10, 30, 50, 100],
                                                  onLimitChange,

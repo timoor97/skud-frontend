@@ -2,7 +2,7 @@ export interface FaceDevice {
   id: number;
   name: string;
   type: 'enter' | 'exit';
-  status: boolean;
+  status: 'active' | 'not_active';
   ip: string;
   port: string;
   username: string;
@@ -14,7 +14,7 @@ export interface FaceDevice {
 export interface CreateFaceDeviceRequest {
   name: string;
   type: 'enter' | 'exit';
-  status: boolean;
+  status: 'active' | 'not_active';
   ip: string;
   port: string;
   username: string;
@@ -40,13 +40,13 @@ export interface SingleFaceDeviceResponse {
 export interface FaceDeviceFilters {
   name?: string;
   type?: 'enter' | 'exit' | '';
-  status?: boolean | '';
+  status?: 'active' | 'not_active' | '';
 }
 
 export interface FaceDeviceFormData {
   name: string;
   type: 'enter' | 'exit' | '';
-  status: boolean;
+  status: 'active' | 'not_active';
   ip: string;
   port: string;
   username: string;
