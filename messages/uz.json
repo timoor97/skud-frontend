@@ -243,7 +243,9 @@
     "of": "dan",
     "results": "natija",
     "previous": "Oldingi",
-    "next": "Keyingi"
+    "next": "Keyingi",
+    "rowsPerPage": "Sahifadagi qatorlar",
+    "all": "Barchasi"
   },
   "PageHeader": {
     "defaultTitle": "Boshqaruv paneli",

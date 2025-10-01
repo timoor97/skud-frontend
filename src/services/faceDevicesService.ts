@@ -2,8 +2,8 @@
 import { fetchWithAuth } from "@/config/interceptor"
 import { CreateFaceDeviceRequest } from "@/types/faceDevicesTypes"
 
-export const getFaceDevices = async (locale: string, page: number, name?: string, type?: string, status?: string) => {
-  let url = `/faceDevices?page=${page}`
+export const getFaceDevices = async (locale: string, page: number, name?: string, type?: string, status?: string, limit?: number) => {
+  let url = `/faceDevices?page=${page}&limit=${limit || 10}`
   if (name) {
     url += `&name=${encodeURIComponent(name)}`
   }

@@ -58,14 +58,14 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, us
     const canEditFaceDevice = hasPermission(PERMISSIONS.EDIT_FACE_DEVICE);
     const canDeleteFaceDevice = hasPermission(PERMISSIONS.DELETE_FACE_DEVICE);
 
-    const loadFaceDevices = useCallback(async (page: number, currentFilters = filters) => {
+    const loadFaceDevices = useCallback(async (page: number, currentFilters = filters, currentRowsPerPage = rowsPerPage) => {
         setIsLoading(true)
         try {
             const apiName = currentFilters.name && currentFilters.name.trim() !== '' ? currentFilters.name : undefined
             const apiType = currentFilters.type && currentFilters.type !== 'all' ? currentFilters.type : undefined
             const apiStatus = currentFilters.status && currentFilters.status !== 'all' ? currentFilters.status : undefined
 
-            const res = await getAllFaceDevices(locale, page + 1, apiName, apiType, apiStatus)
+            const res = await getAllFaceDevices(locale, page + 1, apiName, apiType, apiStatus, currentRowsPerPage)
             setFaceDevicesList(res.data.models)
             setCurrentMeta(res.data.meta)
             setPage(page)
@@ -75,7 +75,7 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, us
         } finally {
             setIsLoading(false)
         }
-    }, [locale, filters])
+    }, [locale, filters, rowsPerPage])
 
     useEffect(() => {
         setFaceDevicesList(faceDevices)
@@ -95,7 +95,7 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, us
 
             if (res.ok) {
                 toast.success(t('ToastMsg.delete'))
-                loadFaceDevices(page, filters) // Reload current page
+                loadFaceDevices(page, filters, rowsPerPage) // Reload current page
             } else {
                 const errorData = await res.json()
                 toast.error(errorData.message || 'Failed to delete face device')
@@ -117,7 +117,7 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, us
     }
 
     const handleApplyFilter = () => {
-        loadFaceDevices(0, filters)
+        loadFaceDevices(0, filters, rowsPerPage)
     }
 
     const handleResetFilter = () => {
@@ -127,16 +127,23 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, us
             status: 'all'
         }
         setFilters(resetFilters)
-        loadFaceDevices(0, resetFilters)
+        loadFaceDevices(0, resetFilters, rowsPerPage)
     }
 
     const handleChangePage = (newPage: number) => {
-        loadFaceDevices(newPage, filters)
+        loadFaceDevices(newPage, filters, rowsPerPage)
     }
 
     const handleChangeRowsPerPage = (newRowsPerPage: number) => {
         setRowsPerPage(newRowsPerPage)
-        loadFaceDevices(0, filters) // Reset to first page
+        loadFaceDevices(0, filters, newRowsPerPage) // Reset to first page
+    }
+
+    const handleLimitChange = (limit: number | 'all') => {
+        const newLimit = limit === 'all' ? currentMeta.total : limit;
+        setRowsPerPage(newLimit);
+        setPage(0);
+        loadFaceDevices(0, filters, newLimit);
     }
 
     const columns: TableColumn[] = [
@@ -173,6 +180,8 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, us
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    showLimitSelector={true}
+                    onLimitChange={handleLimitChange}
                 >
                     {faceDevicesList && faceDevicesList.length > 0 ? (
                         faceDevicesList.map((device) => (

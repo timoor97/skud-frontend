@@ -61,7 +61,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
     const canEditUser = hasPermission(PERMISSIONS.EDIT_USER);
     const canDeleteUser = hasPermission(PERMISSIONS.DELETE_USER);
 
-    const loadUsers = useCallback(async (page: number, currentFilters = filters) => {
+    const loadUsers = useCallback(async (page: number, currentFilters = filters, currentRowsPerPage = rowsPerPage) => {
         setIsLoading(true)
         try {
             // Convert string values to proper types for API
@@ -75,7 +75,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
                 return currentFilters.status === 'true'
             })()
 
-            const res = await getAllUsers(locale, page + 1, apiName, apiRoleId, apiStatus)
+            const res = await getAllUsers(locale, page + 1, apiName, apiRoleId, apiStatus, currentRowsPerPage)
             setUsersList(res.data.models)
             setCurrentMeta(res.data.meta)
         } catch (error) {
@@ -83,7 +83,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
         } finally {
             setIsLoading(false)
         }
-    }, [locale, filters])
+    }, [locale, filters, rowsPerPage])
 
 
     useEffect(() => {
@@ -97,13 +97,13 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
         const validPage = Math.min(newPage, maxPage)
         
         setPage(validPage);
-        loadUsers(validPage, filters)
+        loadUsers(validPage, filters, rowsPerPage)
     };
 
     const handleChangeRowsPerPage = (newRowsPerPage: number) => {
         setRowsPerPage(newRowsPerPage);
         setPage(0);
-        loadUsers(0, filters)
+        loadUsers(0, filters, newRowsPerPage)
     };
 
     const handleDelete = async (id: number) => {
@@ -130,7 +130,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
             setIsLoading(false)
         }
 
-        loadUsers(page, filters)
+        loadUsers(page, filters, rowsPerPage)
     }
 
     // Filter handlers
@@ -143,7 +143,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
 
     const handleApplyFilter = () => {
         setPage(0) // Reset to first page when filtering
-        loadUsers(0, filters)
+        loadUsers(0, filters, rowsPerPage)
     }
 
     const handleResetFilter = () => {
@@ -154,7 +154,14 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
         }
         setFilters(resetFilters)
         setPage(0)
-        loadUsers(0, resetFilters)
+        loadUsers(0, resetFilters, rowsPerPage)
+    }
+
+    const handleLimitChange = (limit: number | 'all') => {
+        const newLimit = limit === 'all' ? currentMeta.total : limit;
+        setRowsPerPage(newLimit);
+        setPage(0);
+        loadUsers(0, filters, newLimit);
     }
 
     // Define table columns with uniform styling
@@ -194,6 +201,8 @@ const UsersList: FC<UsersListProps> = ({users,userActions,user, meta, roles}) =>
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    showLimitSelector={true}
+                    onLimitChange={handleLimitChange}
                 >
                     {usersList && usersList.length > 0 ? (
                         usersList.map((user) => (

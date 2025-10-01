@@ -3,8 +3,8 @@ import { fetchWithAuth } from "@/config/interceptor"
 import {CreateUserRequest, SetLoginPasswordRequest} from "@/types/usersTypes"
 import {revalidatePath} from "next/cache";
 
-export const getUsers = async (locale: string, page: number, name?: string, role_id?: number | string, status?: boolean) => {
-    let url = `/users?page=${page}&limit=10`
+export const getUsers = async (locale: string, page: number, name?: string, role_id?: number | string, status?: boolean, limit?: number) => {
+    let url = `/users?page=${page}&limit=${limit || 10}`
     
     if (name) {
         url += `&name=${encodeURIComponent(name)}`

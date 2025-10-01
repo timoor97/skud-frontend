@@ -2,8 +2,8 @@
 import { fetchWithAuth } from "@/config/interceptor"
 import { CreateRoleRequest } from "@/types/rolesTypes"
 
-export const getRoles = async (locale: string, page: number, name?: string) => {
-  let url = `/roles?page=${page}`
+export const getRoles = async (locale: string, page: number, name?: string, limit?: number) => {
+  let url = `/roles?page=${page}&limit=${limit || 10}`
   if (name) {
     url += `&name=${encodeURIComponent(name)}`
   }

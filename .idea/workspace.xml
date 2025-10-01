@@ -6,6 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="a8e50a95-b0fe-4e32-bbe1-38bede0f6c1d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/ru.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/uz.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/uz.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/actions/(faceDevices)/getAllFaceDevices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/actions/(faceDevices)/getAllFaceDevices.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/actions/(roles)/getAllRoles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/actions/(roles)/getAllRoles.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/[locale]/actions/(users)/getAllUsers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/[locale]/actions/(users)/getAllUsers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/FaceDevicesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/FaceDevicesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/roles/RolesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/roles/RolesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/UsersList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/UsersList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ui/viewTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/viewTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/faceDevicesService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/faceDevicesService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/roleService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/roleService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/usersService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +142,7 @@
       <workItem from="1758886683598" duration="1635000" />
       <workItem from="1758912053217" duration="15461000" />
       <workItem from="1759002531840" duration="12644000" />
+      <workItem from="1759336484346" duration="2170000" />
     </task>
     <servers />
   </component>

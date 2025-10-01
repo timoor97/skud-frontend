@@ -29,6 +29,13 @@ import {
 import {ChevronLeftIcon, ChevronRightIcon} from "lucide-react"
 import {cn} from "@/lib/utils"
 import CustomLoading from "@/components/ui/customLoading"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/select"
 
 export interface TableColumn {
     key: string
@@ -64,6 +71,10 @@ export interface ViewTableProps {
     rowsPerPage?: number
     onPageChange?: (page: number) => void
     onRowsPerPageChange?: (rowsPerPage: number) => void
+    // Limit selector props
+    showLimitSelector?: boolean
+    limitOptions?: number[]
+    onLimitChange?: (limit: number | 'all') => void
     // Additional props like friend's example
     canCreate?: boolean
     createLabel?: string
@@ -87,6 +98,10 @@ const ViewTable: React.FC<ViewTableProps> = ({
                                                  page,
                                                  rowsPerPage,
                                                  onPageChange,
+                                                 onRowsPerPageChange,
+                                                 showLimitSelector = false,
+                                                 limitOptions = [10, 30, 50, 100],
+                                                 onLimitChange,
                                                  canCreate,
                                                  createLabel,
                                                  openModal = () => {
@@ -96,6 +111,15 @@ const ViewTable: React.FC<ViewTableProps> = ({
                                                  footerContent
                                              }) => {
     const t = useTranslations('Pagination')
+
+    const handleLimitChange = (value: string) => {
+        if (value === 'all') {
+            onLimitChange?.('all')
+        } else {
+            const limit = parseInt(value, 10)
+            onLimitChange?.(limit)
+        }
+    }
 
     const renderCellValue = (row: Record<string, unknown>, column: TableColumn): React.ReactNode => {
         const value = row[column.key]
@@ -121,8 +145,31 @@ const ViewTable: React.FC<ViewTableProps> = ({
         <Card>
             <CardHeader>
                 <div className="flex items-center justify-between">
-                    <div>
-                        <CardTitle>{title}</CardTitle>
+                    <div className="flex items-center gap-4">
+                        <div>
+                            <CardTitle>{title}</CardTitle>
+                        </div>
+                        {showLimitSelector && onLimitChange && (
+                            <div className="flex items-center gap-2">
+                                <span className="text-sm text-muted-foreground">{t('rowsPerPage')}:</span>
+                                <Select
+                                    value={rowsPerPage === total ? 'all' : (rowsPerPage?.toString() || '10')}
+                                    onValueChange={handleLimitChange}
+                                >
+                                    <SelectTrigger className="w-20">
+                                        <SelectValue />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {limitOptions.map((option) => (
+                                            <SelectItem key={option} value={option.toString()}>
+                                                {option}
+                                            </SelectItem>
+                                        ))}
+                                        <SelectItem value="all">{t('all')}</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        )}
                     </div>
                     {(headerAction || (canCreate && createLabel)) && (
                         <Button onClick={() => openModal()}>

@@ -55,13 +55,13 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
     const canEditRole = hasPermission(PERMISSIONS.EDIT_ROLE);
     const canDeleteRole = hasPermission(PERMISSIONS.DELETE_ROLE);
 
-    const loadRoles = useCallback(async (page: number, currentFilters = filters) => {
+    const loadRoles = useCallback(async (page: number, currentFilters = filters, currentRowsPerPage = rowsPerPage) => {
         setIsLoading(true)
         try {
             // Convert string values to proper types for API
             const apiName = currentFilters.name && currentFilters.name.trim() !== '' ? currentFilters.name : undefined
 
-            const res = await getRole(locale, page + 1, apiName)
+            const res = await getRole(locale, page + 1, apiName, currentRowsPerPage)
             setRolesList(res.data.models)
             setCurrentMeta(res.data.meta)
             setPage(page)
@@ -71,7 +71,7 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
         } finally {
             setIsLoading(false)
         }
-    }, [locale, filters])
+    }, [locale, filters, rowsPerPage])
 
     useEffect(() => {
         setRolesList(roles)
@@ -79,12 +79,12 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
     }, [roles, meta]);
 
     const handleChangePage = (newPage: number) => {
-        loadRoles(newPage)
+        loadRoles(newPage, filters, rowsPerPage)
     }
 
     const handleChangeRowsPerPage = (newRowsPerPage: number) => {
         setRowsPerPage(newRowsPerPage)
-        loadRoles(0) // Reset to first page
+        loadRoles(0, filters, newRowsPerPage) // Reset to first page
     }
 
     const handleDelete = async (roleId: number) => {
@@ -100,7 +100,7 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
 
             if (res.ok) {
                 toast.success(t('ToastMsg.delete'))
-                loadRoles(page) // Reload current page
+                loadRoles(page, filters, rowsPerPage) // Reload current page
             } else {
                 const errorData = await res.json()
                 toast.error(errorData.message || 'Failed to delete role')
@@ -123,7 +123,7 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
 
     const handleApplyFilter = () => {
         setPage(0) // Reset to first page when filtering
-        loadRoles(0, filters)
+        loadRoles(0, filters, rowsPerPage)
     }
 
     const handleResetFilter = () => {
@@ -132,7 +132,14 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
         }
         setFilters(resetFilters)
         setPage(0)
-        loadRoles(0, resetFilters)
+        loadRoles(0, resetFilters, rowsPerPage)
+    }
+
+    const handleLimitChange = (limit: number | 'all') => {
+        const newLimit = limit === 'all' ? currentMeta.total : limit;
+        setRowsPerPage(newLimit);
+        setPage(0);
+        loadRoles(0, filters, newLimit);
     }
 
     const columns: TableColumn[] = [
@@ -166,6 +173,8 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, user, meta }) => {
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
+                    showLimitSelector={true}
+                    onLimitChange={handleLimitChange}
                 >
                     {rolesList && rolesList.length > 0 ? (
                         rolesList.map((role) => (
