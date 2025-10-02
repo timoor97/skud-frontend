@@ -80,7 +80,6 @@ export const createUser = async (data: CreateUserRequest, locale?: string) => {
         error.data = responseData
         throw error
     }
-    
     return { data: responseData }
 }
 

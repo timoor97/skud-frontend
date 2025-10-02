@@ -1,7 +1,6 @@
 'use client'
 import {useUserModalStore} from '@/hooks/useModalStore'
 import ViewModal from '@/components/ui/viewModal'
-import {useRouter} from "@/i18n/navigation";
 import {useLocale, useTranslations} from 'next-intl'
 import React, {FC, useEffect, useState} from 'react'
 import {Controller, SubmitHandler, useForm} from 'react-hook-form'
@@ -26,9 +25,8 @@ import CustomLoading from "@/components/ui/customLoading"
 interface CreateUserModalProps {}
 
 const UserFormModal: FC<CreateUserModalProps> = () => {
-    const {open, id, closeModal} = useUserModalStore()
+    const {open, id, closeModal,onSuccess} = useUserModalStore()
     const locale = useLocale()
-    const router = useRouter()
     const t = useTranslations('LoginForm')
     const tModal = useTranslations('Users.Modal')
 
@@ -129,7 +127,9 @@ const UserFormModal: FC<CreateUserModalProps> = () => {
 
                     if (res.ok) {
                         toast.success(tModal('messages.userUpdated'))
-                        router.refresh()
+                        if (typeof onSuccess === 'function') {
+                            onSuccess()
+                        }
                         closeModal()
                         reset()
                     } else {
@@ -191,7 +191,9 @@ const UserFormModal: FC<CreateUserModalProps> = () => {
 
                     if (res.ok) {
                         toast.success(tModal('messages.userCreated'))
-                        router.refresh()
+                        if (typeof onSuccess === 'function') {
+                            onSuccess()
+                        }
                         closeModal()
                         reset()
                     } else {

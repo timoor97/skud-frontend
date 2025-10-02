@@ -13,7 +13,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { getRole } from '@/app/[locale]/actions/(roles)/getAllRoles'
 import { useViewRoleModal } from '@/hooks/useViewModal'
-import { useRoleModalStore } from '@/hooks/useModalStore'
+import {useRoleModalStore} from '@/hooks/useModalStore'
 import { useConfirmDeleteStore } from '@/hooks/useConfirmDelete'
 import DeleteWithConfirmation from "@/components/ui/DeleteWithConfirmation";
 import { toast } from 'sonner'
@@ -74,9 +74,15 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, currentUser, meta }
     }, [locale, filters, rowsPerPage])
 
     useEffect(() => {
-        setRolesList(roles)
-        setCurrentMeta(meta)
-    }, [roles, meta]);
+        useRoleModalStore.getState().setOnSuccess(() => {
+            setPage(0)
+            const resetFilters = {
+                name: '',
+            }
+            setFilters(resetFilters)
+            loadRoles(0, resetFilters, rowsPerPage)
+        })
+    }, [rowsPerPage, loadRoles])
 
     const handleChangePage = (newPage: number) => {
         loadRoles(newPage, filters, rowsPerPage)

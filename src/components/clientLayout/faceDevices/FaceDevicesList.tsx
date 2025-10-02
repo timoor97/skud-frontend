@@ -94,9 +94,17 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, cu
     }, [locale, filters, rowsPerPage])
 
     useEffect(() => {
-        setFaceDevicesList(faceDevices)
-        setCurrentMeta(meta)
-    }, [faceDevices, meta]);
+        useFaceDeviceModalStore.getState().setOnSuccess(() => {
+            setPage(0)
+            const resetFilters = {
+                name: '',
+                type: 'all',
+                status: 'all'
+            }
+            setFilters(resetFilters)
+            loadFaceDevices(0, resetFilters, rowsPerPage)
+        })
+    }, [rowsPerPage, loadFaceDevices])
 
     const handleDelete = async (deviceId: number) => {
         try {
@@ -384,9 +392,6 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, cu
                 {/* Header with Create Button */}
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                        <h2 className="text-lg font-semibold">
-                            {t('Title.title')} ({currentMeta.total})
-                        </h2>
                         <div className="flex items-center gap-2">
                             <span className="text-sm text-muted-foreground whitespace-nowrap">
                                 {tPagination('rowsPerPage')}:

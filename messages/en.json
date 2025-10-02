@@ -260,7 +260,9 @@
     "of": "of",
     "results": "results",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "rowsPerPage": "Rows per page",
+    "all": "All"
   },
   "PageHeader": {
     "defaultTitle": "Dashboard",

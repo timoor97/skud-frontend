@@ -1,7 +1,6 @@
 'use client'
 import {useRoleModalStore} from '@/hooks/useModalStore'
 import ViewModal from '@/components/ui/viewModal'
-import {useRouter} from "@/i18n/navigation";
 import {useLocale, useTranslations} from 'next-intl'
 import React, {FC, useEffect, useState} from 'react'
 import {Controller, SubmitHandler, useForm} from 'react-hook-form'
@@ -23,9 +22,8 @@ interface CreateRoleModalProps {
 
 const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
 
-    const {open, id, closeModal} = useRoleModalStore()
+    const {open, id, closeModal,onSuccess} = useRoleModalStore()
     const locale = useLocale()
-    const router = useRouter()
     const tModal = useTranslations('Roles.Modal')
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -117,7 +115,9 @@ const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
 
                     if (res.ok) {
                         toast.success(tModal('messages.roleUpdated'))
-                        router.refresh()
+                        if (typeof onSuccess === 'function') {
+                            onSuccess()
+                        }
                         closeModal()
                         reset()
                     } else {
@@ -171,7 +171,9 @@ const RoleFormModal: FC<CreateRoleModalProps> = ({permissions}) => {
 
                     if (res.ok) {
                         toast.success(tModal('messages.roleCreated'))
-                        router.refresh()
+                        if (typeof onSuccess === 'function') {
+                            onSuccess()
+                        }
                         closeModal()
                         reset()
                     } else {

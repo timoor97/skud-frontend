@@ -5,6 +5,9 @@ interface IUseModalStore {
     id: number | null;
     openModal: (role?: number | null) => void;
     closeModal: () => void;
+    onSuccess?: () => void
+    setOnSuccess: (cb: () => void) => void
+
 }
 
 interface IModalStore {
@@ -19,21 +22,27 @@ export const useUserModalStore = create<IUseModalStore>((set) => ({
     open: false,
     id: null,
     openModal: (id = null) => set({ open: true, id: id }),
+    onSuccess: undefined,
     closeModal: () => set({ open: false, id: null }),
+    setOnSuccess: (cb) => set({ onSuccess: cb }),
 }));
 
 export const useRoleModalStore = create<IUseModalStore>((set) => ({
     open: false,
     id: null,
+    onSuccess: undefined,
     openModal: (id = null) => set({ open: true, id: id }),
     closeModal: () => set({ open: false, id: null }),
+    setOnSuccess: (cb) => set({ onSuccess: cb }),
 }));
 
 export const useFaceDeviceModalStore = create<IUseModalStore>((set) => ({
     open: false,
     id: null,
+    onSuccess: undefined,
     openModal: (id = null) => set({ open: true, id: id }),
     closeModal: () => set({ open: false, id: null }),
+    setOnSuccess: (cb) => set({ onSuccess: cb }),
 }));
 
 export const useModalStore = create<IModalStore>((set, get) => ({

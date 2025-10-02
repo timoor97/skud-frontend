@@ -1,7 +1,6 @@
 'use client'
 import {useFaceDeviceModalStore} from '@/hooks/useModalStore'
 import ViewModal from '@/components/ui/viewModal'
-import {useRouter} from "@/i18n/navigation";
 import {useLocale, useTranslations} from 'next-intl'
 import React, {FC, useEffect, useState} from 'react'
 import {Controller, SubmitHandler, useForm} from 'react-hook-form'
@@ -20,9 +19,8 @@ import {Eye, EyeOff} from "lucide-react"
 
 const FaceDeviceFormModal: FC = () => {
 
-    const {open, id, closeModal} = useFaceDeviceModalStore()
+    const {open, id, closeModal,onSuccess} = useFaceDeviceModalStore()
     const locale = useLocale()
-    const router = useRouter()
     const tModal = useTranslations('FaceDevices.Modal')
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -108,7 +106,9 @@ const FaceDeviceFormModal: FC = () => {
 
                     if (res.ok) {
                         toast.success(tModal('messages.deviceUpdated'))
-                        router.refresh()
+                        if (typeof onSuccess === 'function') {
+                            onSuccess()
+                        }
                         closeModal()
                         reset()
                     } else {
@@ -154,7 +154,9 @@ const FaceDeviceFormModal: FC = () => {
 
                     if (res.ok) {
                         toast.success(tModal('messages.deviceCreated'))
-                        router.refresh()
+                        if (typeof onSuccess === 'function') {
+                            onSuccess()
+                        }
                         closeModal()
                         reset()
                     } else {

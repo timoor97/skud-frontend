@@ -7,17 +7,13 @@
     <list default="true" id="a8e50a95-b0fe-4e32-bbe1-38bede0f6c1d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/FaceDevicesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/FaceDevicesList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/filters/FaceDeviceFilter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/filters/FaceDeviceFilter.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/modals/FaceDeviceFormModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/modals/FaceDeviceFormModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/modals/FaceDeviceViewModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/modals/FaceDeviceViewModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/UserShow.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/UserShow.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/roles/RolesList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/roles/RolesList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/roles/modals/RoleFormModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/roles/modals/RoleFormModal.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/UsersList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/UsersList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/userShow/UserProfile.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/userShow/UserProfile.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/userShow/UserTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/userShow/UserTabs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/dashboard/app-sidebar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/dashboard/app-sidebar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/viewTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/viewTable.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/schemas/faceDeviceSchema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/schemas/faceDeviceSchema.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types/faceDevicesTypes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/faceDevicesTypes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/users/modals/UserFormModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/users/modals/UserFormModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hooks/useModalStore.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/hooks/useModalStore.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/usersService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/usersService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +138,7 @@
       <workItem from="1758886683598" duration="1635000" />
       <workItem from="1758912053217" duration="15461000" />
       <workItem from="1759002531840" duration="12644000" />
-      <workItem from="1759336484346" duration="12984000" />
+      <workItem from="1759336484346" duration="37152000" />
     </task>
     <servers />
   </component>

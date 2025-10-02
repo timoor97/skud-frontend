@@ -78,6 +78,7 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
 
             const res = await getAllUsers(locale, page + 1, apiName, apiRoleId, apiStatus, currentRowsPerPage)
             setUsersList(res.data.models)
+
             setCurrentMeta(res.data.meta)
         } catch (error) {
             console.error('Error loading users:', error)
@@ -88,15 +89,25 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
 
 
     useEffect(() => {
-        setUsersList(users)
-        setCurrentMeta(meta)
-    }, [users, meta]);
+        useUserModalStore.getState().setOnSuccess(() => {
+            setPage(0)
+            const resetFilters = {
+                name: '',
+                role_id: 'all',
+                status: 'all'
+            }
+            setFilters(resetFilters)
+            loadUsers(0, resetFilters, rowsPerPage)
+        })
+    }, [rowsPerPage, loadUsers])
+
+
 
     const handleChangePage = (newPage: number) => {
         // Check if the requested page is valid based on current meta
         const maxPage = Math.max(0, Math.ceil(currentMeta.total / currentMeta.per_page) - 1)
         const validPage = Math.min(newPage, maxPage)
-        
+
         setPage(validPage);
         loadUsers(validPage, filters, rowsPerPage)
     };
@@ -207,51 +218,51 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                 >
                     {usersList && usersList.length > 0 ? (
                         usersList.map((user) => (
-                        <TableRow key={user.id} className="hover:bg-muted/50 transition-colors">
-                            <TableCell className="text-center font-mono text-xs sm:text-sm hidden sm:table-cell">{user.id}</TableCell>
-                            <TableCell className="text-center">
-                                {user.image ? (
-                                    <Image 
-                                        src={`${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}`}
-                                        alt={`${user.first_name} ${user.last_name}`}
-                                        width={32}
-                                        height={32}
-                                        className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover mx-auto"
-                                    />
-                                ) : (
-                                    <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-200 flex items-center justify-center mx-auto">
+                            <TableRow key={user.id} className="hover:bg-muted/50 transition-colors">
+                                <TableCell className="text-center font-mono text-xs sm:text-sm hidden sm:table-cell">{user.id}</TableCell>
+                                <TableCell className="text-center">
+                                    {user.image ? (
+                                        <Image
+                                            src={`${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}`}
+                                            alt={`${user.first_name} ${user.last_name}`}
+                                            width={32}
+                                            height={32}
+                                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover mx-auto"
+                                        />
+                                    ) : (
+                                        <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-200 flex items-center justify-center mx-auto">
                                         <span className="text-xs text-gray-500">
                                             {user.first_name?.[0]?.toUpperCase() || '?'}
                                         </span>
+                                        </div>
+                                    )}
+                                </TableCell>
+                                <TableCell className="text-center font-semibold text-sm sm:text-base">
+                                    <div className="flex flex-col sm:block">
+                                        <span className="truncate">{user.first_name}</span>
+                                        <span className="text-xs text-muted-foreground sm:hidden">{user.last_name}</span>
                                     </div>
-                                )}
-                            </TableCell>
-                            <TableCell className="text-center font-semibold text-sm sm:text-base">
-                                <div className="flex flex-col sm:block">
-                                    <span className="truncate">{user.first_name}</span>
-                                    <span className="text-xs text-muted-foreground sm:hidden">{user.last_name}</span>
-                                </div>
-                            </TableCell>
-                            <TableCell className="text-center font-semibold text-sm sm:text-base hidden md:table-cell">{user.last_name}</TableCell>
-                            <TableCell className="text-center text-muted-foreground text-xs sm:text-sm hidden lg:table-cell">{user.phone}</TableCell>
-                            <TableCell className="text-center hidden sm:table-cell">
-                                <div className="flex flex-wrap gap-1 justify-center">
-                                    {user.includes?.roles && user.includes.roles.length > 0 ? (
-                                        user.includes.roles.map((role) => (
-                                            <span
-                                                key={role.id}
-                                                className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                </TableCell>
+                                <TableCell className="text-center font-semibold text-sm sm:text-base hidden md:table-cell">{user.last_name}</TableCell>
+                                <TableCell className="text-center text-muted-foreground text-xs sm:text-sm hidden lg:table-cell">{user.phone}</TableCell>
+                                <TableCell className="text-center hidden sm:table-cell">
+                                    <div className="flex flex-wrap gap-1 justify-center">
+                                        {user.includes?.roles && user.includes.roles.length > 0 ? (
+                                            user.includes.roles.map((role) => (
+                                                <span
+                                                    key={role.id}
+                                                    className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                                 {role.name}
                                             </span>
-                                        ))
-                                    ) : (
-                                        <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            ))
+                                        ) : (
+                                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
                                             {t('ToastMsg.noRole')}
                                         </span>
-                                    )}
-                                </div>
-                            </TableCell>
-                            <TableCell className="text-center">
+                                        )}
+                                    </div>
+                                </TableCell>
+                                <TableCell className="text-center">
                                         <span
                                             className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                                                 user.status
@@ -264,45 +275,45 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
                                             <span className="hidden sm:inline">{user.status ? tStatus('active') : tStatus('inactive')}</span>
                                             <span className="sm:hidden">{user.status ? tStatus('active').charAt(0) : tStatus('inactive').charAt(0)}</span>
                                         </span>
-                            </TableCell>
-                            <TableCell className="text-center">
-                                <div className="flex items-center justify-center gap-1">
-                                    {canViewUser && (
-                                        <Button
-                                            variant="ghost"
-                                            size="sm"
-                                            onClick={() => router.push(`/users/${user.id}`)}
-                                            className="h-8 w-8 p-0 touch-manipulation"
-                                            title="View user"
-                                        >
-                                            <Eye className="h-4 w-4"/>
-                                        </Button>
-                                    )}
-                                    {canEditUser && (
-                                        <Button
-                                            variant="ghost"
-                                            size="sm"
-                                            onClick={() => openModal(user.id)}
-                                            className="h-8 w-8 p-0 touch-manipulation"
-                                            title="Edit user"
-                                        >
-                                            <Edit className="h-4 w-4"/>
-                                        </Button>
-                                    )}
-                                    {canDeleteUser && (
-                                        <Button
-                                            variant="ghost"
-                                            size="sm"
-                                            onClick={() => setDeleteId(user.id)}
-                                            className="h-8 w-8 p-0 text-destructive hover:text-destructive/80 touch-manipulation"
-                                            title="Delete user"
-                                        >
-                                            <Trash2 className="h-4 w-4"/>
-                                        </Button>
-                                    )}
-                                </div>
-                            </TableCell>
-                        </TableRow>
+                                </TableCell>
+                                <TableCell className="text-center">
+                                    <div className="flex items-center justify-center gap-1">
+                                        {canViewUser && (
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                onClick={() => router.push(`/users/${user.id}`)}
+                                                className="h-8 w-8 p-0 touch-manipulation"
+                                                title="View user"
+                                            >
+                                                <Eye className="h-4 w-4"/>
+                                            </Button>
+                                        )}
+                                        {canEditUser && (
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                onClick={() => openModal(user.id)}
+                                                className="h-8 w-8 p-0 touch-manipulation"
+                                                title="Edit user"
+                                            >
+                                                <Edit className="h-4 w-4"/>
+                                            </Button>
+                                        )}
+                                        {canDeleteUser && (
+                                            <Button
+                                                variant="ghost"
+                                                size="sm"
+                                                onClick={() => setDeleteId(user.id)}
+                                                className="h-8 w-8 p-0 text-destructive hover:text-destructive/80 touch-manipulation"
+                                                title="Delete user"
+                                            >
+                                                <Trash2 className="h-4 w-4"/>
+                                            </Button>
+                                        )}
+                                    </div>
+                                </TableCell>
+                            </TableRow>
                         ))
                     ) : (
                         <TableRow>
