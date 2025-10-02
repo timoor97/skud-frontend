@@ -8,20 +8,18 @@ import { ArrowLeft } from 'lucide-react'
 import { PageHeader } from '@/components/dashboard/page-header'
 import UserProfile from './userShow/UserProfile'
 import UserTabs from './userShow/UserTabs'
-import {RoleListItem} from "@/types/rolesTypes";
 import SHowLoading from '@/components/ui/showLoading';
 import {CurrentUser} from "@/types/currentUserTypes";
 
 interface UserShowProps {
     user: User,
-    roles?: RoleListItem[] | null,
     userActions: {
         action: string
     }[]
     currentUser: CurrentUser
 }
 
-const UserShow: FC<UserShowProps> = ({ user, roles, currentUser, userActions }) => {
+const UserShow: FC<UserShowProps> = ({ user, currentUser, userActions }) => {
     const router = useRouter()
     const tDetail = useTranslations('Users.DetailPage')
     const [isLoading, setIsLoading] = useState(true)
@@ -68,7 +66,7 @@ const UserShow: FC<UserShowProps> = ({ user, roles, currentUser, userActions }) 
 
                     {/* Right Side - Tabs */}
                     <div className="lg:col-span-2">
-                        <UserTabs roles={roles} user={user} currentUser={currentUser} userActions={userActions} />
+                        <UserTabs user={user} currentUser={currentUser} userActions={userActions} />
                     </div>
                 </div>
             </div>
