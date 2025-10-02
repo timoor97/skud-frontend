@@ -9,19 +9,17 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
-import { MultiSelect, Option } from '@/components/ui/multi-select'
+import { RoleMultiSelect } from '@/components/shared/roles/role-multi-select'
 import { securitySchema, SecuritySchema } from '@/schemas/securitySchema'
 import { Eye, EyeOff, Key } from 'lucide-react'
-import { RoleListItem } from '@/types/rolesTypes'
 import { User } from '@/types/usersTypes'
 import { setLoginPassword } from '@/app/[locale]/actions/(users)/setLoginPassword'
 
 interface SetLoginPasswordProps {
-    roles?: RoleListItem[] | null
     user: User
 }
 
-const SetLoginPassword: FC<SetLoginPasswordProps> = ({ user, roles }) => {
+const SetLoginPassword: FC<SetLoginPasswordProps> = ({ user }) => {
     const t = useTranslations('LoginForm')
     const tSecurity = useTranslations('Users.DetailPage.security')
     const locale = useLocale()
@@ -144,16 +142,9 @@ const SetLoginPassword: FC<SetLoginPasswordProps> = ({ user, roles }) => {
                             <Controller
                                 name="role_ids"
                                 control={control}
-                                render={({ field, fieldState }) => {
-                                    const roleOptions: Option[] = roles ? roles.map(role => ({
-                                        label: role.name,
-                                        value: role.id.toString()
-                                    })) : []
-                                    
-                                    return (
+                                render={({ field, fieldState }) => (
                                     <>
-                                        <MultiSelect
-                                            options={roleOptions}
+                                        <RoleMultiSelect
                                             selected={field.value ? field.value.map(id => id.toString()) : []}
                                             onChange={(selected) => field.onChange(selected.map(id => parseInt(id)))}
                                             placeholder={tSecurity('placeholders.roles')}
@@ -165,8 +156,7 @@ const SetLoginPassword: FC<SetLoginPasswordProps> = ({ user, roles }) => {
                                             <span className="text-destructive text-xs">{fieldState.error.message}</span>
                                         )}
                                     </>
-                                    )
-                                }}
+                                )}
                             />
                         </div>
 

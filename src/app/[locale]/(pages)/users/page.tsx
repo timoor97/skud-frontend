@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { getAllUsers } from '../../actions/(users)/getAllUsers'
 import UsersList from "@/components/clientLayout/users/UsersList";
 import UserFormModal from "@/components/clientLayout/users/modals/UserFormModal";
-import { getRole } from '../../actions/(roles)/getAllRoles'
 import { currentUser, currentUserPermissionsActions } from '../../actions/(users)/getCurrentUser';
 
 interface UsersPageProps {
@@ -14,7 +13,6 @@ const UsersPage: FC<UsersPageProps> = async ({ params }) => {
     const { locale } = await params
 
     const users = await getAllUsers(locale)
-    const roles = await getRole(locale)
     const currentUserData = await currentUser(locale)
     const userActions = await currentUserPermissionsActions(locale)
 
@@ -25,7 +23,6 @@ const UsersPage: FC<UsersPageProps> = async ({ params }) => {
                 userActions={userActions}
                 currentUser={currentUserData.data}
                 meta={users.data.meta}
-                roles={roles.data.models}
             />
 
             <UserFormModal />

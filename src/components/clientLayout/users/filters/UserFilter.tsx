@@ -17,10 +17,9 @@ import {
     CardContent,
 } from "@/components/ui/card"
 import { RotateCcw, Search } from "lucide-react"
-import { RoleListItem } from "@/types/rolesTypes"
+import { RoleSelect } from "@/components/shared/roles/role-select"
 
 interface UserFilterProps {
-    roles?: RoleListItem[] | null
     filters: {
         name: string
         role_id: string
@@ -34,7 +33,6 @@ interface UserFilterProps {
 
 
 const UserFilter: FC<UserFilterProps> = ({
-    roles, 
     filters,
     isLoading,
     onFilterChange,
@@ -62,24 +60,14 @@ const UserFilter: FC<UserFilterProps> = ({
                     {/* Role Filter */}
                     <div className="space-y-2">
                         <Label htmlFor="role-filter">{t('role')}</Label>
-                        <Select
+                        <RoleSelect
                             value={filters.role_id || 'all'}
                             onValueChange={(value) => onFilterChange('role_id', value)}
-                        >
-                            <SelectTrigger className="w-full min-w-[300px]">
-                                <SelectValue placeholder={t('placeholders.role')} />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">
-                                    {t('options.all')} {t('role')}
-                                </SelectItem>
-                                {(roles || []).map((role) => (
-                                    <SelectItem key={role.id} value={role.id.toString()}>
-                                        {role.name}
-                                    </SelectItem>
-                                ))}
-                            </SelectContent>
-                        </Select>
+                            placeholder={t('placeholders.role')}
+                            className="w-full min-w-[300px]"
+                            includeAllOption={true}
+                            allOptionLabel={`${t('options.all')} ${t('role')}`}
+                        />
                     </div>
 
                     {/* Status Filter */}

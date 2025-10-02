@@ -2,7 +2,6 @@
 
 import React, {FC, useCallback, useEffect} from 'react'
 import {MetaData, UserListItem} from '@/types/usersTypes'
-import {RoleListItem} from '@/types/rolesTypes'
 import {Edit, Trash2, Eye} from "lucide-react"
 import {PageHeader} from "@/components/dashboard/page-header"
 import {useLocale, useTranslations} from 'next-intl'
@@ -31,10 +30,9 @@ interface UsersListProps {
     }[]
     currentUser: CurrentUser
     meta: MetaData
-    roles?: RoleListItem[] | null
 }
 
-const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, roles}) => {
+const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta}) => {
 
     const t = useTranslations('Users')
     const tStatus = useTranslations('Users.Modal.status')
@@ -86,7 +84,6 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
             setIsLoading(false)
         }
     }, [locale, filters, rowsPerPage])
-
 
     useEffect(() => {
         useUserModalStore.getState().setOnSuccess(() => {
@@ -195,7 +192,6 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta, rol
             />
             <div className="flex flex-1 flex-col gap-4 p-3 sm:p-4 pt-4 sm:pt-6">
                 <UserFilters
-                    roles={roles}
                     filters={filters}
                     onFilterChange={handleFilterChange}
                     onApplyFilter={handleApplyFilter}

@@ -2,6 +2,17 @@
   "Common": {
     "loading": "Yuklanmoqda..."
   },
+  "SelectComponents": {
+    "placeholders": {
+      "select": "Tanlang...",
+      "search": "Qidiruv..."
+    },
+    "messages": {
+      "noOptionsFound": "Variantlar topilmadi",
+      "scrollForMore": "Ko'proq qo'shish uchun aylantiring",
+      "loading": "Yuklanmoqda..."
+    }
+  },
   "HomePage": {
     "title": "Salom Dunyo!"
   },

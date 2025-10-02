@@ -2,6 +2,17 @@
   "Common": {
     "loading": "Загрузка..."
   },
+  "SelectComponents": {
+    "placeholders": {
+      "select": "Выберите...",
+      "search": "Поиск..."
+    },
+    "messages": {
+      "noOptionsFound": "Опции не найдены",
+      "scrollForMore": "Прокрутите для загрузки",
+      "loading": "Загрузка..."
+    }
+  },
   "HomePage": {
     "title": "Привет, мир!"
   },

@@ -6,7 +6,6 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs'
 import SetLoginPassword from './SetLoginPassword'
 import ChangePassword from './ChangePassword'
 import UserFaceRecognition from './UserFaceRecognition'
-import {RoleListItem} from '@/types/rolesTypes'
 import {User} from '@/types/usersTypes'
 import usePermissions from '@/hooks/usePermissions'
 import {PERMISSIONS} from '@/constants/permissions'
@@ -14,7 +13,6 @@ import {CurrentUser} from "@/types/currentUserTypes";
 
 interface UserTabsProps {
     defaultValue?: string
-    roles?: RoleListItem[] | null
     user: User
     userActions: {
         action: string
@@ -24,7 +22,6 @@ interface UserTabsProps {
 
 const UserTabs: FC<UserTabsProps> = ({
                                          defaultValue = "setLoginPassword",
-                                         roles,
                                          user,
                                          currentUser,
                                          userActions
@@ -100,7 +97,7 @@ const UserTabs: FC<UserTabsProps> = ({
                     <div className="p-4 sm:p-6">
                         {canSetLoginPassword && (
                             <TabsContent value="setLoginPassword" className="mt-0">
-                                <SetLoginPassword roles={roles} user={user}/>
+                                <SetLoginPassword user={user}/>
                             </TabsContent>
                         )}
 

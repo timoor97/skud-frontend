@@ -2,6 +2,17 @@
   "Common": {
     "loading": "Loading..."
   },
+  "SelectComponents": {
+    "placeholders": {
+      "select": "Select...",
+      "search": "Search..."
+    },
+    "messages": {
+      "noOptionsFound": "No options found",
+      "scrollForMore": "Scroll for more",
+      "loading": "Loading..."
+    }
+  },
   "HomePage": {
     "title": "Hello world!"
   },
