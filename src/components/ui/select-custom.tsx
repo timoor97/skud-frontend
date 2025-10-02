@@ -64,6 +64,8 @@ export function SelectCustom<T = unknown>({
     const [hasMore, setHasMore] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
+    const [isOpen, setIsOpen] = useState(false)
+    const [hasLoaded, setHasLoaded] = useState(false)
     
     // Load more options
     const loadMore = useCallback(async () => {
@@ -121,16 +123,29 @@ export function SelectCustom<T = unknown>({
         }
     }, [fetchOptions])
     
+    // Load initial data when dropdown opens for the first time
+    useEffect(() => {
+        if (!fetchOptions) return
+        if (!isOpen) return
+        if (hasLoaded) return
+        
+        // Fetch initial data
+        searchOptions('')
+        setHasLoaded(true)
+    }, [isOpen, fetchOptions, hasLoaded, searchOptions])
+    
     // Handle search with debounce
     useEffect(() => {
         if (!fetchOptions) return
+        if (!isOpen) return
+        if (!hasLoaded) return // Only search after initial load
         
         const timeoutId = setTimeout(() => {
-            searchOptions(searchQuery)
+            searchOptions(searchQuery) // Search with current query (even if empty to reset)
         }, 500)
         
         return () => clearTimeout(timeoutId)
-    }, [searchQuery, searchOptions, fetchOptions])
+    }, [searchQuery, fetchOptions, isOpen, hasLoaded, searchOptions])
     
     // Handle scroll
     const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
@@ -145,7 +160,12 @@ export function SelectCustom<T = unknown>({
     }
 
     return (
-        <Select value={value} onValueChange={onValueChange} disabled={disabled}>
+        <Select 
+            value={value} 
+            onValueChange={onValueChange} 
+            disabled={disabled}
+            onOpenChange={setIsOpen}
+        >
             <SelectTrigger className={className}>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>

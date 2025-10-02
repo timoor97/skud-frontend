@@ -62,6 +62,7 @@ export function MultiSelectCustom<T = unknown>({
     const [hasMore, setHasMore] = useState(true)
     const [isLoading, setIsLoading] = useState(false)
     const [searchQuery, setSearchQuery] = useState('')
+    const [hasLoaded, setHasLoaded] = useState(false)
 
     // Load more options
     const loadMore = useCallback(async () => {
@@ -119,16 +120,29 @@ export function MultiSelectCustom<T = unknown>({
         }
     }, [fetchOptions])
 
+    // Load initial data when dropdown opens for the first time
+    useEffect(() => {
+        if (!fetchOptions) return
+        if (!open) return
+        if (hasLoaded) return
+        
+        // Fetch initial data
+        searchOptions('')
+        setHasLoaded(true)
+    }, [open, fetchOptions, hasLoaded, searchOptions])
+    
     // Handle search with debounce
     useEffect(() => {
         if (!fetchOptions) return
+        if (!open) return
+        if (!hasLoaded) return // Only search after initial load
         
         const timeoutId = setTimeout(() => {
-            searchOptions(searchQuery)
+            searchOptions(searchQuery) // Search with current query (even if empty to reset)
         }, 500)
         
         return () => clearTimeout(timeoutId)
-    }, [searchQuery, searchOptions, fetchOptions])
+    }, [searchQuery, fetchOptions, open, hasLoaded, searchOptions])
 
     // Handle scroll
     const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
