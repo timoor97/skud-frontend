@@ -122,14 +122,41 @@ export function MultiSelectCustom<T = unknown>({
 
     // Load initial data when dropdown opens for the first time
     useEffect(() => {
-        if (!fetchOptions) return
-        if (!open) return
-        if (hasLoaded) return
+       	if (!fetchOptions) return
+       	if (!open) return
+       	if (hasLoaded) return
         
-        // Fetch initial data
-        searchOptions('')
-        setHasLoaded(true)
+       	// Fetch initial data
+       	searchOptions('')
+       	setHasLoaded(true)
     }, [open, fetchOptions, hasLoaded, searchOptions])
+
+    // Load initial data for selected items when component mounts (to display badges)
+    useEffect(() => {
+       	if (!fetchOptions) return
+       	if (selected.length === 0) return
+       	if (optionsList && optionsList.length > 0) return // Already loaded
+       	if (isLoading) return // Prevent multiple simultaneous requests
+        
+       	setIsLoading(true)
+       	const fetchInitialData = async () => {
+       		try {
+                const res = await fetchOptions(1, undefined, 50)
+                if (res?.data?.models) {
+                    setOptionsList(res.data.models)
+                    if (res.data.meta) {
+                        setHasMore(res.data.meta.current_page < res.data.meta.total_pages)
+                    }
+                }
+       		} catch (error) {
+       			console.error('Error fetching initial data for badges:', error)
+       		} finally {
+       			setIsLoading(false)
+       		}
+       	}
+        
+       	fetchInitialData()
+    }, [fetchOptions, selected.length, isLoading, optionsList])
     
     // Handle search with debounce
     useEffect(() => {

@@ -65,6 +65,14 @@ export function DynamicBreadcrumb() {
             { title: t('users'), href: '/users' },
             { title: `${t('user')} #${userId}` }
         ]
+    } else if (routePath.startsWith('/faceDevices/') && routePath !== '/faceDevices') {
+        // Face device detail page
+        const deviceId = routePath.split('/')[2]
+        breadcrumbItems = [
+            { title: t('reference') },
+            { title: t('faceDevices'), href: '/faceDevices' },
+            { title: `${t('faceDevice')} #${deviceId}` }
+        ]
     } else {
         // Static routes
         breadcrumbItems = breadcrumbConfig[routePath] || [

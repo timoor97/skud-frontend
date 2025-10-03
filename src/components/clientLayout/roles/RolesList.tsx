@@ -184,20 +184,34 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, currentUser, meta }
                 >
                     {rolesList && rolesList.length > 0 ? (
                         rolesList.map((role) => (
-                            <TableRow key={role.id} className="hover:bg-muted/50 transition-colors">
-                                <TableCell className="text-center font-mono text-sm">{role.id}</TableCell>
-                                <TableCell className="text-center font-semibold">
-                                    {role.name}
+                            <TableRow key={role.id} className="group hover:bg-gradient-to-r hover:from-muted/30 hover:to-muted/10 transition-all duration-200 border-b border-border/50">
+                                <TableCell className="text-center py-2">
+                                    <span className="font-semibold text-primary text-sm">{role.id}</span>
                                 </TableCell>
-                                <TableCell className="text-center font-mono text-sm">{role.key}</TableCell>
-                                <TableCell className="text-center">
+                                <TableCell className="text-center py-2">
+                                    <div className="flex items-center justify-center gap-2">
+                                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center ring-1 ring-primary/20 group-hover:ring-primary/40 transition-all">
+                                            <span className="text-xs font-bold text-primary">
+                                                {role.name?.[0]?.toUpperCase() || 'R'}
+                                            </span>
+                                        </div>
+                                        <span className="font-bold text-sm truncate">{role.name}</span>
+                                    </div>
+                                </TableCell>
+                                <TableCell className="text-center py-2">
+                                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+                                        {role.key}
+                                    </span>
+                                </TableCell>
+                                <TableCell className="text-center py-2">
                                     <div className="flex items-center justify-center gap-1">
                                         {canViewRole && (
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => openViewModal(role.id)}
-                                                className="h-8 w-8 p-0"
+                                                className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary transition-all"
+                                                title="View role"
                                             >
                                                 <Eye className="h-4 w-4" />
                                             </Button>
@@ -207,7 +221,8 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, currentUser, meta }
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => openModal(role.id)}
-                                                className="h-8 w-8 p-0"
+                                                className="h-8 w-8 p-0 hover:bg-blue-500/10 hover:text-blue-600 transition-all"
+                                                title="Edit role"
                                             >
                                                 <Edit className="h-4 w-4" />
                                             </Button>
@@ -217,7 +232,8 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, currentUser, meta }
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => setDeleteId(role.id)}
-                                                className="h-8 w-8 p-0"
+                                                className="h-8 w-8 p-0 text-destructive hover:bg-destructive/10 transition-all"
+                                                title="Delete role"
                                             >
                                                 <Trash2 className="h-4 w-4" />
                                             </Button>
@@ -228,14 +244,19 @@ const RolesList: FC<RolesListProps> = ({ roles, userActions, currentUser, meta }
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={5} className="text-center py-8">
-                                <div className="flex flex-col items-center gap-2 text-muted-foreground">
-                                    <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
-                                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <TableCell colSpan={5} className="text-center py-12 sm:py-16">
+                                <div className="flex flex-col items-center gap-4 sm:gap-5">
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center shadow-inner">
+                                        <svg className="w-8 h-8 sm:w-10 sm:h-10 text-muted-foreground/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                                         </svg>
                                     </div>
-                                    <p className="text-lg font-medium">{t('ToastMsg.noRoles')}</p>
+                                    <div className="space-y-2">
+                                        <p className="text-lg sm:text-xl font-bold text-foreground/80">{t('ToastMsg.noRoles')}</p>
+                                        <p className="text-sm sm:text-base text-muted-foreground text-center max-w-sm">
+                                            No roles found matching your criteria. Try adjusting your filters.
+                                        </p>
+                                    </div>
                                 </div>
                             </TableCell>
                         </TableRow>

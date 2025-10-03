@@ -26,6 +26,11 @@ export const PERMISSIONS = {
   DELETE_FACE_DEVICE: 'delete-face-device',
   RESTORE_FACE_DEVICE: 'restore-face-device',
 
+  /* FACE DEVICE USERS */
+  VIEW_FACE_DEVICE_USERS: 'view-face-device-users',
+  ADD_FACE_DEVICE_USERS: 'add-face-device-users',
+  REMOVE_FACE_DEVICE_USERS: 'remove-face-device-users',
+
   /* viewLOGS */
   VIEW_ACTIVITY_LOGS: 'view-activity-logs',
   VIEW_SIGN_IN_LOGS: 'view-sign-in-logs',

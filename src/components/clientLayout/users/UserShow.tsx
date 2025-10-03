@@ -10,6 +10,8 @@ import UserProfile from './userShow/UserProfile'
 import UserTabs from './userShow/UserTabs'
 import SHowLoading from '@/components/ui/showLoading';
 import {CurrentUser} from "@/types/currentUserTypes";
+import { DevicesInUserResponse } from '@/types/devicesInUserTypes'
+import { DevicesOutUserResponse } from '@/types/devicesOutUserTypes'
 
 interface UserShowProps {
     user: User,
@@ -17,9 +19,11 @@ interface UserShowProps {
         action: string
     }[]
     currentUser: CurrentUser
+    devicesInUser?: DevicesInUserResponse
+    devicesOutUser?: DevicesOutUserResponse
 }
 
-const UserShow: FC<UserShowProps> = ({ user, currentUser, userActions }) => {
+const UserShow: FC<UserShowProps> = ({ user, currentUser, userActions, devicesInUser, devicesOutUser }) => {
     const router = useRouter()
     const tDetail = useTranslations('Users.DetailPage')
     const [isLoading, setIsLoading] = useState(true)
@@ -66,7 +70,7 @@ const UserShow: FC<UserShowProps> = ({ user, currentUser, userActions }) => {
 
                     {/* Right Side - Tabs */}
                     <div className="lg:col-span-2">
-                        <UserTabs user={user} currentUser={currentUser} userActions={userActions} />
+                        <UserTabs user={user} currentUser={currentUser} userActions={userActions} devicesInUser={devicesInUser} devicesOutUser={devicesOutUser} />
                     </div>
                 </div>
             </div>

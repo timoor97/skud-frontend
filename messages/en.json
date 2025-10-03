@@ -56,6 +56,9 @@
       "phone": "Phone",
       "role": "Role",
       "status": "Status",
+      "userStatus": "User Status",
+      "imageStatus": "Image Status",
+      "cardStatus": "Card Status",
       "actions": "Actions"
     },
     "UsersManagement": {
@@ -72,6 +75,24 @@
       "tryAdjustingCriteria": "Try adjusting your search criteria",
       "createFirstUser": "Create the first user to get started",
       "noRole": "No Role"
+    },
+    "BulkActions": {
+      "singleUserSelected": "user selected",
+      "multipleUsersSelected": "users selected",
+      "adding": "Adding...",
+      "addToDevice": "Add to Device",
+      "removing": "Removing...",
+      "removeFromDevice": "Remove from Device"
+    },
+    "UsersOutDevice": {
+      "title": "Assign to device",
+      "noUsersAvailable": "No users available",
+      "allUsersAssigned": "All users are already assigned to"
+    },
+    "UsersInDevice": {
+      "title": "Remove from device",
+      "noUsersAssigned": "No users assigned",
+      "deviceHasNoUsers": "This device doesn't have any users assigned yet"
     },
     "Modal": {
       "titles": {
@@ -146,7 +167,14 @@
         "monthlyReport": "Monthly Report",
         "bonus": "Bonus, Penalty and Others",
         "security": "Security",
+        "faceDevices": "Face Devices",
         "faceRecognition": "Face Recognition"
+      },
+      "faceDevices": {
+        "tabs": {
+        "devicesIn": "Joined Devices",
+        "devicesOut": "Not Joined Devices"
+        }
       },
       "tabContent": {
         "monthlyReport": "Monthly report information will be displayed here.",
@@ -259,6 +287,7 @@
     "user": "User",
     "reference": "Devices",
     "faceDevices": "Face Devices",
+    "faceDevice": "Face Device",
     "playground": "Playground",
     "history": "History",
     "starred": "Starred",
@@ -390,7 +419,10 @@
       "enter": "Enter",
       "exit": "Exit",
       "active": "Active",
-      "inactive": "Inactive"
+      "inactive": "Inactive",
+      "userStatus": "User",
+      "imageStatus": "Image",
+      "cardStatus": "Card"
     },
     "CreateBtn": {
       "label": "Create Face Device"
@@ -405,6 +437,11 @@
       "name": "Name",
       "type": "Type",
       "status": "Status",
+      "searchByName": "Search by device name...",
+      "apply": "Apply",
+      "search": "Search",
+      "reset": "Reset",
+      "clear": "Clear",
       "placeholders": {
         "name": "Enter device name...",
         "type": "Select type...",
@@ -424,6 +461,15 @@
       "buttons": {
         "filter": "Filter"
       }
+    },
+    "BulkActions": {
+      "singleDeviceSelected": "selected",
+      "multipleDevicesSelected": "selected",
+      "selected": "selected",
+      "adding": "Adding...",
+      "removing": "Removing...",
+      "addToDevices": "Assign to Devices ({count})",
+      "removeFromDevices": "Remove from Devices ({count})"
     },
     "Modal": {
       "titles": {
@@ -478,6 +524,23 @@
         "error": "An error occurred while saving the face device"
       },
       "statusDescription": "Enable or disable the face device"
+    },
+    "Tabs": {
+      "overview": "Overview",
+      "usersIn": "Users In Device",
+      "usersOut": "Users Out Device",
+      "overviewDescription": "Device information and settings",
+      "usersInDescription": "Users assigned to this device",
+      "usersOutDescription": "Users not assigned to this device"
+    },
+    "Labels": {
+      "lastChecked": "Last Checked",
+      "neverChecked": "Never checked"
+    },
+    "ShowPage": {
+      "title": "{deviceName} - Device Details",
+      "description": "View device information and manage connected users",
+      "backToDevices": "Back to Devices"
     }
   }
 }

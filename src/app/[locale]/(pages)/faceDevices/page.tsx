@@ -2,7 +2,6 @@ import React, { FC } from 'react'
 import { getAllFaceDevices } from '../../actions/(faceDevices)/getAllFaceDevices'
 import FaceDevicesList from "@/components/clientLayout/faceDevices/FaceDevicesList";
 import FaceDeviceFormModal from "@/components/clientLayout/faceDevices/modals/FaceDeviceFormModal";
-import FaceDeviceViewModal from "@/components/clientLayout/faceDevices/modals/FaceDeviceViewModal";
 import { currentUser, currentUserPermissionsActions } from '../../actions/(users)/getCurrentUser';
 
 interface FaceDevicesPageProps {
@@ -28,8 +27,6 @@ const FaceDevicesPage: FC<FaceDevicesPageProps> = async ({ params }) => {
             />
 
             <FaceDeviceFormModal />
-
-            <FaceDeviceViewModal />
         </>
     )
 }

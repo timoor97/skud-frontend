@@ -214,72 +214,87 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta}) =>
                 >
                     {usersList && usersList.length > 0 ? (
                         usersList.map((user) => (
-                            <TableRow key={user.id} className="hover:bg-muted/50 transition-colors">
-                                <TableCell className="text-center font-mono text-xs sm:text-sm hidden sm:table-cell">{user.id}</TableCell>
+                            <TableRow 
+                                key={user.id} 
+                                className="group hover:bg-gradient-to-r hover:from-muted/30 hover:to-muted/10 transition-all duration-200 border-b border-border/50 cursor-pointer"
+                                onClick={() => router.push(`/users/${user.id}`)}
+                            >
+                                <TableCell className="text-center font-mono text-xs sm:text-sm hidden sm:table-cell">
+                                    <span className="font-semibold text-primary">{user.id}</span>
+                                </TableCell>
                                 <TableCell className="text-center">
                                     {user.image ? (
-                                        <Image
-                                            src={`${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}`}
-                                            alt={`${user.first_name} ${user.last_name}`}
-                                            width={32}
-                                            height={32}
-                                            className="w-6 h-6 sm:w-8 sm:h-8 rounded-full object-cover mx-auto"
-                                        />
+                                        <div className="relative inline-block">
+                                            <Image
+                                                src={`${process.env.NEXT_PUBLIC_BASE_URL}/${user.image}`}
+                                                alt={`${user.first_name} ${user.last_name}`}
+                                                width={40}
+                                                height={40}
+                                                className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover mx-auto ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all"
+                                            />
+                                        </div>
                                     ) : (
-                                        <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-gray-200 flex items-center justify-center mx-auto">
-                                        <span className="text-xs text-gray-500">
-                                            {user.first_name?.[0]?.toUpperCase() || '?'}
-                                        </span>
+                                        <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mx-auto ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all">
+                                            <span className="text-sm font-bold text-primary">
+                                                {user.first_name?.[0]?.toUpperCase() || '?'}
+                                            </span>
                                         </div>
                                     )}
                                 </TableCell>
-                                <TableCell className="text-center font-semibold text-sm sm:text-base">
+                                <TableCell className="text-center">
                                     <div className="flex flex-col sm:block">
-                                        <span className="truncate">{user.first_name}</span>
+                                        <span className="font-bold text-sm sm:text-base truncate">{user.first_name}</span>
                                         <span className="text-xs text-muted-foreground sm:hidden">{user.last_name}</span>
                                     </div>
                                 </TableCell>
-                                <TableCell className="text-center font-semibold text-sm sm:text-base hidden md:table-cell">{user.last_name}</TableCell>
-                                <TableCell className="text-center text-muted-foreground text-xs sm:text-sm hidden lg:table-cell">{user.phone}</TableCell>
+                                <TableCell className="text-center font-semibold text-sm sm:text-base hidden md:table-cell">
+                                    {user.last_name}
+                                </TableCell>
+                                <TableCell className="text-center text-muted-foreground text-xs sm:text-sm font-medium hidden lg:table-cell">
+                                    {user.phone}
+                                </TableCell>
                                 <TableCell className="text-center hidden sm:table-cell">
-                                    <div className="flex flex-wrap gap-1 justify-center">
+                                    <div className="flex flex-wrap gap-1.5 justify-center">
                                         {user.includes?.roles && user.includes.roles.length > 0 ? (
                                             user.includes.roles.map((role) => (
                                                 <span
                                                     key={role.id}
-                                                    className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                                {role.name}
-                                            </span>
+                                                    className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-700 dark:bg-blue-500/20 dark:text-blue-400 border border-blue-500/20">
+                                                    {role.name}
+                                                </span>
                                             ))
                                         ) : (
-                                            <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            {t('ToastMsg.noRole')}
-                                        </span>
+                                            <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-muted text-muted-foreground">
+                                                {t('ToastMsg.noRole')}
+                                            </span>
                                         )}
                                     </div>
                                 </TableCell>
                                 <TableCell className="text-center">
-                                        <span
-                                            className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
-                                                user.status
-                                                    ? 'bg-green-100 text-green-800'
-                                                    : 'bg-red-100 text-red-800'
-                                            }`}>
-                                            <span className={`w-1.5 h-1.5 rounded-full mr-1.5 ${
-                                                user.status ? 'bg-green-500' : 'bg-red-500'
-                                            }`}></span>
-                                            <span className="hidden sm:inline">{user.status ? tStatus('active') : tStatus('inactive')}</span>
-                                            <span className="sm:hidden">{user.status ? tStatus('active').charAt(0) : tStatus('inactive').charAt(0)}</span>
-                                        </span>
+                                    <span
+                                        className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-semibold shadow-sm ${
+                                            user.status
+                                                ? 'bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400 border border-emerald-500/20'
+                                                : 'bg-red-500/10 text-red-700 dark:bg-red-500/20 dark:text-red-400 border border-red-500/20'
+                                        }`}>
+                                        <span className={`w-2 h-2 rounded-full mr-2 ${
+                                            user.status ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'
+                                        }`}></span>
+                                        <span className="hidden sm:inline">{user.status ? tStatus('active') : tStatus('inactive')}</span>
+                                        <span className="sm:hidden">{user.status ? tStatus('active').charAt(0) : tStatus('inactive').charAt(0)}</span>
+                                    </span>
                                 </TableCell>
                                 <TableCell className="text-center">
-                                    <div className="flex items-center justify-center gap-1">
+                                    <div className="flex items-center justify-center gap-1.5">
                                         {canViewUser && (
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                onClick={() => router.push(`/users/${user.id}`)}
-                                                className="h-8 w-8 p-0 touch-manipulation"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    router.push(`/users/${user.id}`);
+                                                }}
+                                                className="h-9 w-9 p-0 touch-manipulation hover:bg-primary/10 hover:text-primary transition-all"
                                                 title="View user"
                                             >
                                                 <Eye className="h-4 w-4"/>
@@ -289,8 +304,11 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta}) =>
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                onClick={() => openModal(user.id)}
-                                                className="h-8 w-8 p-0 touch-manipulation"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    openModal(user.id);
+                                                }}
+                                                className="h-9 w-9 p-0 touch-manipulation hover:bg-blue-500/10 hover:text-blue-600 transition-all"
                                                 title="Edit user"
                                             >
                                                 <Edit className="h-4 w-4"/>
@@ -300,8 +318,11 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta}) =>
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
-                                                onClick={() => setDeleteId(user.id)}
-                                                className="h-8 w-8 p-0 text-destructive hover:text-destructive/80 touch-manipulation"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setDeleteId(user.id);
+                                                }}
+                                                className="h-9 w-9 p-0 text-destructive hover:bg-destructive/10 hover:text-destructive touch-manipulation transition-all"
                                                 title="Delete user"
                                             >
                                                 <Trash2 className="h-4 w-4"/>
@@ -313,15 +334,19 @@ const UsersList: FC<UsersListProps> = ({users,userActions,currentUser, meta}) =>
                         ))
                     ) : (
                         <TableRow>
-                            <TableCell colSpan={8} className="text-center py-8 sm:py-12">
-                                <div className="flex flex-col items-center gap-3 sm:gap-4 text-muted-foreground">
-                                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-muted flex items-center justify-center">
-                                        <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <TableCell colSpan={8} className="text-center py-12 sm:py-16">
+                                <div className="flex flex-col items-center gap-4 sm:gap-5">
+                                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center shadow-inner">
+                                        <svg className="w-8 h-8 sm:w-10 sm:h-10 text-muted-foreground/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
                                         </svg>
                                     </div>
-                                    <p className="text-base sm:text-lg font-medium">{t('ToastMsg.noUsers')}</p>
-                                    <p className="text-xs sm:text-sm text-center max-w-xs">No users found matching your criteria</p>
+                                    <div className="space-y-2">
+                                        <p className="text-lg sm:text-xl font-bold text-foreground/80">{t('ToastMsg.noUsers')}</p>
+                                        <p className="text-sm sm:text-base text-muted-foreground text-center max-w-sm">
+                                            No users found matching your criteria. Try adjusting your filters.
+                                        </p>
+                                    </div>
                                 </div>
                             </TableCell>
                         </TableRow>

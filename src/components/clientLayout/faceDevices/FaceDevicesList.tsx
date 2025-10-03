@@ -2,14 +2,14 @@
 
 import React, {FC, useCallback, useEffect} from 'react'
 import {FaceDevice} from '@/types/faceDevicesTypes'
-import {Edit, Trash2, Eye, Plus, Monitor, Wifi, WifiOff} from "lucide-react"
+import {Edit, Trash2, Eye, Plus, Monitor, Wifi, WifiOff, Clock} from "lucide-react"
+import { useRouter } from 'next/navigation'
 import {PageHeader} from "@/components/dashboard/page-header"
 import {useLocale, useTranslations} from 'next-intl'
 import {Button} from "@/components/ui/button"
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card"
 import {Badge} from "@/components/ui/badge"
 import {getAllFaceDevices} from '@/app/[locale]/actions/(faceDevices)/getAllFaceDevices'
-import {useViewFaceDeviceModal} from '@/hooks/useViewModal'
 import {useFaceDeviceModalStore} from '@/hooks/useModalStore'
 import {useConfirmDeleteStore} from '@/hooks/useConfirmDelete'
 import DeleteWithConfirmation from "@/components/ui/DeleteWithConfirmation";
@@ -50,7 +50,7 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, cu
 
     const t = useTranslations('FaceDevices')
     const tPagination = useTranslations('Pagination')
-    const tModal = useTranslations('FaceDevices.Modal.labels')
+    const router = useRouter()
     const [page, setPage] = React.useState(meta.current_page - 1);
     const [rowsPerPage, setRowsPerPage] = React.useState(meta.per_page);
     const [faceDevicesList, setFaceDevicesList] = React.useState<FaceDevice[] | null>(faceDevices)
@@ -67,7 +67,24 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, cu
     const locale = useLocale()
 
     const {openModal} = useFaceDeviceModalStore();
-    const {openModal: openViewModal} = useViewFaceDeviceModal()
+
+    const formatLastChecked = (lastChecked?: string) => {
+        if (!lastChecked) return t('Labels.neverChecked')
+        
+        const date = new Date(lastChecked)
+        const now = new Date()
+        const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000)
+        
+        if (diffInSeconds < 60) return `${diffInSeconds}s ago`
+        if (diffInSeconds < 3600) return `${Math.floor(diffInSeconds / 60)}m ago`
+        if (diffInSeconds < 86400) return `${Math.floor(diffInSeconds / 3600)}h ago`
+        
+        return date.toLocaleDateString() + ' ' + date.toLocaleTimeString('en-US', { 
+            hour: '2-digit', 
+            minute: '2-digit',
+            hour12: false 
+        })
+    }
 
     const canViewFaceDevice = hasPermission(PERMISSIONS.VIEW_FACE_DEVICE);
     const canCreateFaceDevice = hasPermission(PERMISSIONS.CREATE_FACE_DEVICE);
@@ -280,68 +297,68 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, cu
     };
 
     const renderDeviceCard = (device: FaceDevice) => (
-        <Card key={device.id} className="hover:shadow-lg transition-all duration-200 border-l-4 border-l-primary">
-            <CardHeader className="pb-3">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-primary/10 rounded-lg flex-shrink-0">
-                            <Monitor className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+        <Card 
+            key={device.id} 
+            className="group hover:shadow-lg transition-all duration-200 border-l-4 border-l-primary cursor-pointer hover:border-l-primary/50"
+            onClick={() => router.push(`/faceDevices/${device.id}`)}
+        >
+            <CardHeader className="pb-2">
+                <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2">
+                        <div className="p-2 bg-gradient-to-br from-primary/20 to-primary/10 rounded-lg flex-shrink-0">
+                            <Monitor className="h-5 w-5 text-primary" />
                         </div>
                         <div className="min-w-0 flex-1">
-                            <CardTitle className="text-base sm:text-lg font-semibold truncate">{device.name}</CardTitle>
-                            <p className="text-xs sm:text-sm text-muted-foreground">ID: {device.id}</p>
+                            <CardTitle className="text-base font-bold truncate">{device.name}</CardTitle>
+                            <p className="text-xs text-muted-foreground">ID: <span className="font-semibold text-primary">#{device.id}</span></p>
                         </div>
                     </div>
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                         <Badge 
                             variant={device.status === 'active' ? "default" : "secondary"}
-                            className={`text-xs ${device.status === 'active' ? "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/20 dark:text-emerald-400" : "bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400"}`}
+                            className={`text-xs px-2 py-0.5 ${device.status === 'active' ? "bg-emerald-500/10 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-400 border border-emerald-500/20" : "bg-red-500/10 text-red-700 dark:bg-red-500/20 dark:text-red-400 border border-red-500/20"}`}
                         >
                             {device.status === 'active' ? (
-                                <>
-                                    <Wifi className="h-3 w-3 mr-1" />
-                                    <span className="hidden xs:inline">{t('TableHeader.active')}</span>
-                                    <span className="xs:hidden">Active</span>
-                                </>
+                                <><Wifi className="h-3 w-3 mr-1" />{t('TableHeader.active')}</>
                             ) : (
-                                <>
-                                    <WifiOff className="h-3 w-3 mr-1" />
-                                    <span className="hidden xs:inline">{t('TableHeader.inactive')}</span>
-                                    <span className="xs:hidden">Inactive</span>
-                                </>
+                                <><WifiOff className="h-3 w-3 mr-1" />{t('TableHeader.inactive')}</>
                             )}
                         </Badge>
                         <Badge 
                             variant="outline"
-                            className={`text-xs ${device.type === 'enter' ? "border-emerald-500 text-emerald-700 dark:border-emerald-400 dark:text-emerald-400" : "border-red-500 text-red-700 dark:border-red-400 dark:text-red-400"}`}
+                            className={`text-xs px-2 py-0.5 ${device.type === 'enter' ? "border-emerald-400 text-emerald-700 dark:border-emerald-500 dark:text-emerald-400" : "border-red-400 text-red-700 dark:border-red-500 dark:text-red-400"}`}
                         >
                             {device.type === 'enter' ? t('TableHeader.enter') : t('TableHeader.exit')}
                         </Badge>
                     </div>
                 </div>
             </CardHeader>
-            <CardContent>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-4">
-                    <div>
-                        <p className="text-xs sm:text-sm font-medium text-muted-foreground">{t('TableHeader.ip')}</p>
-                        <p className="text-xs sm:text-sm font-mono break-all">{device.ip}</p>
+            <CardContent className="pt-2">
+                <div className="grid grid-cols-2 gap-3 mb-3">
+                    <div className="space-y-1">
+                        <p className="text-xs font-medium text-muted-foreground">{t('TableHeader.ip')}</p>
+                        <p className="text-sm font-mono break-all">{device.ip}</p>
                     </div>
-                    <div>
-                        <p className="text-xs sm:text-sm font-medium text-muted-foreground">{t('TableHeader.port')}</p>
-                        <p className="text-xs sm:text-sm font-mono">{device.port}</p>
+                    <div className="space-y-1">
+                        <p className="text-xs font-medium text-muted-foreground">{t('TableHeader.port')}</p>
+                        <p className="text-sm font-mono">{device.port}</p>
                     </div>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-3 border-t">
-                    <div className="text-xs text-muted-foreground truncate">
-                        {tModal('username')}: {device.username}
+                <div className="flex items-center justify-between pt-2 border-t border-border/50">
+                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                        <Clock className="h-3 w-3" />
+                        <span className="font-mono">{formatLastChecked(device.last_checked_at)}</span>
                     </div>
-                    <div className="flex items-center gap-1 justify-end sm:justify-start">
+                    <div className="flex items-center gap-1">
                         {canViewFaceDevice && (
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() => openViewModal(device.id)}
-                                className="h-8 w-8 p-0 touch-manipulation"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    router.push(`/faceDevices/${device.id}`);
+                                }}
+                                className="h-8 w-8 p-0 hover:bg-primary/10 hover:text-primary transition-all"
                                 title="View device"
                             >
                                 <Eye className="h-4 w-4"/>
@@ -351,8 +368,11 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, cu
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() => openModal(device.id)}
-                                className="h-8 w-8 p-0 touch-manipulation"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    openModal(device.id);
+                                }}
+                                className="h-8 w-8 p-0 hover:bg-blue-500/10 hover:text-blue-600 transition-all"
                                 title="Edit device"
                             >
                                 <Edit className="h-4 w-4"/>
@@ -362,8 +382,11 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, cu
                             <Button
                                 variant="ghost"
                                 size="sm"
-                                onClick={() => setDeleteId(device.id)}
-                                className="h-8 w-8 p-0 text-destructive hover:text-destructive/80 touch-manipulation"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setDeleteId(device.id);
+                                }}
+                                className="h-8 w-8 p-0 text-destructive hover:bg-destructive/10 transition-all"
                                 title="Delete device"
                             >
                                 <Trash2 className="h-4 w-4"/>
@@ -462,3 +485,4 @@ const FaceDevicesList: FC<FaceDevicesListProps> = ({faceDevices, userActions, cu
 }
 
 export default FaceDevicesList
+

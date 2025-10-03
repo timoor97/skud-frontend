@@ -7,6 +7,7 @@ export interface FaceDevice {
   port: string;
   username: string;
   password: string;
+  last_checked_at?: string;
   createdAt?: string;
   updatedAt?: string;
 }

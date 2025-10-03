@@ -56,6 +56,9 @@
       "phone": "Телефон",
       "role": "Роль",
       "status": "Статус",
+      "userStatus": "Статус пользователя",
+      "imageStatus": "Статус изображения",
+      "cardStatus": "Статус карты",
       "actions": "Действия"
     },
     "UsersManagement": {
@@ -72,6 +75,24 @@
       "tryAdjustingCriteria": "Попробуйте изменить критерии поиска",
       "createFirstUser": "Создайте первого пользователя для начала работы",
       "noRole": "Нет роли"
+    },
+    "BulkActions": {
+      "singleUserSelected": "пользователь выбран",
+      "multipleUsersSelected": "пользователей выбрано",
+      "adding": "Добавление...",
+      "addToDevice": "Добавить к устройству",
+      "removing": "Удаление...",
+      "removeFromDevice": "Удалить с устройства"
+    },
+    "UsersOutDevice": {
+      "title": "Назначить устройству",
+      "noUsersAvailable": "Нет доступных пользователей",
+      "allUsersAssigned": "Все пользователи уже назначены на"
+    },
+    "UsersInDevice": {
+      "title": "Удалить с устройства",
+      "noUsersAssigned": "Пользователи не назначены",
+      "deviceHasNoUsers": "На это устройство не назначены пользователи"
     },
     "Modal": {
       "titles": {
@@ -146,7 +167,14 @@
         "monthlyReport": "Месячный отчет",
         "bonus": "Бонусы, Штрафы и Прочее",
         "security": "Безопасность",
+        "faceDevices": "Устройства распознавания",
         "faceRecognition": "Распознавание лица"
+      },
+      "faceDevices": {
+        "tabs": {
+        "devicesIn": "Подключенные устройства",
+        "devicesOut": "НЕ подключенные устройства"
+        }
       },
       "tabContent": {
         "monthlyReport": "Информация о месячном отчете будет отображаться здесь.",
@@ -259,6 +287,7 @@
     "user": "Пользователь",
     "reference": "Устройства",
     "faceDevices": "Устройства распознавания лиц",
+    "faceDevice": "Устройство распознавания лиц",
     "playground": "Игровая площадка",
     "history": "История",
     "starred": "Избранное",
@@ -390,7 +419,10 @@
       "enter": "Вход",
       "exit": "Выход",
       "active": "Активный",
-      "inactive": "Неактивный"
+      "inactive": "Неактивный",
+      "userStatus": "Пользователь",
+      "imageStatus": "Изображение",
+      "cardStatus": "Карта"
     },
     "CreateBtn": {
       "label": "Создать устройство"
@@ -405,6 +437,11 @@
       "name": "Название",
       "type": "Тип",
       "status": "Статус",
+      "searchByName": "Поиск по названию устройства...",
+      "apply": "Применить",
+      "search": "Поиск",
+      "reset": "Сбросить",
+      "clear": "Очистить",
       "placeholders": {
         "name": "Введите название устройства...",
         "type": "Выберите тип...",
@@ -424,6 +461,15 @@
       "buttons": {
         "filter": "Фильтр"
       }
+    },
+    "BulkActions": {
+      "singleDeviceSelected": "выбрано",
+      "multipleDevicesSelected": "выбрано",
+      "selected": "выбрано",
+      "adding": "Добавление...",
+      "removing": "Удаление...",
+      "addToDevices": "Назначить на устройства ({count})",
+      "removeFromDevices": "Удалить с устройств ({count})"
     },
     "Modal": {
       "titles": {
@@ -478,6 +524,23 @@
         "error": "Произошла ошибка при сохранении устройства"
       },
       "statusDescription": "Включить или отключить устройство"
+    },
+    "Tabs": {
+      "overview": "Обзор",
+      "usersIn": "Пользователи на устройстве",
+      "usersOut": "Пользователи не на устройстве",
+      "overviewDescription": "Информация об устройстве и настройки",
+      "usersInDescription": "Пользователи, назначенные на это устройство",
+      "usersOutDescription": "Пользователи, не назначенные на это устройство"
+    },
+    "Labels": {
+      "lastChecked": "Последняя проверка",
+      "neverChecked": "Никогда не проверялось"
+    },
+    "ShowPage": {
+      "title": "{deviceName} - Детали устройства",
+      "description": "Просмотр информации об устройстве и управление подключенными пользователями",
+      "backToDevices": "Назад к устройствам"
     }
   }
 }

@@ -56,6 +56,9 @@
       "phone": "Telefon",
       "role": "Rol",
       "status": "Holat",
+      "userStatus": "Foydalanuvchi holati",
+      "imageStatus": "Rasm holati",
+      "cardStatus": "Karta holati",
       "actions": "Amallar"
     },
     "UsersManagement": {
@@ -72,6 +75,24 @@
       "tryAdjustingCriteria": "Qidiruv mezonlarini o'zgartirishga harakat qiling",
       "createFirstUser": "Ishni boshlash uchun birinchi foydalanuvchini yarating",
       "noRole": "Rol yo'q"
+    },
+    "BulkActions": {
+      "singleUserSelected": "foydalanuvchi tanlangan",
+      "multipleUsersSelected": "foydalanuvchi tanlangan",
+      "adding": "Qo'shilmoqda...",
+      "addToDevice": "Qurilmaga qo'shish",
+      "removing": "O'chirilmoqda...",
+      "removeFromDevice": "Qurilmadan olib tashlash"
+    },
+    "UsersOutDevice": {
+      "title": "Qurilmaga tayinlash",
+      "noUsersAvailable": "Foydalanuvchilar mavjud emas",
+      "allUsersAssigned": "Barcha foydalanuvchilar allaqachon tayinlangan"
+    },
+    "UsersInDevice": {
+      "title": "Qurilmadan olib tashlash",
+      "noUsersAssigned": "Foydalanuvchilar tayinlanmagan",
+      "deviceHasNoUsers": "Bu qurilmaga foydalanuvchilar tayinlanmagan"
     },
     "Modal": {
       "titles": {
@@ -146,7 +167,14 @@
         "monthlyReport": "Oylik hisobot",
         "bonus": "Bonus, Jarima va Boshqalar",
         "security": "Xavfsizlik",
+        "faceDevices": "Yuz tanish qurilmalari",
         "faceRecognition": "Yuz quruma"
+      },
+      "faceDevices": {
+        "tabs": {
+        "devicesIn": "Bog'langan qurilmalar",
+        "devicesOut": "Bog'lanMAGAN qurilmalar"
+        }
       },
       "tabContent": {
         "monthlyReport": "Oylik hisobot ma'lumotlari bu yerda ko'rsatiladi.",
@@ -259,6 +287,7 @@
     "user": "Foydalanuvchi",
     "reference": "Qurumlar",
     "faceDevices": "Yuz qurumlari",
+    "faceDevice": "Yuz qurumi",
     "playground": "O'yin maydoni",
     "history": "Tarix",
     "starred": "Yulduzcha",
@@ -390,7 +419,10 @@
       "enter": "Kirish",
       "exit": "Chiqish",
       "active": "Faol",
-      "inactive": "Nofaol"
+      "inactive": "Nofaol",
+      "userStatus": "Foydalanuvchi",
+      "imageStatus": "Rasm",
+      "cardStatus": "Karta"
     },
     "CreateBtn": {
       "label": "Yuz qurumi yaratish"
@@ -405,6 +437,11 @@
       "name": "Nomi",
       "type": "Turi",
       "status": "Holat",
+      "searchByName": "Qurum nomi bo'yicha qidirish...",
+      "apply": "Qo'llash",
+      "search": "Qidirish",
+      "reset": "Qayta o'rnatish",
+      "clear": "Tozalash",
       "placeholders": {
         "name": "Qurum nomini kiriting...",
         "type": "Turini tanlang...",
@@ -424,6 +461,15 @@
       "buttons": {
         "filter": "Filtr"
       }
+    },
+    "BulkActions": {
+      "singleDeviceSelected": "tanlangan",
+      "multipleDevicesSelected": "tanlangan",
+      "selected": "tanlangan",
+      "adding": "Qo'shilmoqda...",
+      "removing": "O'chirilmoqda...",
+      "addToDevices": "Qurumlarga tayinlash ({count})",
+      "removeFromDevices": "Qurumlardan o'chirish ({count})"
     },
     "Modal": {
       "titles": {
@@ -478,6 +524,23 @@
         "error": "Yuz qurumini saqlashda xatolik yuz berdi"
       },
       "statusDescription": "Yuz qurumini yoqish yoki o'chirish"
+    },
+    "Tabs": {
+      "overview": "Umumiy ko'rinish",
+      "usersIn": "Qurilmadagi foydalanuvchilar",
+      "usersOut": "Qurilmada bo'lmagan foydalanuvchilar",
+      "overviewDescription": "Qurilma haqida ma'lumot va sozlamalar",
+      "usersInDescription": "Bu qurilmaga tayinlangan foydalanuvchilar",
+      "usersOutDescription": "Bu qurilmaga tayinlanmagan foydalanuvchilar"
+    },
+    "Labels": {
+      "lastChecked": "Oxirgi tekshirish",
+      "neverChecked": "Hech qachon tekshirilmagan"
+    },
+    "ShowPage": {
+      "title": "{deviceName} - Qurilma tafsilotlari",
+      "description": "Qurilma haqida ma'lumotlarni ko'rish va bog'langan foydalanuvchilarni boshqarish",
+      "backToDevices": "Qurumlarga qaytish"
     }
   }
 }
