@@ -24,7 +24,7 @@ export const PERMISSIONS = {
   VIEW_FACE_DEVICE: 'view-face-device',
   EDIT_FACE_DEVICE: 'edit-face-device',
   DELETE_FACE_DEVICE: 'delete-face-device',
-  RESTORE_FACE_DEVICE: 'restore-face-device',
+  SET_PUSH_URL_FACE_DEVICE: 'set-push-url-face-device',
 
   /* FACE DEVICE USERS */
   VIEW_FACE_DEVICE_USERS: 'view-face-device-users',

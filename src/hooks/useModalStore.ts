@@ -45,6 +45,15 @@ export const useFaceDeviceModalStore = create<IUseModalStore>((set) => ({
     setOnSuccess: (cb) => set({ onSuccess: cb }),
 }));
 
+export const usePushUrlModalStore = create<IUseModalStore>((set) => ({
+    open: false,
+    id: null,
+    onSuccess: undefined,
+    openModal: (id = null) => set({ open: true, id: id }),
+    closeModal: () => set({ open: false, id: null }),
+    setOnSuccess: (cb) => set({ onSuccess: cb }),
+}));
+
 export const useModalStore = create<IModalStore>((set, get) => ({
     modals: {},
     modalData: null,

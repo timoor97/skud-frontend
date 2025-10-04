@@ -79,7 +79,7 @@ const FaceDevicesOutUser: FC<DevicesOutUserProps> = ({
         } finally {
             setIsLoading(false)
         }
-    }, [locale, userId, rowsPerPage])
+    }, [locale, userId, rowsPerPage, filters])
 
     const handleAssignDevice = async (deviceId: number) => {
         setIsAssigning(true)
@@ -195,7 +195,7 @@ const FaceDevicesOutUser: FC<DevicesOutUserProps> = ({
     // Load devices on component mount - only when userId changes or component first mounts
     useEffect(() => {
         loadDevices(page, filters, rowsPerPage)
-    }, [loadDevices])
+    }, [loadDevices, page, filters, rowsPerPage])
 
     const tPagination = useTranslations('Pagination')
 

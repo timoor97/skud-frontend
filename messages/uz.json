@@ -541,7 +541,39 @@
     "ShowPage": {
       "title": "{deviceName} - Qurilma tafsilotlari",
       "description": "Qurilma haqida ma'lumotlarni ko'rish va bog'langan foydalanuvchilarni boshqarish",
-      "backToDevices": "Qurumlarga qaytish"
+      "backToDevices": "Qurumlarga qaytish",
+      "pushUrlButton": "Push URL"
+    },
+    "PushUrlModal": {
+      "title": "{deviceName} uchun Push URL o'rnatish",
+      "description": "Bu yuz quruma uchun push URL sozlamalarini konfiguratsiya qiling.",
+      "labels": {
+        "url": "URL",
+        "protocolType": "Protokol turi",
+        "addressingFormat": "Manzil format turi",
+        "hostName": "Xost nomi",
+        "portNo": "Port raqami"
+      },
+      "placeholders": {
+        "url": "Push URL kiriting",
+        "protocolType": "Protokol turini tanlang",
+        "addressingFormat": "Manzil formatini tanlang",
+        "hostName": "Xost nomini kiriting",
+        "portNo": "Port raqamini kiriting"
+      },
+      "options": {
+        "hostname": "Xost nomi",
+        "ipaddress": "IP manzil"
+      },
+      "buttons": {
+        "cancel": "Bekor qilish",
+        "update": "Push URL ni yangilash",
+        "updating": "Yangiylanmoqda..."
+      },
+      "messages": {
+        "success": "Push URL muvaffaqiyatli yangilandi!",
+        "error": "Push URL ni yangilashda xatolik"
+      }
     }
   }
 }

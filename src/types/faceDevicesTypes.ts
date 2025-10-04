@@ -10,6 +10,13 @@ export interface FaceDevice {
   last_checked_at?: string;
   createdAt?: string;
   updatedAt?: string;
+  push_url?: {
+    url: string;
+    protocol_type: 'HTTP' | 'HTTPS';
+    addressing_format_type: 'hostname' | 'ipaddress';
+    host_name: string;
+    port_no: string;
+  };
 }
 
 export interface CreateFaceDeviceRequest {
@@ -20,6 +27,14 @@ export interface CreateFaceDeviceRequest {
   port: string;
   username: string;
   password: string;
+}
+
+export interface SetPushUrlRequest {
+  url: string;
+  protocol_type: 'HTTP' | 'HTTPS';
+  addressing_format_type: 'hostname' | 'ipaddress';
+  host_name: string;
+  port_no: string;
 }
 
 export interface UpdateFaceDeviceRequest extends Partial<CreateFaceDeviceRequest> {

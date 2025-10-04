@@ -1,6 +1,7 @@
 'use server'
 import { fetchWithAuth } from "@/config/interceptor"
-import { CreateFaceDeviceRequest } from "@/types/faceDevicesTypes"
+import { CreateFaceDeviceRequest, SetPushUrlRequest } from "@/types/faceDevicesTypes"
+import {revalidatePath} from "next/cache";
 
 export const getFaceDevices = async (locale: string, page: number, name?: string, type?: string, status?: string, limit?: number) => {
   let url = `/faceDevices?page=${page}&limit=${limit || 10}`
@@ -78,4 +79,26 @@ export const deleteFaceDevice = async (id: number, locale?: string) => {
   })
   const data = await res.json()
   return { data }
+}
+
+export const setPushUrl = async (data: SetPushUrlRequest, id: number, locale?: string) => {
+  const res = await fetchWithAuth(`/faceDevices/${id}/set-push-url`, {
+    method: 'PATCH',
+    body: JSON.stringify(data),
+    headers: locale ? { 'Accept-Language': locale } : {}
+  })
+  const responseData = await res.json()
+  
+  // If the response is not ok, throw an error with the response data
+  if (!res.ok) {
+    const errorMessage = responseData?.message || 'Set push URL failed'
+    const error = new Error(errorMessage) as Error & { status: number; data: unknown }
+    error.status = res.status
+    error.data = responseData
+    throw error
+  }
+
+    revalidatePath(`/faceDevices/${id}`)
+
+  return { data: responseData }
 }

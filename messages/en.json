@@ -540,7 +540,39 @@
     "ShowPage": {
       "title": "{deviceName} - Device Details",
       "description": "View device information and manage connected users",
-      "backToDevices": "Back to Devices"
+      "backToDevices": "Back to Devices",
+      "pushUrlButton": "Push URL"
+    },
+    "PushUrlModal": {
+      "title": "Set Push URL for {deviceName}",
+      "description": "Configure the push URL settings for this face recognition device.",
+      "labels": {
+        "url": "URL",
+        "protocolType": "Protocol Type",
+        "addressingFormat": "Addressing Format",
+        "hostName": "Host Name",
+        "portNo": "Port Number"
+      },
+      "placeholders": {
+        "url": "Enter push URL",
+        "protocolType": "Select protocol type",
+        "addressingFormat": "Select addressing format",
+        "hostName": "Enter host name",
+        "portNo": "Enter port number"
+      },
+      "options": {
+        "hostname": "Hostname",
+        "ipaddress": "IP Address"
+      },
+      "buttons": {
+        "cancel": "Cancel",
+        "update": "Update Push URL",
+        "updating": "Updating..."
+      },
+      "messages": {
+        "success": "Push URL updated successfully!",
+        "error": "Failed to update push URL"
+      }
     }
   }
 }

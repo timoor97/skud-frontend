@@ -78,7 +78,7 @@ const FaceDevicesInUser: FC<DevicesInUserProps> = ({
         } finally {
             setIsLoading(false)
         }
-    }, [locale, userId, rowsPerPage])
+    }, [locale, userId, rowsPerPage, filters])
 
     const handleRemoveDevice = async (deviceId: number) => {
         setIsRemoving(true)
@@ -194,7 +194,7 @@ const FaceDevicesInUser: FC<DevicesInUserProps> = ({
     // Load devices on component mount - only when userId changes or component first mounts
     useEffect(() => {
         loadDevices(page, filters, rowsPerPage)
-    }, [loadDevices])
+    }, [loadDevices, page, filters, rowsPerPage])
 
     const tPagination = useTranslations('Pagination')
 

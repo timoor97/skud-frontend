@@ -540,7 +540,39 @@
     "ShowPage": {
       "title": "{deviceName} - Детали устройства",
       "description": "Просмотр информации об устройстве и управление подключенными пользователями",
-      "backToDevices": "Назад к устройствам"
+      "backToDevices": "Назад к устройствам",
+      "pushUrlButton": "Push URL"
+    },
+    "PushUrlModal": {
+      "title": "Установить Push URL для {deviceName}",
+      "description": "Настройте параметры push URL для этого устройства распознавания лиц.",
+      "labels": {
+        "url": "URL",
+        "protocolType": "Тип протокола",
+        "addressingFormat": "Формат адресации",
+        "hostName": "Имя хоста",
+        "portNo": "Номер порта"
+      },
+      "placeholders": {
+        "url": "Введите push URL",
+        "protocolType": "Выберите тип протокола",
+        "addressingFormat": "Выберите формат адресации",
+        "hostName": "Введите имя хоста",
+        "portNo": "Введите номер порта"
+      },
+      "options": {
+        "hostname": "Имя хоста",
+        "ipaddress": "IP адрес"
+      },
+      "buttons": {
+        "cancel": "Отмена",
+        "update": "Обновить Push URL",
+        "updating": "Обновление..."
+      },
+      "messages": {
+        "success": "Push URL успешно обновлен!",
+        "error": "Не удалось обновить push URL"
+      }
     }
   }
 }

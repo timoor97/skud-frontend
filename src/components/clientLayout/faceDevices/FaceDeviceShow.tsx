@@ -3,7 +3,7 @@
 import React, { FC, useState, useEffect } from 'react'
 import { FaceDevice } from '@/types/faceDevicesTypes'
 import { CurrentUser } from '@/types/currentUserTypes'
-import { Monitor, Wifi, WifiOff, ArrowLeft, Users, Clock, Network, Server, User } from "lucide-react"
+import { Monitor, Wifi, WifiOff, ArrowLeft, Users, Clock, Network, Server, User, Settings } from "lucide-react"
 import { PageHeader } from "@/components/dashboard/page-header"
 import { useTranslations } from 'next-intl'
 import { Button } from "@/components/ui/button"
@@ -12,6 +12,10 @@ import { Badge } from "@/components/ui/badge"
 import FaceDeviceTabs from "./show/FaceDeviceTabs"
 import { useRouter } from 'next/navigation'
 import SHowLoading from '@/components/ui/showLoading'
+import SetPushUrlModal from './modals/SetPushUrlModal'
+import { usePushUrlModalStore } from '@/hooks/useModalStore'
+import { PERMISSIONS } from '@/constants/permissions'
+import usePermissions from '@/hooks/usePermissions'
 interface FaceDeviceShowProps {
     faceDevice: FaceDevice
     userActions: {
@@ -24,6 +28,10 @@ const FaceDeviceShow: FC<FaceDeviceShowProps> = ({ faceDevice, userActions, curr
     const t = useTranslations('FaceDevices')
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(true)
+    const { openModal } = usePushUrlModalStore()
+    const { hasPermission } = usePermissions(userActions, currentUser.includes?.role?.name || '')
+    
+    const canSetPushUrl = hasPermission(PERMISSIONS.SET_PUSH_URL_FACE_DEVICE)
 
     useEffect(() => {
         // Show loading for a brief moment to ensure smooth transition
@@ -98,6 +106,21 @@ const FaceDeviceShow: FC<FaceDeviceShowProps> = ({ faceDevice, userActions, curr
                                     </div>
                                 </div>
                             </div>
+                            
+                            {/* Push URL Settings Button */}
+                            {canSetPushUrl && (
+                                <div className="flex-shrink-0">
+                                    <Button
+                                        onClick={() => openModal(faceDevice.id)}
+                                        variant="outline"
+                                        size="sm"
+                                        className="flex items-center gap-2 bg-gradient-to-r from-primary/5 to-primary/10 hover:from-primary/10 hover:to-primary/20 dark:from-primary/20 dark:to-primary/30 dark:hover:from-primary/30 dark:hover:to-primary/40 border-primary/20 dark:border-primary/40 text-primary hover:text-primary/80 dark:hover:text-primary transition-all duration-200 shadow-sm hover:shadow-md"
+                                    >
+                                        <Settings className="h-4 w-4" />
+                                        <span className="hidden sm:inline">{t('ShowPage.pushUrlButton')}</span>
+                                    </Button>
+                                </div>
+                            )}
                         </div>
                     </CardHeader>
                     <CardContent>
@@ -169,6 +192,11 @@ const FaceDeviceShow: FC<FaceDeviceShowProps> = ({ faceDevice, userActions, curr
                     currentUser={currentUser}
                 />
             </div>
+
+            {/* Push URL Modal */}
+            <SetPushUrlModal
+                faceDevice={faceDevice}
+            />
         </>
     )
 }

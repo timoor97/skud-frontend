@@ -68,7 +68,7 @@ const UsersOutDevice: FC<UsersOutDeviceProps> = ({
         } finally {
             setIsLoading(false)
         }
-    }, [locale, faceDeviceId, rowsPerPage])
+    }, [locale, faceDeviceId, rowsPerPage, filters])
 
     const handleAssignUser = async (userId: number) => {
         setIsAssigning(true)
@@ -201,7 +201,7 @@ const UsersOutDevice: FC<UsersOutDeviceProps> = ({
     // Load users on component mount
     useEffect(() => {
         loadUsers(page, filters, rowsPerPage)
-    }, [loadUsers])
+    }, [loadUsers, page, filters, rowsPerPage])
 
     // Define table columns (MultiSelectViewTable adds select column automatically)
     const columns: TableColumn[] = [
