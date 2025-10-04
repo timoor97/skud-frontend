@@ -13,3 +13,17 @@ export const useViewRoleModal = create<IUseViewRoleModal>((set) => ({
     openModal: (id = null) => set({ open: true, id: id }),
     closeModal: () => set({ open: false, id: null }),
 }));
+
+interface IUseViewFaceDeviceModal {
+    open: boolean;
+    id: number | null;
+    openModal: (id?: number | null) => void;
+    closeModal: () => void;
+}
+
+export const useViewFaceDeviceModal = create<IUseViewFaceDeviceModal>((set) => ({
+    open: false,
+    id: null,
+    openModal: (id = null) => set({ open: true, id: id }),
+    closeModal: () => set({ open: false, id: null }),
+}));
