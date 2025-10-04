@@ -8,8 +8,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Card } from "@/components/ui/card"
 import UsersOutDevice from './UsersOutDevice'
 import UsersInDevice from './UsersInDevice'
-import { UsersOutDeviceResponse } from "@/types/usersOutDeviceTypes"
-import { UsersInDeviceResponse } from "@/types/usersInDeviceTypes"
 import { useTranslations } from 'next-intl'
 import usePermissions from '@/hooks/usePermissions'
 import { PERMISSIONS } from '@/constants/permissions'
@@ -20,16 +18,12 @@ interface FaceDeviceTabsProps {
         action: string
     }[]
     currentUser: CurrentUser
-    usersOutDevice?: UsersOutDeviceResponse
-    usersInDevice?: UsersInDeviceResponse
 }
 
 const FaceDeviceTabs: FC<FaceDeviceTabsProps> = ({
                                                      faceDevice,
                                                      userActions,
-                                                     currentUser,
-                                                     usersOutDevice,
-                                                     usersInDevice
+                                                     currentUser
                                                  }) => {
     const [activeTab, setActiveTab] = useState("overview")
     const t = useTranslations('FaceDevices')
@@ -176,7 +170,6 @@ const FaceDeviceTabs: FC<FaceDeviceTabsProps> = ({
                             deviceName={faceDevice.name}
                             userActions={userActions}
                             currentUser={currentUser}
-                            usersInDevice={usersInDevice}
                         />
                     </TabsContent>
                 )}
@@ -188,7 +181,6 @@ const FaceDeviceTabs: FC<FaceDeviceTabsProps> = ({
                             deviceName={faceDevice.name}
                             userActions={userActions}
                             currentUser={currentUser}
-                            usersOutDevice={usersOutDevice}
                         />
                     </TabsContent>
                 )}

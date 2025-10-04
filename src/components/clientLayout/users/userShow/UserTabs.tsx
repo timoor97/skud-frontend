@@ -9,8 +9,6 @@ import {PERMISSIONS} from '@/constants/permissions'
 import {CurrentUser} from "@/types/currentUserTypes";
 import UserSecuritySection from './UserSecuritySection'
 import UserDeviceTabs from './UserDeviceTabs'
-import { DevicesInUserResponse } from '@/types/devicesInUserTypes'
-import { DevicesOutUserResponse } from '@/types/devicesOutUserTypes'
 
 interface UserTabsProps {
     defaultValue?: string
@@ -19,17 +17,13 @@ interface UserTabsProps {
         action: string
     }[]
     currentUser: CurrentUser
-    devicesInUser?: DevicesInUserResponse
-    devicesOutUser?: DevicesOutUserResponse
 }
 
 const UserTabs: FC<UserTabsProps> = ({
                                          defaultValue = "security",
                                          user,
                                          currentUser,
-                                         userActions,
-                                         devicesInUser,
-                                         devicesOutUser
+                                         userActions
                                      }) => {
     const tDetail = useTranslations('Users.DetailPage')
 
@@ -97,7 +91,7 @@ const UserTabs: FC<UserTabsProps> = ({
 
                             {canAccessFaceDevices && (
                                 <TabsContent value="faceDevices" className="mt-0">
-                                    <UserDeviceTabs user={user} currentUser={currentUser} userActions={userActions} devicesInUser={devicesInUser} devicesOutUser={devicesOutUser} />
+                                    <UserDeviceTabs user={user} currentUser={currentUser} userActions={userActions} />
                                 </TabsContent>
                             )}
                     </div>

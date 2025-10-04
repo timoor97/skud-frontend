@@ -70,6 +70,7 @@
     "ToastMsg": {
       "delete": "Foydalanuvchi muvaffaqiyatli o'chirildi!",
       "error": "Foydalanuvchini o'chirishda xatolik yuz berdi",
+      "success": "Muvaffaqiyatli!",
       "noUsersFound": "Sizning mezonlaringizga mos foydalanuvchilar topilmadi",
       "noUsers": "Foydalanuvchilar mavjud emas",
       "tryAdjustingCriteria": "Qidiruv mezonlarini o'zgartirishga harakat qiling",

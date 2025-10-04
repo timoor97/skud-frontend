@@ -1,6 +1,6 @@
 'use client'
 
-import React, {FC, useCallback} from 'react'
+import React, {FC, useCallback,useEffect} from 'react'
 import {useLocale, useTranslations} from 'next-intl'
 import { Button } from "@/components/ui/button"
 import { Monitor, Wifi, WifiOff, Trash2, X, CheckCircle2, Clock, AlertCircle } from "lucide-react"
@@ -39,26 +39,21 @@ import {
 const FaceDevicesInUser: FC<DevicesInUserProps> = ({
     userId,
     deviceActions,
-    currentUser,
-    devicesInUser
+    currentUser
 }) => {
     const t = useTranslations('FaceDevices')
-    const [devicesStatusList, setDevicesStatusList] = React.useState<DeviceUserStatus[] | null>(
-        devicesInUser?.data?.models || null
-    )
+    const [devicesStatusList, setDevicesStatusList] = React.useState<DeviceUserStatus[] | null>(null)
     const [isLoading, setIsLoading] = React.useState(false)
     const [selectedDevices, setSelectedDevices] = React.useState<number[]>([])
     const [isRemoving, setIsRemoving] = React.useState(false)
-    const [page, setPage] = React.useState(devicesInUser?.data?.meta?.current_page ? devicesInUser.data.meta.current_page - 1 : 0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(devicesInUser?.data?.meta?.per_page || 10);
-    const [currentMeta, setCurrentMeta] = React.useState<MetaData>(
-        devicesInUser?.data?.meta || {
-            current_page: 1,
-            last_page: 1,
-            per_page: 10,
-            total: 0
-        }
-    )
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [currentMeta, setCurrentMeta] = React.useState<MetaData>({
+        current_page: 1,
+        last_page: 1,
+        per_page: 10,
+        total: 0
+    })
     const [filters, setFilters] = React.useState({
         name: ''
     })
@@ -83,7 +78,7 @@ const FaceDevicesInUser: FC<DevicesInUserProps> = ({
         } finally {
             setIsLoading(false)
         }
-    }, [locale, userId, filters, rowsPerPage])
+    }, [locale, userId, rowsPerPage])
 
     const handleRemoveDevice = async (deviceId: number) => {
         setIsRemoving(true)
@@ -197,12 +192,9 @@ const FaceDevicesInUser: FC<DevicesInUserProps> = ({
     }
 
     // Load devices on component mount - only when userId changes or component first mounts
-    React.useEffect(() => {
-        // Only load if we don't have initial data or if it's the first mount
-        if (!devicesInUser?.data?.models || devicesInUser.data.models.length === 0) {
-            loadDevices(page, filters, rowsPerPage)
-        }
-    }, [userId, loadDevices, page, filters, rowsPerPage, devicesInUser?.data?.models]) // Include all dependencies
+    useEffect(() => {
+        loadDevices(page, filters, rowsPerPage)
+    }, [loadDevices])
 
     const tPagination = useTranslations('Pagination')
 

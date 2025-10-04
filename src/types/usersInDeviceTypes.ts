@@ -62,5 +62,4 @@ export interface UsersInDeviceProps {
         action: string
     }[]
     currentUser: CurrentUser
-    usersInDevice?: UsersInDeviceResponse
 }

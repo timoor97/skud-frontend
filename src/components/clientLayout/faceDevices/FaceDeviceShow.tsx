@@ -10,8 +10,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import FaceDeviceTabs from "./show/FaceDeviceTabs"
-import { UsersOutDeviceResponse } from "@/types/usersOutDeviceTypes"
-import { UsersInDeviceResponse } from "@/types/usersInDeviceTypes"
 import { useRouter } from 'next/navigation'
 import SHowLoading from '@/components/ui/showLoading'
 interface FaceDeviceShowProps {
@@ -20,11 +18,9 @@ interface FaceDeviceShowProps {
         action: string
     }[]
     currentUser: CurrentUser
-    usersOutDevice?: UsersOutDeviceResponse
-    usersInDevice?: UsersInDeviceResponse
 }
 
-const FaceDeviceShow: FC<FaceDeviceShowProps> = ({ faceDevice, userActions, currentUser, usersOutDevice, usersInDevice }) => {
+const FaceDeviceShow: FC<FaceDeviceShowProps> = ({ faceDevice, userActions, currentUser }) => {
     const t = useTranslations('FaceDevices')
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(true)
@@ -171,8 +167,6 @@ const FaceDeviceShow: FC<FaceDeviceShowProps> = ({ faceDevice, userActions, curr
                     faceDevice={faceDevice}
                     userActions={userActions}
                     currentUser={currentUser}
-                    usersOutDevice={usersOutDevice}
-                    usersInDevice={usersInDevice}
                 />
             </div>
         </>

@@ -75,5 +75,4 @@ export interface DevicesInUserProps {
         action: string
     }[]
     currentUser: CurrentUser
-    devicesInUser?: DevicesInUserResponse
 }

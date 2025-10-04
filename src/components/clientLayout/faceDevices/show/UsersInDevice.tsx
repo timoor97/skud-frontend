@@ -1,6 +1,6 @@
 'use client'
 
-import React, {FC, useCallback} from 'react'
+import React, {FC, useCallback,useEffect} from 'react'
 import {useLocale, useTranslations} from 'next-intl'
 import MultiSelectViewTable, {TableColumn} from '@/components/ui/multiSelectViewTable'
 import {
@@ -27,30 +27,23 @@ import {
 const UsersInDevice: FC<UsersInDeviceProps> = ({
     faceDeviceId,
     userActions,
-    currentUser,
-    usersInDevice
+    currentUser
 }) => {
     const t = useTranslations('Users')
     const tBulk = useTranslations('Users.BulkActions')
-    const [usersList, setUsersList] = React.useState<UserInDevice[] | null>(
-        usersInDevice?.data?.models?.map((model: UserDeviceStatus) => model.user) || null
-    )
-    const [usersStatusList, setUsersStatusList] = React.useState<UserDeviceStatus[] | null>(
-        usersInDevice?.data?.models || null
-    )
+    const [usersList, setUsersList] = React.useState<UserInDevice[] | null>(null)
+    const [usersStatusList, setUsersStatusList] = React.useState<UserDeviceStatus[] | null>(null)
     const [isLoading, setIsLoading] = React.useState(false)
     const [selectedUsers, setSelectedUsers] = React.useState<number[]>([])
     const [isRemoving, setIsRemoving] = React.useState(false)
-    const [page, setPage] = React.useState(usersInDevice?.data?.meta?.current_page ? usersInDevice.data.meta.current_page - 1 : 0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(usersInDevice?.data?.meta?.per_page || 10);
-    const [currentMeta, setCurrentMeta] = React.useState<MetaData>(
-        usersInDevice?.data?.meta || {
-            current_page: 1,
-            last_page: 1,
-            per_page: 10,
-            total: 0
-        }
-    )
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [currentMeta, setCurrentMeta] = React.useState<MetaData>({
+        current_page: 1,
+        last_page: 1,
+        per_page: 10,
+        total: 0
+    })
     const [filters, setFilters] = React.useState({
         name: ''
     })
@@ -76,7 +69,7 @@ const UsersInDevice: FC<UsersInDeviceProps> = ({
         } finally {
             setIsLoading(false)
         }
-    }, [locale, faceDeviceId, filters, rowsPerPage])
+    }, [locale, faceDeviceId, rowsPerPage])
 
     const handleRemoveUser = async (userId: number) => {
         setIsRemoving(true)
@@ -91,8 +84,9 @@ const UsersInDevice: FC<UsersInDeviceProps> = ({
             }
             
             toast.success(t('UsersInDevice.title') + ' ' + t('ToastMsg.success'))
-            // Reload the users list to refresh the data
-            await loadUsers(page, filters, rowsPerPage)
+            // Reset page to 0 and reload the users list to refresh the data
+            setPage(0)
+            await loadUsers(0, filters, rowsPerPage)
         } catch (error: unknown) {
             console.error('Error removing user:', error)
             
@@ -143,8 +137,9 @@ const UsersInDevice: FC<UsersInDeviceProps> = ({
             
             toast.success(`${selectedUsers.length} ${t('UsersInDevice.title')} ${t('ToastMsg.success')}`)
             setSelectedUsers([])
-            // Reload the users list to refresh the data
-            await loadUsers(page, filters, rowsPerPage)
+            // Reset page to 0 and reload the users list to refresh the data
+            setPage(0)
+            await loadUsers(0, filters, rowsPerPage)
         } catch (error: unknown) {
             console.error('Error removing users:', error)
             
@@ -204,13 +199,10 @@ const UsersInDevice: FC<UsersInDeviceProps> = ({
         loadUsers(0, resetFilters, rowsPerPage)
     }
 
-    // Load users on component mount - only when faceDeviceId changes or component first mounts
-    React.useEffect(() => {
-        // Only load if we don't have initial data or if it's the first mount
-        if (!usersInDevice?.data?.models || usersInDevice.data.models.length === 0) {
-            loadUsers(page, filters, rowsPerPage)
-        }
-    }, [faceDeviceId, loadUsers, page, filters, rowsPerPage, usersInDevice?.data?.models]) // Include all dependencies
+    // Load users on component mount
+    useEffect(() => {
+        loadUsers(page, filters, rowsPerPage)
+    }, [loadUsers])
 
     // Define table columns (MultiSelectViewTable adds select column automatically)
     const columns: TableColumn[] = [

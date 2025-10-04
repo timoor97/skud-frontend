@@ -9,8 +9,6 @@ import {User} from '@/types/usersTypes'
 import usePermissions from '@/hooks/usePermissions'
 import {PERMISSIONS} from '@/constants/permissions'
 import {CurrentUser} from "@/types/currentUserTypes";
-import { DevicesInUserResponse } from '@/types/devicesInUserTypes'
-import { DevicesOutUserResponse } from '@/types/devicesOutUserTypes'
 
 interface UserDeviceTabsProps {
     user: User
@@ -18,16 +16,12 @@ interface UserDeviceTabsProps {
         action: string
     }[]
     currentUser: CurrentUser
-    devicesInUser?: DevicesInUserResponse
-    devicesOutUser?: DevicesOutUserResponse
 }
 
 const UserDeviceTabs: FC<UserDeviceTabsProps> = ({
                                                      user,
                                                      currentUser,
-                                                     userActions,
-                                                     devicesInUser,
-                                                     devicesOutUser
+                                                     userActions
                                                  }) => {
     const t = useTranslations('Users.DetailPage.faceDevices')
 
@@ -71,7 +65,6 @@ const UserDeviceTabs: FC<UserDeviceTabsProps> = ({
                             userId={user.id}
                             deviceActions={userActions}
                             currentUser={currentUser}
-                            devicesInUser={devicesInUser}
                         />
                     </TabsContent>
 
@@ -81,7 +74,6 @@ const UserDeviceTabs: FC<UserDeviceTabsProps> = ({
                             userName={`${user.first_name} ${user.last_name}`}
                             deviceActions={userActions}
                             currentUser={currentUser}
-                            devicesOutUser={devicesOutUser}
                         />
                     </TabsContent>
                 </div>

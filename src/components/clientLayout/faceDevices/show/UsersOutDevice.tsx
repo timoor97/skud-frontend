@@ -1,6 +1,6 @@
 'use client'
 
-import React, {FC, useCallback} from 'react'
+import React, {FC, useCallback,useEffect} from 'react'
 import {useLocale, useTranslations} from 'next-intl'
 import MultiSelectViewTable, {TableColumn} from '@/components/ui/multiSelectViewTable'
 import {
@@ -27,26 +27,21 @@ const UsersOutDevice: FC<UsersOutDeviceProps> = ({
     faceDeviceId,
     deviceName,
     userActions,
-    currentUser,
-    usersOutDevice
+    currentUser
 }) => {
     const t = useTranslations('Users')
     const tBulk = useTranslations('Users.BulkActions')
     const tDevice = useTranslations('Users.UsersOutDevice')
-    const [usersList, setUsersList] = React.useState<UserOutDevice[] | null>(
-        usersOutDevice?.data?.models || null
-    )
+    const [usersList, setUsersList] = React.useState<UserOutDevice[] | null>(null)
     const [isLoading, setIsLoading] = React.useState(false)
-    const [page, setPage] = React.useState(usersOutDevice?.data?.meta?.current_page ? usersOutDevice.data.meta.current_page - 1 : 0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(usersOutDevice?.data?.meta?.per_page || 10);
-    const [currentMeta, setCurrentMeta] = React.useState<MetaData>(
-        usersOutDevice?.data?.meta || {
-            current_page: 1,
-            last_page: 1,
-            per_page: 10,
-            total: 0
-        }
-    )
+    const [page, setPage] = React.useState(0);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [currentMeta, setCurrentMeta] = React.useState<MetaData>({
+        current_page: 1,
+        last_page: 1,
+        per_page: 10,
+        total: 0
+    })
     const [filters, setFilters] = React.useState({
         name: ''
     })
@@ -73,7 +68,7 @@ const UsersOutDevice: FC<UsersOutDeviceProps> = ({
         } finally {
             setIsLoading(false)
         }
-    }, [locale, faceDeviceId, filters, rowsPerPage])
+    }, [locale, faceDeviceId, rowsPerPage])
 
     const handleAssignUser = async (userId: number) => {
         setIsAssigning(true)
@@ -88,8 +83,9 @@ const UsersOutDevice: FC<UsersOutDeviceProps> = ({
             }
             
             toast.success('User assigned to device successfully')
-            // Reload the current page to refresh the list
-            await loadUsers(page, filters, rowsPerPage)
+            // Reset page to 0 and reload the users list to refresh the data
+            setPage(0)
+            await loadUsers(0, filters, rowsPerPage)
         } catch (error: unknown) {
             console.error('Error assigning user:', error)
             
@@ -140,8 +136,9 @@ const UsersOutDevice: FC<UsersOutDeviceProps> = ({
             
             toast.success(`${selectedUsers.length} user(s) assigned to device successfully`)
             setSelectedUsers([])
-            // Reload the current page to refresh the list
-            await loadUsers(page, filters, rowsPerPage)
+            // Reset page to 0 and reload the users list to refresh the data
+            setPage(0)
+            await loadUsers(0, filters, rowsPerPage)
         } catch (error: unknown) {
             console.error('Error assigning users:', error)
             
@@ -201,13 +198,10 @@ const UsersOutDevice: FC<UsersOutDeviceProps> = ({
         loadUsers(0, resetFilters, rowsPerPage)
     }
 
-    // Load users on component mount - only when faceDeviceId changes or component first mounts
-    React.useEffect(() => {
-        // Only load if we don't have initial data or if it's the first mount
-        if (!usersOutDevice?.data?.models || usersOutDevice.data.models.length === 0) {
-            loadUsers(page, filters, rowsPerPage)
-        }
-    }, [faceDeviceId, loadUsers, page, filters, rowsPerPage, usersOutDevice?.data?.models]) // Include all dependencies
+    // Load users on component mount
+    useEffect(() => {
+        loadUsers(page, filters, rowsPerPage)
+    }, [loadUsers])
 
     // Define table columns (MultiSelectViewTable adds select column automatically)
     const columns: TableColumn[] = [
