@@ -30,6 +30,7 @@ export const PERMISSIONS = {
   VIEW_FACE_DEVICE_USERS: 'view-face-device-users',
   ADD_FACE_DEVICE_USERS: 'add-face-device-users',
   REMOVE_FACE_DEVICE_USERS: 'remove-face-device-users',
+    VIEW_FACE_DEVICE_RECORDS: 'view-face-device-records',
 
   /* viewLOGS */
   VIEW_ACTIVITY_LOGS: 'view-activity-logs',

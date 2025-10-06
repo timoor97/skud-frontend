@@ -526,16 +526,32 @@
       "statusDescription": "Enable or disable the face device"
     },
     "Tabs": {
-      "overview": "Overview",
+      "records": "Records",
       "usersIn": "Users In Device",
       "usersOut": "Users Out Device",
-      "overviewDescription": "Device information and settings",
+      "recordsDescription": "Face recognition records and access logs",
       "usersInDescription": "Users assigned to this device",
       "usersOutDescription": "Users not assigned to this device"
     },
     "Labels": {
       "lastChecked": "Last Checked",
       "neverChecked": "Never checked"
+    },
+    "Records": {
+      "title": "Face Recognition Records",
+      "description": "Access logs for {deviceName}",
+      "noRecords": "No records found",
+      "image": "Image",
+      "userName": "User Name",
+      "phone": "Phone",
+      "serialNumber": "Serial Number",
+      "dateTime": "Date & Time",
+      "filters": "Filters",
+      "search": "Search",
+      "searchPlaceholder": "Search by user name or phone...",
+      "dateFrom": "Date From",
+      "dateTo": "Date To",
+      "apply": "Apply"
     },
     "ShowPage": {
       "title": "{deviceName} - Device Details",

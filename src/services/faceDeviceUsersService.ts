@@ -196,3 +196,47 @@ export const removeSingleUserFromDevices = async (
   
   return { data }
 }
+
+export const getFaceDeviceRecords = async (
+  locale: string,
+  faceDeviceId: number,
+  page: number = 1,
+  name?: string,
+  limit: number = 10
+) => {
+  let url = `/faceDeviceUsers/getDeviceRecords/${faceDeviceId}?page=${page}&limit=${limit}`
+  
+  if (name && name.trim() !== '') {
+    url += `&name=${encodeURIComponent(name.trim())}`
+  }
+
+  const res = await fetchWithAuth(url, {
+    headers: {
+      'Accept-Language': locale
+    }
+  })
+  const data = await res.json()
+  return { data }
+}
+
+export const getUserRecords = async (
+  locale: string,
+  userId: number,
+  page: number = 1,
+  name?: string,
+  limit: number = 10
+) => {
+  let url = `/faceDeviceUsers/getUserRecords/${userId}?page=${page}&limit=${limit}`
+  
+  if (name && name.trim() !== '') {
+    url += `&name=${encodeURIComponent(name.trim())}`
+  }
+
+  const res = await fetchWithAuth(url, {
+    headers: {
+      'Accept-Language': locale
+    }
+  })
+  const data = await res.json()
+  return { data }
+}

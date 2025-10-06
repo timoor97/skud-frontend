@@ -526,16 +526,32 @@
       "statusDescription": "Включить или отключить устройство"
     },
     "Tabs": {
-      "overview": "Обзор",
+      "records": "Записи",
       "usersIn": "Пользователи на устройстве",
       "usersOut": "Пользователи не на устройстве",
-      "overviewDescription": "Информация об устройстве и настройки",
+      "recordsDescription": "Записи распознавания лиц и журналы доступа",
       "usersInDescription": "Пользователи, назначенные на это устройство",
       "usersOutDescription": "Пользователи, не назначенные на это устройство"
     },
     "Labels": {
       "lastChecked": "Последняя проверка",
       "neverChecked": "Никогда не проверялось"
+    },
+    "Records": {
+      "title": "Записи распознавания лиц",
+      "description": "Журналы доступа для {deviceName}",
+      "noRecords": "Записи не найдены",
+      "image": "Изображение",
+      "userName": "Имя пользователя",
+      "phone": "Телефон",
+      "serialNumber": "Серийный номер",
+      "dateTime": "Дата и время",
+      "filters": "Фильтры",
+      "search": "Поиск",
+      "searchPlaceholder": "Поиск по имени или телефону...",
+      "dateFrom": "Дата с",
+      "dateTo": "Дата по",
+      "apply": "Применить"
     },
     "ShowPage": {
       "title": "{deviceName} - Детали устройства",

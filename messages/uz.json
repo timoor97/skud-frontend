@@ -527,16 +527,32 @@
       "statusDescription": "Yuz qurumini yoqish yoki o'chirish"
     },
     "Tabs": {
-      "overview": "Umumiy ko'rinish",
+      "records": "Yozuvlar",
       "usersIn": "Qurilmadagi foydalanuvchilar",
       "usersOut": "Qurilmada bo'lmagan foydalanuvchilar",
-      "overviewDescription": "Qurilma haqida ma'lumot va sozlamalar",
+      "recordsDescription": "Yuz tanib olish yozuvlari va kirish jurnallari",
       "usersInDescription": "Bu qurilmaga tayinlangan foydalanuvchilar",
       "usersOutDescription": "Bu qurilmaga tayinlanmagan foydalanuvchilar"
     },
     "Labels": {
       "lastChecked": "Oxirgi tekshirish",
       "neverChecked": "Hech qachon tekshirilmagan"
+    },
+    "Records": {
+      "title": "Yuz tanib olish yozuvlari",
+      "description": "{deviceName} uchun kirish jurnallari",
+      "noRecords": "Yozuvlar topilmadi",
+      "image": "Rasm",
+      "userName": "Foydalanuvchi nomi",
+      "phone": "Telefon",
+      "serialNumber": "Seriya raqami",
+      "dateTime": "Sana va vaqt",
+      "filters": "Filtrlar",
+      "search": "Qidirish",
+      "searchPlaceholder": "Ism yoki telefon bo'yicha qidirish...",
+      "dateFrom": "Sanadan",
+      "dateTo": "Sanagacha",
+      "apply": "Qo'llash"
     },
     "ShowPage": {
       "title": "{deviceName} - Qurilma tafsilotlari",

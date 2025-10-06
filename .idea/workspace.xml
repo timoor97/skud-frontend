@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a8e50a95-b0fe-4e32-bbe1-38bede0f6c1d" name="Changes" comment="" />
+    <list default="true" id="a8e50a95-b0fe-4e32-bbe1-38bede0f6c1d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/en.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/en.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/ru.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/ru.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/messages/uz.json" beforeDir="false" afterPath="$PROJECT_DIR$/messages/uz.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/show/FaceDeviceTabs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/clientLayout/faceDevices/show/FaceDeviceTabs.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/permissions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/permissions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/services/faceDeviceUsersService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/faceDeviceUsersService.ts" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,7 +138,7 @@
       <workItem from="1759002531840" duration="12644000" />
       <workItem from="1759336484346" duration="48222000" />
       <workItem from="1759423128590" duration="47140000" />
-      <workItem from="1759601265988" duration="7627000" />
+      <workItem from="1759601265988" duration="20130000" />
     </task>
     <servers />
   </component>
